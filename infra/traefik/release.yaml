@@ -78,13 +78,14 @@ spec:
     ingressRoute:
       dashboard:
         enabled: false
-    initContainers: 
-      - name: volume-permissions
-        image: busybox:1.31.1
-        command: ["sh", "-c", "chmod -Rv 600 /certs/*"]
-        volumeMounts:
-          - name: traefik-data
-            mountPath: /certs
+    deployment:
+      initContainers: 
+        - name: volume-permissions
+          image: busybox:1.31.1
+          command: ["sh", "-c", "chmod -Rv 600 /certs/*"]
+          volumeMounts:
+            - name: traefik-data
+              mountPath: /certs
     persistence:
       enabled: true
       path: /certs
