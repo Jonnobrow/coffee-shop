@@ -15,6 +15,23 @@ spec:
         name: traefik
         namespace: kube-system
       interval: 1m
+  install:
+    remediation:
+      retries: -1
+  uninstall:
+    timeout: 5m
+    disableHooks: false
+    keepHistory: false
+  upgrade:
+    remediation:
+      retries: 5
+  rollback:
+    timeout: 5m
+    disableWait: false
+    disableHooks: false
+    recreate: false
+    force: false
+    cleanupOnFail: false
   values:
     additionalArguments:
       - --providers.file.filename=/data/traefik-config.yaml
