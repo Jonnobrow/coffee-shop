@@ -60,7 +60,7 @@ spec:
             key: apiKey
     ingressRoute:
       dashboard:
-        enabled: false
+        enabled: true
     ports:
       web:
         redirectTo: websecure
@@ -75,9 +75,6 @@ spec:
           secretKeyRef:
             name: cloudflare-api-credentials
             key: apiKey
-    ingressRoute:
-      dashboard:
-        enabled: false
     deployment:
       initContainers: 
         - name: volume-permissions
@@ -86,13 +83,13 @@ spec:
           volumeMounts:
             - name: traefik-data
               mountPath: /certs
-    persistence:
-      enabled: true
-      path: /certs
-      size: 128Mi
-      name: traefik-data
-      accessMode: ReadWriteOnce
-      storageClass: "local-storage"
+    #persistence:
+    #  enabled: true
+    #  path: /certs
+    #  size: 128Mi
+    #  name: traefik-data
+    #  accessMode: ReadWriteOnce
+    #  storageClass: "local-storage"
     volumes:
       - mountPath: /data
         name: traefik-config
