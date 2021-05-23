@@ -34,7 +34,7 @@ spec:
     cleanupOnFail: false
   values:
     additionalArguments:
-      - --providers.file.filename=/data/traefik-config.yaml
+      - --providers.file.filename=/config/traefik-config.yaml
       - --entrypoints.websecure.http.tls.certresolver=cloudflare
       - --entrypoints.websecure.http.tls.domains[0].main=jonnobrow.co.uk
       - --entrypoints.websecure.http.tls.domains[0].sans=*.jonnobrow.co.uk
@@ -43,7 +43,6 @@ spec:
       - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
       - --certificatesresolvers.cloudflare.acme.email=acme@jonnobrow.co.uk
       - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
-      - --certificatesresolvers.cloudflare.acme.storage=/certs/acme.json
     ports:
       web:
         redirectTo: websecure
@@ -91,6 +90,6 @@ spec:
     #  accessMode: ReadWriteOnce
     #  storageClass: "local-storage"
     volumes:
-      - mountPath: /data
+      - mountPath: /config
         name: traefik-config
         type: configMap
