@@ -6,6 +6,8 @@ resources:
   - release.yaml
   - storage-data.yaml
   - cloudflare-api-credentials-sealed.yaml
+  - traefik-dashboard-auth-sealed.yaml
+  - dashboard.yaml
 configMapGenerator:
   - name: traefik-config
     files:

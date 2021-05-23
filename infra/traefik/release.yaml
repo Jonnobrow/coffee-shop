@@ -60,21 +60,7 @@ spec:
             key: apiKey
     ingressRoute:
       dashboard:
-        enabled: true
-    ports:
-      web:
-        redirectTo: websecure
-    env:
-      - name: CF_API_EMAIL
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-api-credentials
-            key: email
-      - name: CF_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-api-credentials
-            key: apiKey
+        enabled: false
     deployment:
       initContainers: 
         - name: volume-permissions
