@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   basicAuth:
-    secret: traefik-dashboard-auth
+    secret: traefik-basic-auth
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
