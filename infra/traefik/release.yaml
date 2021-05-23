@@ -46,6 +46,9 @@ spec:
       enabled: true
       path: /certs
       size: 128Mi
+      name: traefik-data
+      accessMode: ReadWriteOnce
+      storageClass: "local-path"
     volumes:
       - mountPath: /data
         name: traefik-config
