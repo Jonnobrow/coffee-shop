@@ -4,6 +4,8 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - release.yaml
+  - storage-data.yaml
+  - cloudflare-api-credentials-sealed.yaml
 configMapGenerator:
   - name: traefik-config
     files:
