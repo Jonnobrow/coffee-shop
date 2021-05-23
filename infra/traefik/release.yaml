@@ -1,0 +1,52 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: traefik
+      version: '9.19.1'
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: kube-system
+      interval: 1m
+  values:
+    additionalArguments:
+      - --providers.file.filename=/data/traefik-config.yaml
+      - --entrypoints.websecure.http.tls.certresolver=cloudflare
+      - --entrypoints.websecure.http.tls.domains[0].main=jonnobrow.co.uk
+      - --entrypoints.websecure.http.tls.domains[0].sans=*.jonnobrow.co.uk
+      - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
+      - --certificatesresolvers.cloudflare.acme.email=acme@jonnobrow.co.uk
+      - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
+      - --certificatesresolvers.cloudflare.acme.storage=/certs/acme.json
+    ports:
+      web:
+        redirectTo: websecure
+    env:
+      - name: CF_API_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-credentials
+            key: email
+      - name: CF_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-credentials
+            key: apiKey
+    ingressRoute:
+      dashboard:
+        enabled: false
+    persistence:
+      enabled: true
+      path: /certs
+      size: 128Mi
+    volumes:
+      - mountPath: /data
+        name: traefik-config
+        type: configMap
