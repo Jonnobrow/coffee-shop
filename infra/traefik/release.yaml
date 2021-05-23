@@ -37,9 +37,7 @@ spec:
       - --providers.file.filename=/config/traefik-config.yaml
       - --entrypoints.websecure.http.tls.certresolver=cloudflare
       - --entrypoints.websecure.http.tls.domains[0].main=jonnobrow.co.uk
-      - --entrypoints.websecure.http.tls.domains[0].sans=*.jonnobrow.co.uk
-      - --entrypoints.websecure.http.tls.domains[1].main=local.jonnobrow.co.uk
-      - --entrypoints.websecure.http.tls.domains[1].sans=*.local.jonnobrow.co.uk
+      - --entrypoints.websecure.http.tls.domains[0].sans=*.jonnobrow.co.uk,*.local.jonnobrow.co.uk
       - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
       - --certificatesresolvers.cloudflare.acme.email=acme@jonnobrow.co.uk
       - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
