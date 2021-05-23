@@ -4,7 +4,7 @@ kind: PersistentVolume
 metadata:
   name: traefik-data
 spec:
-  storageClassName: local-path
+  storageClassName: local-storage
   capacity:
     storage: 128Mi
   accessModes:
