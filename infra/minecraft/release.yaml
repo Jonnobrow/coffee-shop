@@ -1,0 +1,37 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minecraft
+  namespace: minecraft
+spec:
+  interval: 5m
+  releaseName: minecraft
+  chart:
+    spec:
+      chart: minecraft
+      version: 3.1.8
+      sourceRef:
+        name: itzg
+        namespace: minecraft
+        kind: HelmRepository
+  values:
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 1000m
+    minecraftServer:
+      eula: "TRUE"
+      version: "LATEST"
+      type: "VANILLA"
+      difficulty: normal
+      gamemode: survival
+      motd: "Welcome to the Beebcraft Server!"
+      pvp: true
+      worldSaveName: beebcraft
+      memory: 2048M
+    persistence:
+      storageClass: "local-storage"
+      dataDir:
+        enabled: true
+        Size: 10Gi
+
