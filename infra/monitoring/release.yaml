@@ -17,11 +17,21 @@ spec:
   values:
     loki:
       enabled: true
+      persistence:
+        storageClassName: "local-storage"
+        enabled: true
+        size: 10Gi
     promtail:
       enabled: true
     grafana:
       enabled: true
     prometheus:
       enabled: true
+      alertmanager:
+        persistentVolume:
+          enabled: false
+      server:
+        persistentVolume:
+          enabled: false
 
 
