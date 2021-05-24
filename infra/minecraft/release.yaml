@@ -28,7 +28,7 @@ spec:
       motd: "Welcome to the Beebcraft Server!"
       pvp: true
       worldSaveName: beebcraft
-      memory: 2048M
+      memory: 1024M
     persistence:
       storageClass: "local-storage"
       dataDir:
