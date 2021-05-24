@@ -15,10 +15,12 @@ spec:
         namespace: minecraft
         kind: HelmRepository
   values:
+    image: itzg/minecraft-server
+    imageTag: java8-multiarch
     resources:
       requests:
         memory: 2Gi
-        cpu: 1000m
+        cpu: 500m
     minecraftServer:
       eula: "TRUE"
       version: "LATEST"
@@ -28,7 +30,7 @@ spec:
       motd: "Welcome to the Beebcraft Server!"
       pvp: true
       worldSaveName: beebcraft
-      memory: 1024M
+      memory: 2048M
     persistence:
       storageClass: "local-storage"
       dataDir:
