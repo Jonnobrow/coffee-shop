@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: monitoring
+  namespace: monitoring
+spec:
+  interval: 5m
+  releaseName: loki-stack
+  chart:
+    spec:
+      chart: loki-stack
+      version: 3.1.8
+      sourceRef:
+        name: grafana
+        namespace: monitoring
+        kind: HelmRepository
+  values:
+    loki:
+      enabled: true
+    promtail:
+      enabled: true
+    grafana:
+      enabled: true
+    prometheus:
+      enabled: true
+
+
