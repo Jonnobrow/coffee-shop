@@ -10,4 +10,8 @@ http:
         stsPreload: true
         stsSeconds: 15552000
         customFrameOptionsValue: SAMEORIGIN
+    nextcloud:
+      redirectRegex:
+        regex: 'https://(.*)/.well-known/(card|cal)dav'
+        replacement: 'https://$$1/remote.php/dav/'
 
