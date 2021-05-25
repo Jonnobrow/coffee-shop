@@ -57,6 +57,7 @@ spec:
       usePassword: true
     persistence:
       enabled: true
+      size: 25Gi
     livenessProbe:
       enabled: false
     readinessProbe:

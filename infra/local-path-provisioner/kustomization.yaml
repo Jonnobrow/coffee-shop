@@ -1,0 +1,12 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: local-path-provisioner
+  namespace: local-path-storage
+spec:
+  interval: 5m
+  path: "./deploy"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: local-path-provisioner
