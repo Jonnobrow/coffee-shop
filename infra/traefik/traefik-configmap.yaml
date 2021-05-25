@@ -13,23 +13,17 @@ data:
             stsPreload: true
             stsSeconds: 15552000
             customFrameOptionsValue: SAMEORIGIN
-        nextcloud:
-          redirectRegex:
-            regex: 'https://(.*)/.well-known/(card|cal)dav'
-            replacement: 'https://${1}/remote.php/dav/'
-            permanent: true
+        nextcloud-redirect:
           replacePathRegex:
-            regex: '^/.well-known/webfinger'
-            replacement: '/public.php?service=webfinger'
+            regex: '^/.well-known/(card|cal)dav'
+            replacement: '/remote.php/dav/'
+        nextcloud-wellknown:
           replacePathRegex:
-            regex: '^/.well-known/host-meta'
-            replacement: '/public.php?service=host-meta'
-          replacePathRegex:
-            regex: '^/.well-known/host-meta.json'
-            replacement: '/public.php?service=host-meta-json'
-          limit:
-            buffering:
-              maxRequestBodyBytes: 4000000000
+            regex: '^/.well-known/(.*)'
+            replacement: '/index.php/.well-known/$1'
+        nextcloud-bodysize:
+          buffering:
+            maxRequestBodyBytes: 4000000000
 
 kind: ConfigMap
 metadata:
