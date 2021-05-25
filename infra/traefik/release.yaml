@@ -74,7 +74,7 @@ spec:
       size: 128Mi
       name: traefik-data
       accessMode: ReadWriteOnce
-      storageClass: "local-storage"
+      storageClass: local-path
     volumes:
       - mountPath: /config
         name: traefik-config

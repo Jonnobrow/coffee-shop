@@ -1,0 +1,38 @@
+apiVersion: v1
+data:
+  traefik-config.yaml: |+
+    http:
+      middlewares:
+        headers-default:
+          headers:
+            sslRedirect: true
+            browserXssFilter: true
+            contentTypeNosniff: true
+            forceSTSHeader: true
+            stsIncludeSubdomains: true
+            stsPreload: true
+            stsSeconds: 15552000
+            customFrameOptionsValue: SAMEORIGIN
+        nextcloud:
+          redirectRegex:
+            regex: 'https://(.*)/.well-known/(card|cal)dav'
+            replacement: 'https://${1}/remote.php/dav/'
+            permanent: true
+          replacePathRegex:
+            regex: '^/.well-known/webfinger'
+            replacement: '/public.php?service=webfinger'
+          replacePathRegex:
+            regex: '^/.well-known/host-meta'
+            replacement: '/public.php?service=host-meta'
+          replacePathRegex:
+            regex: '^/.well-known/host-meta.json'
+            replacement: '/public.php?service=host-meta-json'
+          limit:
+            buffering:
+              maxRequestBodyBytes: 4000000000
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: traefik-config
+  namespace: kube-system
