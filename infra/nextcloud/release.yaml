@@ -34,10 +34,6 @@ spec:
       extraEnv:
         - name: TRUSTED_PROXIES
           value: traefik.kube-system.svc.cluster.local
-        - name: OVERWRITEHOST
-          value: nc.jonnobrow.co.uk
-        - name: OVERWRITEPROTOCOL
-          value: https
     nginx:
       enabled: true
       image:
