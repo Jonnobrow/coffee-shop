@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-06-03T19:53:16.383Z" agent="5.0 (X11)" etag="I5Bju0WZjI5QUvAmc9Zl" version="14.7.4" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-03T20:02:50.360Z" agent="5.0 (X11)" etag="-3T3Dax-DPB13-2gxtz_" version="14.7.4" type="github">
   <diagram name="Page-1" id="bfe91b75-5d2c-26a0-9c1d-138518896778">
     <mxGraphModel dx="688" dy="1110" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -23,10 +23,10 @@
         <mxCell id="UJRfoMLF_sfYYdu0p_u--20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.002;entryY=0.457;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UJRfoMLF_sfYYdu0p_u--2" target="UJRfoMLF_sfYYdu0p_u--4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="UJRfoMLF_sfYYdu0p_u--2" value="&lt;div&gt;&lt;pre&gt;Sky Hub&lt;/pre&gt;&lt;/div&gt;&lt;div&gt;&lt;pre&gt;(192.168.0.1)&lt;/pre&gt;&lt;/div&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.hub;" vertex="1" parent="1">
+        <mxCell id="UJRfoMLF_sfYYdu0p_u--2" value="&lt;div&gt;&lt;pre&gt;Sky Hub&lt;/pre&gt;&lt;/div&gt;&lt;div&gt;&lt;pre&gt;(192.168.0.1/16)&lt;/pre&gt;&lt;/div&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.hub;" vertex="1" parent="1">
           <mxGeometry x="125" y="210" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="UJRfoMLF_sfYYdu0p_u--4" value="&lt;div&gt;&lt;pre&gt;DHCP Devices (192.168.0.0/23)&lt;/pre&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;dashPattern=1 1;strokeWidth=2;align=left;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;spacingTop=0;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="UJRfoMLF_sfYYdu0p_u--4" value="&lt;div&gt;&lt;pre&gt;DHCP Devices (192.168.0.2-192.168.1.254)&lt;/pre&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;dashPattern=1 1;strokeWidth=2;align=left;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;spacingTop=0;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry x="340" y="80" width="680" height="200" as="geometry" />
         </mxCell>
         <mxCell id="UJRfoMLF_sfYYdu0p_u--5" value="My Laptop" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.laptop;dashed=1;dashPattern=1 1;" vertex="1" parent="1">
@@ -44,13 +44,13 @@
         <mxCell id="UJRfoMLF_sfYYdu0p_u--11" value="IoT Devices" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.unsecure;dashed=1;dashPattern=1 1;" vertex="1" parent="1">
           <mxGeometry x="730" y="100" width="40" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="UJRfoMLF_sfYYdu0p_u--12" value="&lt;div&gt;&lt;pre&gt;Static Devices A (192.168.2.0/23)&lt;/pre&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;dashPattern=1 1;strokeWidth=2;align=left;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;spacingTop=0;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="UJRfoMLF_sfYYdu0p_u--12" value="&lt;div&gt;&lt;pre&gt;Static Devices A (192.168.2.1-192.168.3.254)&lt;/pre&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;dashPattern=1 1;strokeWidth=2;align=left;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;spacingTop=0;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry x="340" y="300" width="680" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="UJRfoMLF_sfYYdu0p_u--13" value="&lt;div&gt;&lt;pre&gt;Static Devices B - Server (192.168.4.0/23)&lt;/pre&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;dashPattern=1 1;strokeWidth=2;align=left;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;spacingTop=0;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="UJRfoMLF_sfYYdu0p_u--13" value="&lt;div&gt;&lt;pre&gt;Static Devices B - Server (192.168.4.0-192.168.5.254)&lt;/pre&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;dashPattern=1 1;strokeWidth=2;align=left;verticalAlign=top;labelPosition=center;verticalLabelPosition=middle;spacingTop=0;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry x="340" y="520" width="680" height="320" as="geometry" />
         </mxCell>
-        <mxCell id="UJRfoMLF_sfYYdu0p_u--14" value="Desktop PC" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.pc;dashed=1;dashPattern=1 1;" vertex="1" parent="1">
+        <mxCell id="UJRfoMLF_sfYYdu0p_u--14" value="&lt;div&gt;Desktop PC&lt;/div&gt;&lt;div&gt;192.168.2.1&lt;br&gt;&lt;/div&gt;" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.pc;dashed=1;dashPattern=1 1;" vertex="1" parent="1">
           <mxGeometry x="900" y="355" width="100" height="70" as="geometry" />
         </mxCell>
         <mxCell id="UJRfoMLF_sfYYdu0p_u--21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UJRfoMLF_sfYYdu0p_u--15" target="UJRfoMLF_sfYYdu0p_u--16">
