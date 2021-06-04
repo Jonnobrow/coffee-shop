@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism
+  namespace: photoprism
+spec:
+  interval: 5m
+  releaseName: photoprism
+  chart:
+    spec:
+      chart: photoprism
+      version: 1.2.0
+      sourceRef:
+        name: photoprism
+        kind: HelmRepository
+  values:
+    config:
+      PHOTOPRISM_DEBUG: true
+      PHOTOPRISM_PUBLIC: false
+      PHOTOPRISM_SITE_TITLE: "PhotoPrism"
+      PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
+      PHOTOPRISM_SITE_AUTHOR: "jonnobrow"
+    persistence:
+      enabled: true
+      originalsPath: &originalsPath /assets/photos/originals
+      importPath:    &importPath    /assets/photos/import
+      exportPath:    &exportPath    /assets/photos/export
+      cachePath:     &cachePath     /asserts/cache
+
+      volumeMounts:
+      - name: photoprism
+        mountPath: *originalsPath
+        subPath: "originals"
+      - name: photoprism
+        mountPath: *cachePath
+        subPath: "cache"
+      - name: photoprism
+        mountPath: *exportPath
+        subPath: "export"
+      - name: imageupload
+        mountPath: *importPath
+      
+      volumes:
+      - name: photoprism
+        persistentVolumeClaim:
+          claimName: photoprism-data
+      - name: imageupload
+        persistentVolumeClaim:
+          claimName: imageupload
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-staging
+        nginx.ingress.kubernetes.io/auth-realm: Authentication Required - private
+        nginx.ingress.kubernetes.io/auth-secret: basic-auth
+        nginx.ingress.kubernetes.io/auth-type: basic
+      hosts:
+      - host: prism.jonnobrow.co.uk
+        paths:
+        - /
+      tls:
+      - hosts:
+        - prism.jonnobrow.co.uk
+        secretName: photoprism-tls-cert
+

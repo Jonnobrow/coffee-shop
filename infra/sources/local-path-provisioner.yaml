@@ -1,8 +1,13 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: local-path-provisioner
+  name: local-path-storage
   namespace: local-path-storage
 spec:
   interval: 5m
   url: https://github.com/rancher/local-path-provisioner
+  ignore: |
+    # exclude all
+    /*
+    # include charts dir
+    !/deploy/chart

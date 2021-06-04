@@ -1,0 +1,15 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: basic-auth
+  namespace: photoprism
+spec:
+  encryptedData:
+    auth: AgCjbaLxvbvBihVjuo/2IZXFouRXzhHzOT8J/6YPM+z6j2QyT7yYkEw8om26G9Y5xWK4FVqUupp1Qjqwl0wwb0zF43Hb6KesBTp3F/GAYeS4lk7K34YYpQZipXITRze6JOuHxU+TMKexuONnp+5adV1NNzrOiYqS0ywj04DbxRyBYO67R/rjlx0RsaAWlhPCQQZIfuSbZ2Ru6ERZPfPedXmEgBT0q6zLzksRPqxVPfZKytPk9EYTnwXS5JKFFDV3oqviGcpUzXE7wCtzmfjjGhnlUMUZfFIcXkHQC8dusmbRF4NzJKsWiMh2b5MVPlUzL3eswbYydX7KYmDsvESZx/sfccj3gfN6DhDvp48la61ps1w16CSL2HRe5FpHRVaQWyjSaD5aCCskgtTM4Q0KdGDoxyqlFM8eUCSJM24U4izoqVBciacEL15iY3po5xBmSMa/GkeD4hjn7TRzO99b+NJLt91O4eZM4nyU4bSe9qj9QJbZ8omPyZzn1HZ1/ot+2lMtsD4MaquNAa5ynLYG5LNVjTPmk3mi+FhA7BD6+UB5BjXG14BWxgL+184OZ0PtqDlO18OAdj4BBdYY6Rw3HUA3DVZuhqMQzWJUtgWAnssG2fg8/FXnNqvNDJgngzqyiXJ7ZLVTDFwEAdayVohyeSl4MkBVttbgusySXjdxk3i33bmOZt0YWc/sqnrvuaGhqxfWrmx+viFYClozTnTBa/yLcQRbwizl6U1lEhxydcwjyWUPyjmVOX0Ll8hq40dqNBw=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: basic-auth
+      namespace: photoprism
+
