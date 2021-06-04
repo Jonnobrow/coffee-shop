@@ -7,9 +7,9 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: local-path-provisioner
+      chart: ./deploy/chart
       sourceRef:
         kind: GitRepository
-        name: local-path-provisioner
+        name: local-path-storage
         namespace: local-path-storage
       interval: 1m

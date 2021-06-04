@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: photoprism
-  namespace: photoprism-system
+  namespace: photoprism
 spec:
   interval: 1m
   url: https://p80n.github.io/photoprism-helm/

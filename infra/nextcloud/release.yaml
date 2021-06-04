@@ -40,7 +40,7 @@ spec:
       host: nc.jonnobrow.co.uk
       extraEnv:
         - name: TRUSTED_PROXIES
-          value: traefik.kube-system.svc.cluster.local
+          value: ingress-nginx-controller.kube-system.svc.cluster.local
     nginx:
       enabled: true
       image:
