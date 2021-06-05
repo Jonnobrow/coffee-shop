@@ -24,6 +24,7 @@ spec:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/tls-acme: "true"
         nginx.ingress.kubernetes.io/proxy-body-size: 4G
         nginx.ingress.kubernetes.io/server-snippet: |-
           location = /.well-known/carddav {
@@ -44,16 +45,20 @@ spec:
         secretName: nextcloud-tls-cert
     nextcloud:
       host: nc.jonnobrow.co.uk
-      extraEnv:
-        - name: TRUSTED_PROXIES
-          value: ingress-nginx-controller.kube-system.svc.cluster.local
       configs:
         other.config.php: |-
           <?php
           $CONFIG = array(
             'default_language' => 'en',
             'default_locale' => 'en_GB',
-            'default_phone_region' => 'GB'
+            'default_phone_region' => 'GB',
+            'trusted_proxies' => array(
+              0 => '192.168.5.1',
+              1 => 'nginx-ingress-controller.kube-system.svc.cluster.local'
+            ),
+            'overwritehost' => 'nc.jonnobrow.co.uk',
+            'overwriteprotocol' => 'https',
+            'overwrite.cli.url' => 'https://nc.jonnobrow.co.uk'
           );
     nginx:
       enabled: true

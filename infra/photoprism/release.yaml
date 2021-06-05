@@ -13,6 +13,9 @@ spec:
       sourceRef:
         name: photoprism
         kind: HelmRepository
+  valuesFrom:
+    - kind: Secret
+      name: photoprism-secrets
   values:
     config:
       PHOTOPRISM_DEBUG: true
@@ -53,7 +56,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-staging
+        cert-manager.io/cluster-issuer: letsencrypt-prod
           #nginx.ingress.kubernetes.io/auth-realm: Authentication Required - private
           #nginx.ingress.kubernetes.io/auth-secret: basic-auth
           #nginx.ingress.kubernetes.io/auth-type: basic
@@ -65,4 +68,5 @@ spec:
       - hosts:
         - prism.jonnobrow.co.uk
         secretName: photoprism-tls-cert
+
 
