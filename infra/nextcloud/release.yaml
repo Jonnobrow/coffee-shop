@@ -23,7 +23,7 @@ spec:
     ingress:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-staging
+        cert-manager.io/cluster-issuer: letsencrypt-prod
         nginx.ingress.kubernetes.io/proxy-body-size: 4G
         nginx.ingress.kubernetes.io/server-snippet: |-
           location = /.well-known/carddav {
@@ -31,6 +31,12 @@ spec:
           }
           location = /.well-known/caldav {
               return 301 https://$host/remote.php/dav;
+          }
+          location = /.well-known/nodeinfo {
+              return 301 https://$host/index.php/.well-known/nodeinfo;
+          }
+          location = /.well-known/webfinger {
+              return 301 https://$host/index.php/.well-known/webfinger;
           }
       tls:
       - hosts:
@@ -41,6 +47,14 @@ spec:
       extraEnv:
         - name: TRUSTED_PROXIES
           value: ingress-nginx-controller.kube-system.svc.cluster.local
+      configs:
+        other.config.php: |-
+          <?php
+          $CONFIG = array(
+            'default_language' => 'en',
+            'default_locale' => 'en_GB',
+            'default_phone_region' => 'GB'
+          );
     nginx:
       enabled: true
       image:
@@ -71,7 +85,7 @@ spec:
       usePassword: true
     persistence:
       enabled: true
-      size: 25Gi
+      existingClaim: storage-nextcloud
     livenessProbe:
       enabled: false
     readinessProbe:
