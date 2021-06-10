@@ -31,7 +31,7 @@ spec:
       cachePath:     &cachePath     /asserts/cache
 
       volumeMounts:
-      - name: photoprism
+      - name: originals
         mountPath: *originalsPath
         subPath: "originals"
       - name: photoprism
@@ -44,6 +44,9 @@ spec:
         mountPath: *importPath
       
       volumes:
+      - name: originals
+        persistentVolumeClaim:
+          claimName: photoprism-originals
       - name: photoprism
         persistentVolumeClaim:
           claimName: photoprism-data
@@ -57,9 +60,6 @@ spec:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
-          #nginx.ingress.kubernetes.io/auth-realm: Authentication Required - private
-          #nginx.ingress.kubernetes.io/auth-secret: basic-auth
-          #nginx.ingress.kubernetes.io/auth-type: basic
       hosts:
       - host: prism.jonnobrow.co.uk
         paths:

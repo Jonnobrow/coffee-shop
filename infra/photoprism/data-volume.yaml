@@ -6,7 +6,7 @@ metadata:
 spec:
   storageClassName: local-path
   capacity:
-    storage: 25Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteOnce
   local:
@@ -32,4 +32,39 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 25Gi
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: photoprism-originals
+spec:
+  storageClassName: local-path
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: /mnt/jbhdd/pictures/organised
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - cappuccino
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photoprism-originals
+  namespace: photoprism
+spec:
+  storageClassName: local-path
+  volumeName: photoprism-originals
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
