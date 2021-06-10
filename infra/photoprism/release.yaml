@@ -28,15 +28,14 @@ spec:
       originalsPath: &originalsPath /assets/photos/originals
       importPath:    &importPath    /assets/photos/import
       exportPath:    &exportPath    /assets/photos/export
-      cachePath:     &cachePath     /asserts/cache
+      storagePath:   &storagePath   /photoprism/storage
 
       volumeMounts:
       - name: originals
         mountPath: *originalsPath
-        subPath: "originals"
       - name: photoprism
-        mountPath: *cachePath
-        subPath: "cache"
+        mountPath: *storagePath
+        subPath: "storage"
       - name: photoprism
         mountPath: *exportPath
         subPath: "export"
