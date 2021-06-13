@@ -16,7 +16,7 @@ spec:
         kind: HelmRepository
   values:
     image: itzg/minecraft-server
-    imageTag: latest
+    imageTag: multiarch-latest
     resources:
       requests:
         memory: 512Mi
@@ -30,8 +30,9 @@ spec:
       motd: "Welcome to the Beebcraft Server!"
       pvp: true
       worldSaveName: beebcraft
-      memory: 2048M
+      memory: 512M
       serviceType: LoadBalancer
+      whitelist: jonnobrow,BobsterLobster4
     persistence:
       storageClass: "local-path"
       dataDir:
