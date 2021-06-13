@@ -16,25 +16,24 @@ spec:
         kind: HelmRepository
   values:
     image: itzg/minecraft-server
-    imageTag: java8-multiarch
+    imageTag: latest
     resources:
       requests:
-        memory: 2Gi
+        memory: 512Mi
         cpu: 500m
     minecraftServer:
       eula: "TRUE"
       version: "LATEST"
       type: "VANILLA"
-      difficulty: normal
+      difficulty: easy
       gamemode: survival
       motd: "Welcome to the Beebcraft Server!"
       pvp: true
       worldSaveName: beebcraft
       memory: 2048M
       serviceType: LoadBalancer
-      loadBalancerIP: 192.168.0.241
     persistence:
-      storageClass: "local-storage"
+      storageClass: "local-path"
       dataDir:
         enabled: true
         Size: 10Gi
