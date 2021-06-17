@@ -45,6 +45,14 @@ spec:
         secretName: nextcloud-tls-cert
     nextcloud:
       host: nc.jonnobrow.co.uk
+      extraVolumes:
+      - name: photos
+        persistentVolumeClaim:
+          claimName: photos
+          readOnly: false
+      extraVolumeMounts:
+      - name: photos
+        mount: "/mnt/photos"
       configs:
         other.config.php: |-
           <?php
