@@ -39,19 +39,14 @@ spec:
       - name: photoprism
         mountPath: *exportPath
         subPath: "export"
-      - name: imageupload
-        mountPath: *importPath
       
       volumes:
       - name: originals
         persistentVolumeClaim:
-          claimName: photoprism-originals
+          claimName: photos
       - name: photoprism
         persistentVolumeClaim:
           claimName: photoprism-data
-      - name: imageupload
-        persistentVolumeClaim:
-          claimName: imageupload
 
     ingress:
       enabled: true
