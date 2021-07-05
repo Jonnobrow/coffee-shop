@@ -46,6 +46,10 @@ spec:
       persistentVolumeClaim:
         claimName: jellyfin-movies
         readOnly: true
+    - name: youtube
+      persistentVolumeClaim:
+        claimName: jellyfin-yt
+        readOnly: true
     additionalVolumeMounts:
     - name: music
       mountPath: "/mnt/music"
@@ -53,3 +57,5 @@ spec:
       mountPath: "/mnt/tv"
     - name: movies
       mountPath: "/mnt/movies"
+    - name: youtube
+      mountPath: "/mnt/youtube"

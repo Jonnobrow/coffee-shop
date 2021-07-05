@@ -39,4 +39,17 @@ spec:
   resources:
     requests:
       storage: 500Gi
-
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-yt
+  namespace: jellyfin
+spec:
+  storageClassName: nfs
+  volumeName: youtube
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
