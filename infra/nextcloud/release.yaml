@@ -48,11 +48,14 @@ spec:
       extraVolumes:
       - name: photos
         persistentVolumeClaim:
-          claimName: photos
+          claimName: nextcloud-photos
           readOnly: false
       extraVolumeMounts:
       - name: photos
-        mount: "/mnt/photos"
+        mountPath: "/mnt/photos"
+      mail:
+        smtp:
+          authtype: PLAIN
       configs:
         other.config.php: |-
           <?php

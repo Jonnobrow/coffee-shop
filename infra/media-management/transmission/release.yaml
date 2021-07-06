@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: transmission
+  namespace: media-management
+spec:
+  interval: 5m
+  releaseName: transmission
+  chart:
+    spec:
+      chart: transmission
+      version: 6.2.0
+      sourceRef:
+        name: k8s-at-home
+        namespace: flux-system
+        kind: HelmRepository
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/transmission
+      tag: v3.00
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+      - host: transmission.jonnobrow.co.uk
+        paths:
+        - path: /
+      tls:
+      - hosts:
+        - transmission.jonnobrow.co.uk
+        secretName: transmission-tls-cert
+    persistence:
+      config:
+        enabled: true
+      downloads:
+        enabled: true
+        mountPath: /downloads
+        size: 500Gi
+        accessMode: ReadWriteOnce
