@@ -23,6 +23,7 @@ spec:
       PHOTOPRISM_SITE_TITLE: "PhotoPrism"
       PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
       PHOTOPRISM_SITE_AUTHOR: "jonnobrow"
+      PHOTOPRISM_SPONSOR: true
     persistence:
       enabled: true
       originalsPath: &originalsPath /assets/photos/originals
