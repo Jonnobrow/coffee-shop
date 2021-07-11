@@ -5,7 +5,7 @@ metadata:
   namespace: paperless
 spec:
   storageClassName: nfs
-  volumeName: paperless
+  volumeName: paperless-data
   accessModes:
     - ReadWriteMany
   resources:
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: paperless
+  name: paperless-data
 spec:
   storageClassName: nfs
   capacity:
@@ -23,7 +23,7 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /mnt/jbhdd/scans
+    path: /mnt/jbhdd/scans/data
     server: 192.168.4.2
 ---
 apiVersion: v1
@@ -33,12 +33,27 @@ metadata:
   namespace: paperless
 spec:
   storageClassName: nfs
-  volumeName: paperless
+  volumeName: paperless-consume
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-consume
+spec:
+  storageClassName: nfs
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /mnt/jbhdd/scans/consume
+    server: 192.168.4.2
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -47,12 +62,27 @@ metadata:
   namespace: paperless
 spec:
   storageClassName: nfs
-  volumeName: paperless
+  volumeName: paperless-export
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-export
+spec:
+  storageClassName: nfs
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /mnt/jbhdd/scans/export
+    server: 192.168.4.2
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -61,9 +91,24 @@ metadata:
   namespace: paperless
 spec:
   storageClassName: nfs
-  volumeName: paperless
+  volumeName: paperless-media
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: paperless-media
+spec:
+  storageClassName: nfs
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /mnt/jbhdd/scans/media
+    server: 192.168.4.2
+
