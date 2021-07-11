@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: paperless-scans
+  name: paperless-scans-data
   namespace: paperless
 spec:
   storageClassName: nfs
@@ -25,3 +25,45 @@ spec:
   nfs:
     path: /mnt/jbhdd/scans
     server: 192.168.4.2
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-scans-consume
+  namespace: paperless
+spec:
+  storageClassName: nfs
+  volumeName: paperless
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-scans-export
+  namespace: paperless
+spec:
+  storageClassName: nfs
+  volumeName: paperless
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-scans-media
+  namespace: paperless
+spec:
+  storageClassName: nfs
+  volumeName: paperless
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
