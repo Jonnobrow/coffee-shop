@@ -50,9 +50,15 @@ spec:
         persistentVolumeClaim:
           claimName: nextcloud-photos
           readOnly: false
+      - name: scans
+        persistentVolumeClaim:
+          claimName: nextcloud-scans
+          readOnly: false
       extraVolumeMounts:
       - name: photos
         mountPath: "/mnt/photos"
+      - name: scans
+        mountPath: "/mnt/scans"
       mail:
         smtp:
           authtype: PLAIN
