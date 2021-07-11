@@ -27,17 +27,18 @@ spec:
       PAPERLESS_ALLOWED_HOSTS: paperless.jonnobrow.co.uk
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.jonnobrow.co.uk,http://localhost:8000
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-      - host: paperless.jonnobrow.co.uk
-        paths:
-        - path: /
-      tls:
-      - hosts:
-        - paperless.jonnobrow.co.uk
-        secretName: paperless-tls-cert
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+        - host: paperless.jonnobrow.co.uk
+          paths:
+          - path: /
+        tls:
+        - hosts:
+          - paperless.jonnobrow.co.uk
+          secretName: paperless-tls-cert
     additionalContainers:
       - name: broker
         image: redis:6.0
