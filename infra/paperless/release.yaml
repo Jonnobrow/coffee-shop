@@ -29,8 +29,6 @@ spec:
       PAPERLESS_TIME_ZONE: Europe/London
       PAPERLESS_ALLOWED_HOSTS: paperless.jonnobrow.co.uk
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.jonnobrow.co.uk,http://localhost:8000
-      USERMAP_UID: 65534
-      USERMAP_GID: 65534
     ingress:
       main:
         enabled: true
