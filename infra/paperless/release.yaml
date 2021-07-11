@@ -50,23 +50,19 @@ spec:
         enabled: true
         existingClaim: paperless-scans-consume
         mountPath: /usr/src/paperless/consume
-        subPath: consume
         readOnly: false
       data:
         enabled: true
         existingClaim: paperless-scans-data
         mountPath: /usr/src/paperless/data
-        subPath: data
         readOnly: false
       export:
         enabled: true
         existingClaim: paperless-scans-export
         mountPath: /usr/src/paperless/export
-        subPath: export
         readOnly: false
       media:
         enabled: true
         existingClaim: paperless-scans-media
         mountPath: /usr/src/paperless/media
-        subPath: media
         readOnly: false
