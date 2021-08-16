@@ -57,6 +57,9 @@ spec:
       extraVolumeMounts:
       - name: photos
         mountPath: "/mnt/photos"
+        runAsUser: "1000"
+        runAsGroup: "1000"
+        runAsNonRoot: true
       - name: scans
         mountPath: "/mnt/scans"
       mail:
