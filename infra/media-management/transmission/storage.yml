@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /mnt/jbhdd/scans
+    path: /mnt/jbhdd/tranmission-downloads
     server: 192.168.4.2
 ---
 apiVersion: v1
