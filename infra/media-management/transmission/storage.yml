@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: tranmission-downloads
+  name: transmission-downloads
 spec:
   storageClassName: nfs
   capacity:
@@ -16,11 +16,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tranmission-downloads
+  name: transmission-downloads
   namespace: media-management
 spec:
   storageClassName: nfs
-  volumeName: tranmission-downloads
+  volumeName: transmission-downloads
   accessModes:
     - ReadWriteMany
   resources:
