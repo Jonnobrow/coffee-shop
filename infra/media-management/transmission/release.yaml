@@ -36,5 +36,6 @@ spec:
       downloads:
         enabled: true
         mountPath: /downloads
-        size: 500Gi
-        accessMode: ReadWriteOnce
+        existingClaim: transmission-downloads
+        accessMode: ReadWriteMany
+
