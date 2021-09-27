@@ -17,6 +17,9 @@ spec:
     - kind: Secret
       name: photoprism-secrets
   values:
+    image:
+      repository: photoprism/photoprism
+      tag: "20210925"
     config:
       PHOTOPRISM_DEBUG: true
       PHOTOPRISM_PUBLIC: false
