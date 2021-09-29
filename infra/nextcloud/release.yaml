@@ -57,9 +57,6 @@ spec:
       extraVolumeMounts:
       - name: photos
         mountPath: "/mnt/photos"
-        runAsUser: "1000"
-        runAsGroup: "1000"
-        runAsNonRoot: true
       - name: scans
         mountPath: "/mnt/scans"
       mail:
@@ -85,6 +82,10 @@ spec:
       image:
         repository: nginx
         tag: 1.21.3-alpine
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      runAsNonRoot: true
     internalDatabase:
       enabled: false
     externalDatabase:
