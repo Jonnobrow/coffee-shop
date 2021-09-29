@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: 2.6.5
+      version: 2.8.3
       sourceRef:
         name: nextcloud
         kind: HelmRepository
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 21.0.2-fpm-alpine
+      tag: 22.1.1-fpm-alpine
     ingress:
       enabled: true
       annotations:
@@ -84,7 +84,7 @@ spec:
       enabled: true
       image:
         repository: nginx
-        tag: 1.19.10-alpine
+        tag: 1.21.3-alpine
     internalDatabase:
       enabled: false
     externalDatabase:
@@ -98,7 +98,7 @@ spec:
         existingClaim: database-nextcloud
       image:
         repository: bitnami/postgresql
-        tag: 13.1.0
+        tag: 13.4.0
       volumePermissions:
         enabled: true
       psp:
