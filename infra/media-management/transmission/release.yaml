@@ -61,8 +61,8 @@ spec:
         scripts:
           up: |-
             #!/bin/bash
-            echo "connected"
+            ip route add 10.96.0.0/16 via 169.254.1.1 dev eth0
 
           down: |-
             #!/bin/bash
-            echo "disconnected"
+            ip route del 10.96.0.0/16 via 169.254.1.1 dev eth0
