@@ -49,6 +49,8 @@ spec:
         securityContext:
           runAsUser: 586
           runAsGroup: 586
+          capabilities:
+            add: ["CAP_NET_ADMIN", "CAP_SYS_MODULE"]
     addons:
       vpn:
         enabled: true
