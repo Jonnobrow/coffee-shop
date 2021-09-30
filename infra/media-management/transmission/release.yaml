@@ -50,7 +50,7 @@ spec:
           runAsUser: 586
           runAsGroup: 586
           capabilities:
-            add: ["CAP_NET_ADMIN", "CAP_SYS_MODULE"]
+            add: ["NET_ADMIN", "SYS_MODULE"]
     addons:
       vpn:
         enabled: true
