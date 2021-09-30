@@ -14,7 +14,17 @@ spec:
         name: k8s-at-home
         namespace: flux-system
         kind: HelmRepository
+  valuesFrom:
+    - kind: Secret
+      name: transmission-secrets
   values:
+    env:
+      TRANSMISSION_ALT_SPEED_DOWN: 450
+      TRANSMISSION_ALT_SPEED_UP: 50
+      TRANSMISSION_ALT_SPEED_TIME_BEGIN: 480
+      TRANSMISSION_ALT_SPEED_TIME_END: 1020
+      TRANSMISSION_ALT_SPEED_TIME_ENABLED: true
+      TRANSMISSION_DOWNLOAD_DIR: /downloads
     image:
       repository: ghcr.io/k8s-at-home/transmission
       tag: v3.00
@@ -31,11 +41,26 @@ spec:
         - transmission.jonnobrow.co.uk
         secretName: transmission-tls-cert
     persistence:
-      config:
-        enabled: true
       downloads:
         enabled: true
         mountPath: /downloads
         existingClaim: transmission-downloads
         accessMode: ReadWriteMany
+        securityContext:
+          runAsUser: 586
+          runAsGroup: 586
+    addons:
+      vpn:
+        enabled: true
+        type: wireguard
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+        scripts:
+          up: |-
+            #!/bin/bash
+            echo "connected"
 
+          down: |-
+            #!/bin/bash
+            echo "disconnected"
