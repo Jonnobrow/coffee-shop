@@ -59,6 +59,10 @@ spec:
         mountPath: "/mnt/photos"
       - name: scans
         mountPath: "/mnt/scans"
+      extraSecurityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
       mail:
         smtp:
           authtype: PLAIN
