@@ -5,27 +5,35 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 5m
-  releaseName: cert-manager
   chart:
     spec:
       chart: cert-manager
-      version: v1.3.1
+      version: v1.5.3
       sourceRef:
         name: jetstack
         kind: HelmRepository
+        namespace: flux-system
   values:
     installCRDs: true
     image:
       registry: quay.io
       repository: jetstack/cert-manager-controller
-      tag: v1.3.1
+      tag: v1.5.3
     webhook:
       image:
         registry: quay.io
         repository: jetstack/cert-manager-webhook
-        tag: v1.3.1
+        tag: v1.5.3
     cainjector:
       image:
         registry: quay.io
         repository: jetstack/cert-manager-cainjector
-        tag: v1.3.1
+        tag: v1.5.3
+    extraArgs:
+    - --dns01-recursive-nameservers=1.1.1.1:53
+    - --dns01-recursive-nameservers-only
+    podDnsPolicy: "None"
+    podDnsConfig:
+      nameservers:
+      - "1.1.1.1"
+      - "9.9.9.9"
