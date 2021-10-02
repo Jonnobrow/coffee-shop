@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+  namespace: downloads
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: qbittorrent
+      version: 12.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/qbittorrent
+      tag: v4.3.8
+    env:
+      TZ: "Europe/London"
+    hostname: qbittorrent
+    podAnnotations:
+      setGateway: "true"
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+        - host: "qbittorrent.${SECRET_DOMAIN}"
+          paths:
+          - path: /
+        tls:
+        - hosts:
+          - "qbittorrent.${SECRET_DOMAIN}"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbittorrent-config
+      media-franxx:
+        enabled: true
+        existingClaim: nfs-downloads-pvc
+    podSecurityContext:
+      supplementalGroups:
+      - 5600
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        memory: 1024Mi
