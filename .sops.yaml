@@ -1,0 +1,8 @@
+creation_rules:
+- path_regex: cluster/.*\.ya?ml
+  encrypted_regex: '^(data|stringData)$'
+  pgp: >-
+    EEC9902152C0690384D8A104D86E27E8B691FAA1,
+    DE99604016EF8893AD54FDE83BC85C121EA96233
+
+
