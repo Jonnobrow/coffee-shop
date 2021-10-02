@@ -1,1 +1,15 @@
 cappuccino
+# k8s
+kubeconfig
+# Binaries
+bin
+/flux
+*.iso
+# Temp folders
+.temp*
+.private/
+.logs/
+.task/
+# Ansible
+xanmanning.k3s*
+node_modules
