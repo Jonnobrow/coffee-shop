@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: lidarr
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: lidarr
+      version: 11.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/lidarr
+      tag: v1.0.0.2255
+    env:
+      TZ: "Europe/London"
+    hostname: lidarr
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "music-box"
+        hosts:
+        - host: "lidarr.${SECRET_DOMAIN}"
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - hosts:
+          - "lidarr.${SECRET_DOMAIN}"
+    persistence:
+      config:
+        enabled: true
+        storageClass: "local-path"
+        accessMode: ReadWriteOnce
+        size: 2Gi
+      music:
+        enabled: true
+        existingClaim: jbhdd-music-pvc
+      downloads:
+        enabled: true
+        existingClaim: jbhdd-downloads-pvc
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 100m
+      limits:
+        memory: 256Mi
