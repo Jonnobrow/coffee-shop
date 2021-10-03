@@ -40,7 +40,7 @@ spec:
       config:
         enabled: true
         existingClaim: qbittorrent-config
-      media-franxx:
+      downloads-jbhdd:
         enabled: true
         existingClaim: nfs-downloads-pvc
     podSecurityContext:
