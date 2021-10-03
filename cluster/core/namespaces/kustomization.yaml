@@ -7,3 +7,4 @@ resources:
   - vpn-gateway.yaml
   - networking.yaml
   - media.yaml
+  - home.yaml
