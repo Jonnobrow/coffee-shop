@@ -1,0 +1,33 @@
+---
+version: '3'
+
+env:
+  GITHUB_USER: jonnobrow
+
+
+
+tasks:
+
+  sync:
+    desc: Sync flux-system with the Git Repository
+    cmds:
+    - flux reconcile source git flux-system
+    silent: true
+
+  bootstrap:
+    desc: Bootstrap cluster with flux
+    cmds:
+    - | 
+      flux bootstrap github \
+        --owner=$GITHUB_USER \
+        --repository=coffee-shop \
+        --branch=restructure \
+        --path=./cluster/base \
+        --personal
+    silent: true
+
+  watch-kustomizations:
+    desc: Watch flux kustomizations
+    cmds:
+    - flux get kustomizations --watch
+

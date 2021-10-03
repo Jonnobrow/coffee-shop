@@ -1,0 +1,34 @@
+---
+version: '3'
+
+env:
+  KEY_NAME: "cappuccino.jonnobrow.co.uk"
+  KEY_COMMENT: "flux secrets"
+
+tasks:
+  
+  gen-key:
+    desc: Generates a passwordless keypair
+    cmds:
+      - |
+        gpg --batch --full-generate-key <<EOF
+          %no-protection
+          Key-Type: 1
+          Key-Length: 4096
+          Subkey-Type: 1
+          Subkey-Length: 4096
+          Expire-Date: 0
+          Name-Comment: ${KEY_COMMENT}
+          Name-Real: ${KEY_NAME}
+          EOF
+      - gpg --list-secret-keys "${KEY_NAME}"
+
+  create-secret:
+    desc: Creates the sops-gpg secret
+    cmds:
+      - |
+        gpg --export-secret-keys --armor "${KEY_NAME}" | \
+          kubectl create secret generic sops-gpg \
+          --namespace=flux-system \
+          --from-file=sops.asc=/dev/stdin
+
