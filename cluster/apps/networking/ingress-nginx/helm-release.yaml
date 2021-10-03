@@ -13,6 +13,7 @@ spec:
       sourceRef:
         name: ingress-nginx
         kind: HelmRepository
+        namespace: flux-system
   values:
     controller:
       ingressClass: nginx
