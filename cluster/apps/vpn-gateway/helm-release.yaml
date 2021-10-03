@@ -64,17 +64,17 @@ spec:
                     cidr: ${NETWORK_K8S_CLUSTER_CIDR}
                 - ipBlock:
                     cidr: ${NETWORK_K8S_SERVICE_CIDR}
-    DNS: 172.16.1.1
+    DNS: 172.16.0.1
     routed_namespaces:
       - downloads
     settings:
       VPN_INTERFACE: wg0
       VXLAN_ID: 43
-      VXLAN_IP_NETWORK: 172.16.1
+      VXLAN_IP_NETWORK: 172.16.0
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_TRAFFIC_PORT: "${SECRET_VPN_GATEWAY_PORT}"
-      NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 ${NETWORK_MANAGEMENT_CIDR}"
-      VPN_LOCAL_CIDRS: "172.16.0.0/12 ${NETWORK_MANAGEMENT_CIDR}"
+      NOT_ROUTED_TO_GATEWAY_CIDRS: "${NETWORK_MANAGEMENT_CIDR}"
+      VPN_LOCAL_CIDRS: "10.0.0.0/8 ${NETWORK_MANAGEMENT_CIDR}"
     publicPorts:
       - hostname: qbittorrent
         IP: 10
