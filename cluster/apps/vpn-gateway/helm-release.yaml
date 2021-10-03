@@ -69,11 +69,11 @@ spec:
       - downloads
     settings:
       VPN_INTERFACE: wg0
-      VXLAN_ID: 43
-      VXLAN_IP_NETWORK: 172.16.0
+      VXLAN_ID: 42
+      VXLAN_IP_NETWORK: "172.16.0"
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_TRAFFIC_PORT: "${SECRET_VPN_GATEWAY_PORT}"
-      NOT_ROUTED_TO_GATEWAY_CIDRS: "${NETWORK_MANAGEMENT_CIDR}"
+      NOT_ROUTED_TO_GATEWAY_CIDRS: ""
       VPN_LOCAL_CIDRS: "10.0.0.0/8 ${NETWORK_MANAGEMENT_CIDR}"
     publicPorts:
       - hostname: qbittorrent
