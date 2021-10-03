@@ -6,3 +6,4 @@ resources:
   - downloads.yaml
   - vpn-gateway.yaml
   - networking.yaml
+  - media.yaml
