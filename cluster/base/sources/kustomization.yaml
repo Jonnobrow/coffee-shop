@@ -6,3 +6,4 @@ resources:
   - k8s-at-home.yaml
   - bitnami.yaml
   - ingress-nginx.yaml
+  - hajimari.yaml
