@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jbhdd-downloads
+spec:
+  storageClassName: nfs
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    name: jbhdd-downloads-pvc
+    namespace: media
+  nfs:
+    path: /mnt/jbhdd/tmp-media/downloads
+    server: 192.168.4.2
+  mountOptions:
+    - nfsvers=3
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jbhdd-downloads-pvc
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 1Mi
