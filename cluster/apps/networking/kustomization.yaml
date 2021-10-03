@@ -6,3 +6,4 @@ resources:
   - ingress-nginx
   - wildcard-certificate
   - external-dns
+  - cloudflare-ddns
