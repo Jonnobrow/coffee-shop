@@ -6,3 +6,4 @@ resources:
   - jbhdd-music.yaml
   - jbhdd-tv.yaml
   - jbhdd-youtube.yaml
+  - jbhdd-downloads.yaml
