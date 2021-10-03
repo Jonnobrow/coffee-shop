@@ -26,6 +26,7 @@ spec:
         matchNames:
         - downloads
         - media
+      title: Jonnobrow's Lab
       groups:
       - name: Communicate
         links:
@@ -51,6 +52,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns/is-public: "true"
         hosts:
         - host: "start.${SECRET_DOMAIN}"
           paths:
