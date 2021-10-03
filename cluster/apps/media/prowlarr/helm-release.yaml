@@ -28,6 +28,8 @@ spec:
         ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "cloud-search"
         hosts:
         - host: "prowlarr.${SECRET_DOMAIN}"
           paths:
