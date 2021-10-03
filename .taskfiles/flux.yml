@@ -12,6 +12,7 @@ tasks:
     desc: Sync flux-system with the Git Repository
     cmds:
     - flux reconcile source git flux-system
+    - flux get kustomizations --watch
     silent: true
 
   bootstrap:
@@ -25,9 +26,3 @@ tasks:
         --path=./cluster/base \
         --personal
     silent: true
-
-  watch-kustomizations:
-    desc: Watch flux kustomizations
-    cmds:
-    - flux get kustomizations --watch
-

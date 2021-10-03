@@ -22,8 +22,8 @@ spec:
     env:
       TZ: "Europe/London"
     hostname: qbittorrent
-    podAnnotations:
-      setGateway: "true"
+      #    podAnnotations:
+      #      setGateway: "true"
     ingress:
       main:
         enabled: true
