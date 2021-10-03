@@ -27,6 +27,7 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClass: nginx
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:

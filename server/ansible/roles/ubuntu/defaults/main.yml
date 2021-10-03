@@ -1,0 +1,33 @@
+---
+
+packages:
+  apt_install:
+  - curl 
+  - net-tools
+  - nfs-common
+  - unattended-upgrades
+  - unzip
+
+  apt_remove:
+  - apport
+  - bcache-tools
+  - btrfs-progs
+  - byobu
+  - cloud-init
+  - cloud-guest-utils
+  - cloud-initramfs-copymods
+  - cloud-initramfs-dyn-netconf
+  - friendly-recovery
+  - fwupd
+  - landscape-common
+  - lxd-agent-loader
+  - ntfs-3g
+  - open-vm-tools
+  - plymouth
+  - plymouth-theme-ubuntu-text
+  - popularity-contest
+  - snapd
+  - sosreport
+  - tmux
+  - ubuntu-advantage-tools
+  - ufw
