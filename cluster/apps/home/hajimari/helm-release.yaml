@@ -64,6 +64,7 @@ spec:
         enabled: true
         storageClass: "local-path"
         accessMode: ReadWriteOnce
+        size: 2Gi
     resources:
       requests:
         cpu: 100m
