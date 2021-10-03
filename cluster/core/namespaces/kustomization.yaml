@@ -5,3 +5,4 @@ resources:
   - cert-manager.yaml
   - downloads.yaml
   - vpn-gateway.yaml
+  - networking.yaml

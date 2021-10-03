@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: networking
+spec:
+  interval: 5m
+  releaseName: metallb
+  chart:
+    spec:
+      chart: metallb
+      version: 2.5.5
+      sourceRef:
+        name: bitnami
+        namespace: flux-system
+        kind: HelmRepository
+  values:
+    configInline:
+      address-pools:
+      - name: default
+        protocol: layer2
+        addresses:
+        - "${METALLB_LB_RANGE}"
+    controller:
+      image:
+        repository: bitnami/metallb-controller
+        tag: 0.10.2
+    speaker:
+      image:
+        repository: bitnami/metallb-speaker
+        tag: 0.10.2
