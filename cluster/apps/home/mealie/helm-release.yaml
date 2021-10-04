@@ -18,7 +18,8 @@ spec:
     env:
       PUID: 1001
       PGID: 1001
-      DEFAULT_EMAIL: "${SECRET_EMAIL}"
+      DEFAULT_EMAIL: "${SECRET_MEALIE_EMAIL}"
+      DEFAULT_PASSWORD: "${SECRET_MEALIE_PASSWORD}"
       BASE_URL: "https://mealie.${SECRET_DOMAIN}"
       API_DOCS: False
     image:
