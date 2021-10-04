@@ -1,0 +1,78 @@
+include: "/etc/unbound/unbound.conf.d/*.conf"
+
+# Allow unbound-control
+remote-control:
+  control-enable: yes
+
+server:
+  use-syslog: yes
+
+  # Refresh expiring cache entries, if less than 10% of their TTL remains
+  prefetch: yes
+
+  # Serve stale data if not older than 1 day
+  serve-expired: yes
+  serve-expired-ttl: 86400  # one day, in seconds
+
+  # Timeout request and serve stable data if it takes longer than 1.8 seconds
+  serve-expired-client-timeout: 1800  # 1.8 seconds, in milliseconds
+
+  # Some logging to see what is going on
+  verbosity: 2
+  log-queries: yes
+
+  interface: 0.0.0.0
+  interface: ::0
+
+  # Who can use our Unbound server
+  access-control: 127.0.0.1/8 allow
+  access-control: ::1/64 allow
+  access-control: 192.168.0.0/16 allow
+  do-ip4: yes
+  #do-ip6: yes
+  do-udp: yes
+  do-tcp: yes
+
+  # Certificates
+  tls-cert-bundle: /etc/ssl/certs/ca-certificates.crt
+
+  # Our local domain can fail DNSSEC validation
+  domain-insecure: "{{ resolv_search_fqdn }}."
+
+  # Allow plex.direct to return local addresses, otherwise Plex will fail
+  private-domain: "plex.direct"
+
+  # Ad-blocking, leave this commented out for now...
+  #include: /etc/unbound/adservers.conf
+
+  # Local zone entries should be transparent
+  local-zone: "{{ resolv_search_fqdn }}." transparent
+  local-zone: "168.192.in-addr.arpa." transparent
+  #include: /etc/unbound/host_entries.conf
+
+# All queries to the local zone can go to the Edgerouter instead
+forward-zone:
+  name: "{{ resolv_search_fqdn }}."
+  forward-addr: 192.168.1.1
+
+forward-zone:
+  name: "168.192.in-addr.arpa."
+  forward-addr: 192.168.1.1
+
+# Forward all queries to Quad9 and CloudFlare, with DNS over TLS
+forward-zone:
+  name: "."
+  forward-tls-upstream: yes
+
+  # Quad9
+  #forward-addr: 2620:fe::fe@853#dns.quad9.net
+  forward-addr: 9.9.9.9@853#dns.quad9.net
+  #forward-addr: 2620:fe::9@853#dns.quad9.net
+  forward-addr: 149.112.112.112@853#dns.quad9.net
+
+  # Cloudflare DNS
+  #forward-addr: 2606:4700:4700::1111@853#cloudflare-dns.com
+  forward-addr: 1.1.1.1@853#cloudflare-dns.com
+  #forward-addr: 2606:4700:4700::1001@853#cloudflare-dns.com
+  forward-addr: 1.0.0.1@853#cloudflare-dns.com
+

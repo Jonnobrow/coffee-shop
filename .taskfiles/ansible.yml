@@ -8,25 +8,26 @@ vars:
   ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
   ANSIBLE_MASTER_GROUP: "master-nodes"
+  ANSIBLE_UNBOUND_GROUP: "unbound-nodes"
 
 tasks:
 
   list:
     desc: List all the k8s nodes
     cmds:
-    - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --list-hosts"
+      - "ansible {{.ANSIBLE_MASTER_GROUP}}:{{.ANSIBLE_UNBOUND_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --list-hosts"
     silent: true
 
   ping:
     desc: Ping all the k8s nodes
     cmds:
-    - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -m 'ping'"
+      - "ansible {{.ANSIBLE_MASTER_GROUP}}:{{.ANSIBLE_UNBOUND_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -m 'ping'"
     silent: true
 
   uptime:
     desc: Uptime of all the k8s nodes
     cmds:
-    - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -a 'uptime -p'"
+      - "ansible {{.ANSIBLE_MASTER_GROUP}}:{{.ANSIBLE_UNBOUND_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -a 'uptime -p'"
     silent: true
 
   clean-images:
@@ -69,3 +70,9 @@ tasks:
       #    cmds:
       #    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s/upgrade.yml"
       #    silent: true
+
+  playbook:unbound-install:
+    desc: Install unbound
+    cmds:
+    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/unbound/install.yaml"
+    silent: true

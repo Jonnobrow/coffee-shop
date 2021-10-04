@@ -1,0 +1,47 @@
+
+---
+
+- name: unbound | update ubuntu
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: full
+    autoremove: yes
+
+- name: unbound | replace LTS with normal
+  ansible.builtin.replace:
+    path: /etc/update-manager/release-upgrades
+    regexp: '^Prompt=lts$'
+    replace: 'Prompt=normal'
+
+- name: unbound | do a release upgrade
+  command: do-release-upgrade -f DistUpgradeViewNonInteractive
+
+- name: unbound | install unbound
+  ansible.builtin.apt:
+    name: unbound
+    state: present
+
+- name: unbound | disable systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: no
+
+- name: unbound | replace /etc/resolv.conf
+  ansible.builtin.template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: unbound | apply template to /etc/unbound/unbound.conf
+  ansible.builtin.template:
+    src: unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+
+
