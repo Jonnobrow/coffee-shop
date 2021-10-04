@@ -7,3 +7,4 @@ resources:
   - bitnami.yaml
   - ingress-nginx.yaml
   - hajimari.yaml
+  - authentik.yaml
