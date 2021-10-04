@@ -19,6 +19,7 @@ spec:
       PUID: 1001
       PGID: 1001
       DEFAULT_EMAIL: "${SECRET_EMAIL}"
+      BASE_URL: "https://mealie.${SECRET_DOMAIN}"
       API_DOCS: False
     image:
       repository: hkotel/mealie
