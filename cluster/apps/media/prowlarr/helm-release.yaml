@@ -25,9 +25,10 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: "traefik"
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-auth@kubernetescrd"
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-search"
         hosts:
