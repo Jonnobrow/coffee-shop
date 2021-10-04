@@ -26,6 +26,7 @@ spec:
         matchNames:
         - downloads
         - media
+        - home
       title: Jonnobrow's Lab
       groups:
       - name: Communicate
