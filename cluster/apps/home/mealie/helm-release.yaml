@@ -1,0 +1,48 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mealie
+  namespace: home
+spec:
+  interval: 5m
+  releaseName: mealie
+  chart:
+    spec:
+      chart: mealie
+      version: 3.0.1
+      sourceRef:
+        name: k8s-at-home
+        namespace: flux-system
+        kind: HelmRepository
+  values:
+    env:
+      PUID: 1001
+      PGID: 1001
+      DEFAULT_EMAIL: "${SECRET_EMAIL}"
+      API_DOCS: False
+    image:
+      repository: hkotel/mealie
+      tag: v0.5.2
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "food"
+        hosts:
+        - host: "mealie.${SECRET_DOMAIN}"
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - hosts:
+          - "mealie.${SECRET_DOMAIN}"
+    persistence:
+      config:
+        enabled: false
+      data:
+        enabled: true
+        existingClaim: mealie-data-pvc
+        mountPath: /app/data
+        readOnly: false
