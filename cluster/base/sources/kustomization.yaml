@@ -8,3 +8,4 @@ resources:
   - ingress-nginx.yaml
   - hajimari.yaml
   - authentik.yaml
+  - traefik.yaml
