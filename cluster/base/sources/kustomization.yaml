@@ -9,3 +9,4 @@ resources:
   - hajimari.yaml
   - authentik.yaml
   - traefik.yaml
+  - nextcloud.yaml

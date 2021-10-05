@@ -1,0 +1,34 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud-redirect
+  namespace: networking
+spec:
+  redirectRegex:
+    regex: "https://(.*)/.well-known/(card|cal)dav"
+    replacement: "https://$$1/remote.php/dav/"
+    permanent: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud-headers
+  namespace: networking
+spec:
+  headers:
+    customFrameOptionsValue: "SAMEORIGIN"
+    customResponseHeaders:
+      Strict-Transport-Security: 15552000
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud
+  namespace: networking
+spec:
+  chain:
+    middlewares:
+    - name: nextcloud-redirect
+    - name: nextcloud-headers
+
