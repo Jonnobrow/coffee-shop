@@ -24,3 +24,6 @@ spec:
       name: cluster-settings
     - kind: Secret
       name: cluster-secrets
+    - kind: Secret
+      name: nextcloud-secrets
+      namespace: nextcloud
