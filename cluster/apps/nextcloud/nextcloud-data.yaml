@@ -30,7 +30,6 @@ metadata:
   namespace: nextcloud
 spec:
   storageClassName: local-path
-  volumeName: nextcloud-data
   accessModes:
     - ReadWriteOnce
   resources:
