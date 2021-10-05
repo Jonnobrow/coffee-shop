@@ -67,7 +67,8 @@ spec:
         existingClaim: jbhdd-downloads-pvc
     resources:
       requests:
-        memory: 128Mi
-        cpu: 100m
+        memory: 1024Mi
+        cpu: 500m
       limits:
-        memory: 256Mi
+        memory: 1536Mi
+
