@@ -19,7 +19,7 @@ spec:
   headers:
     customFrameOptionsValue: "SAMEORIGIN"
     customResponseHeaders:
-      Strict-Transport-Security: 15552000
+      Strict-Transport-Security: "15552000"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
