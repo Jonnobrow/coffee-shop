@@ -55,5 +55,8 @@ spec:
         tls:
         - hosts:
           - "prism.${SECRET_DOMAIN}"
+    resources:
+      requests:
+        memory: 2Gi
 
 
