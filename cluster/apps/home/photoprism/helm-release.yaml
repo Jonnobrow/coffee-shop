@@ -52,6 +52,7 @@ spec:
         - host: "prism.${SECRET_DOMAIN}"
           paths:
           - /
+          pathType: Prefix
         tls:
         - hosts:
           - "prism.${SECRET_DOMAIN}"
