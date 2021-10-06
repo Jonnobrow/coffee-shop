@@ -11,7 +11,7 @@ spec:
     - ReadWriteMany
   claimRef:
     name: paperless-scans-pvc
-    namespace: paperless
+    namespace: home
   nfs:
     path: /mnt/jbhdd/scans
     server: 192.168.4.2
