@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: paperless
-      version: 6.0.0
+      version: 7.0.1
       sourceRef:
         name: k8s-at-home
         namespace: flux-system
@@ -18,7 +18,7 @@ spec:
     image:
       repository: jonaswinkler/paperless-ng
       pullPolicy: IfNotPresent
-      tag: 1.4.5
+      tag: 1.5.0
     env:
       COMPOSE_PROJECT_NAME: paperless-jb
       PAPERLESS_REDIS: redis://localhost:6379
@@ -58,6 +58,7 @@ spec:
         accessMode: ReadWriteOnce
         storageClassName: local-path
         mountPath: /usr/src/paperless/data
+        size: 10Gi
       paperless:
         enabled: true
         existingClaim: paperless-scans-pvc
