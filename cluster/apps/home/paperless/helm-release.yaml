@@ -53,14 +53,15 @@ spec:
         image: redis:6.0
         imagePullPolicy: IfNotPresent
     persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        storageClassName: local-path
+        mountPath: /usr/src/paperless/data
       paperless:
         enabled: true
         existingClaim: paperless-scans-pvc
         subPath:
-          - path: data
-            mountPath: /usr/src/paperless/data
-          - path: export
-            mountPath: /usr/src/paperless/export
           - path: media
             mountPath: /usr/src/paperless/media
           - path: consume
