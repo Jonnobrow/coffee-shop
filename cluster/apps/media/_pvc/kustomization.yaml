@@ -5,5 +5,4 @@ resources:
   - jbhdd-movies.yaml
   - jbhdd-music.yaml
   - jbhdd-tv.yaml
-  - jbhdd-youtube.yaml
   - jbhdd-downloads.yaml

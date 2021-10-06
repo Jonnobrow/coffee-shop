@@ -52,9 +52,6 @@ spec:
       movies:
         enabled: true
         existingClaim: jbhdd-movies-pvc
-      youtube:
-        enabled: true
-        existingClaim: jbhdd-youtube-pvc
     resources:
       requests:
         memory: 2048Mi
