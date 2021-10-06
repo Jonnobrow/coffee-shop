@@ -18,7 +18,7 @@ spec:
     image:
       repository: photoprism/photoprism
       tag: "20210925"
-    config:
+    env:
       PHOTOPRISM_DEBUG: false
       PHOTOPRISM_PUBLIC: true
       PHOTOPRISM_SITE_TITLE: "PhotoPrism"
