@@ -10,3 +10,4 @@ resources:
   - authentik.yaml
   - traefik.yaml
   - nextcloud.yaml
+  - lwolf.yaml
