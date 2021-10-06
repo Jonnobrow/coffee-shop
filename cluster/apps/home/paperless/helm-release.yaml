@@ -30,6 +30,7 @@ spec:
       PAPERLESS_ADMIN_USER: "${SECRET_PAPERLESS_ADMIN_USER}"
       PAPERLESS_ADMIN_MAIL: "${SECRET_PAPERLESS_ADMIN_MAIL}"
       PAPERLESS_ADMIN_PASSWORD: "${SECRET_PAPERLESS_ADMIN_PASSWORD}"
+      PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created}-{title}"
       USERMAP_UID: 1001
       USERMAP_GID: 1001
     ingress:
@@ -66,4 +67,11 @@ spec:
             mountPath: /usr/src/paperless/media
           - path: consume
             mountPath: /usr/src/paperless/consume
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 500m
+      limits:
+        memory: 1024Mi
+
 
