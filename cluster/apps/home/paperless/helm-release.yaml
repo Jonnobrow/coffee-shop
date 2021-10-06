@@ -49,8 +49,6 @@ spec:
         image: redis:6.0
         imagePullPolicy: IfNotPresent
     persistence:
-      config:
-        enabled: true
       paperless:
         enabled: true
         existingClaim: paperless-scans-pvc
