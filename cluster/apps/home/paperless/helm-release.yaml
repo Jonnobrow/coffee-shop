@@ -38,34 +38,27 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "note-multiple"
         hosts:
-        - host: paperless.${SECRET_DOMAIN}
+        - host: "paperless.${SECRET_DOMAIN}"
           paths:
           - path: /
         tls:
         - hosts:
-          - paperless.${SECRET_DOMAIN}
+          - "paperless.${SECRET_DOMAIN}"
     additionalContainers:
       - name: broker
         image: redis:6.0
         imagePullPolicy: IfNotPresent
     persistence:
-      data:
+      paperless:
         enabled: true
-        mountPath: /usr/src/paperless/data
-        subPath: data
         existingClaim: paperless-scans-pvc
-      consume:
-        enabled: true
-        mountPath: /usr/src/paperless/consume
-        subPath: consume
-        existingClaim: paperless-scans-pvc
-      media:
-        enabled: true
-        mountPath: /usr/src/paperless/media
-        subPath: media
-        existingClaim: paperless-scans-pvc
-      export:
-        enabled: true
-        mountPath: /usr/src/paperless/export
-        subPath: export
-        existingClaim: paperless-scans-pvc
+        subPath:
+          - path: data
+            mountPath: /usr/src/paperless/data
+          - path: export
+            mountPath: /usr/src/paperless/export
+          - path: media
+            mountPath: /usr/src/paperless/media
+          - path: consume
+            mountPath: /usr/src/paperless/consume
+
