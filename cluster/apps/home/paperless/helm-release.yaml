@@ -59,7 +59,7 @@ spec:
         command:
           - "sh"
           - "-c"
-          - "until pg_isready -h paperless-postgresql -U ${POSTGRES_USER} ; do sleep 2 ; done"
+          - "until pg_isready -h paperless-postgresql -U $POSTGRES_USER ; do sleep 2 ; done"
     additionalContainers:
       broker:
         name: broker
