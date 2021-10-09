@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
 - helm-release.yaml
 - paperless-scans.yaml
+- paperless-data.yaml

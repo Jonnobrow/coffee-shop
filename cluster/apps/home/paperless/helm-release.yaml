@@ -55,10 +55,8 @@ spec:
     persistence:
       data:
         enabled: true
-        accessMode: ReadWriteOnce
-        storageClassName: local-path
+        existingClaim: paperless-data-pvc
         mountPath: /usr/src/paperless/data
-        size: 10Gi
       paperless:
         enabled: true
         existingClaim: paperless-scans-pvc
