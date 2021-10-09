@@ -5,3 +5,4 @@ resources:
 - helm-release.yaml
 - paperless-scans.yaml
 - paperless-data.yaml
+- paperless-db.yaml
