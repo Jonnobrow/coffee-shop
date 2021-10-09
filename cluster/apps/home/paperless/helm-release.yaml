@@ -54,6 +54,7 @@ spec:
         image: redis:6.0
         imagePullPolicy: IfNotPresent
       - name: database
+        image: bitnami/postgresql:13.4.0
         postgresqlPassword: paperless
         postgresqlUsername: paperless
         postgresqlDatabase: paperless
@@ -61,9 +62,6 @@ spec:
           enabled: true
           storageClassName: local-path
           accessMode: ReadWriteOnce
-        image:
-          repository: bitnami/postgresql
-          tag: 13.4.0
         volumePermissions:
           enabled: true
         psp:
