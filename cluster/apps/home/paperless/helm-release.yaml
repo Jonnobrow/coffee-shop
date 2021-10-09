@@ -49,17 +49,6 @@ spec:
         tls:
         - hosts:
           - "paperless.${SECRET_DOMAIN}"
-    initContainers:
-      postgresql-isready:
-        name: postgresql-isready
-        image: bitnami/postgresql:13.4.0
-        env:
-          - name: POSTGRES_USER
-            value: "paperless"
-        command:
-          - "sh"
-          - "-c"
-          - "until pg_isready -h paperless-postgresql -U $POSTGRES_USER ; do sleep 2 ; done"
     additionalContainers:
       broker:
         name: broker
