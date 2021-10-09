@@ -31,7 +31,7 @@ spec:
       PAPERLESS_ADMIN_MAIL: "${SECRET_PAPERLESS_ADMIN_MAIL}"
       PAPERLESS_ADMIN_PASSWORD: "${SECRET_PAPERLESS_ADMIN_PASSWORD}"
       PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created}-{title}"
-      PAPERLESS_DBHOST: paperless-postgresql.home.svc.cluster.local
+      PAPERLESS_DBHOST: localhost
     ingress:
       main:
         enabled: true
@@ -55,19 +55,16 @@ spec:
         imagePullPolicy: IfNotPresent
       - name: database
         image: bitnami/postgresql:13.4.0
-        postgresqlPassword: paperless
-        postgresqlUsername: paperless
-        postgresqlDatabase: paperless
-        persistence:
-          enabled: true
-          storageClassName: local-path
-          accessMode: ReadWriteOnce
-        volumePermissions:
-          enabled: true
-        psp:
-          create: true
-        rbac:
-          create: true
+        volumeMounts:
+          - mountPath: /bitnami/postgresql
+            name: paperless-db
+        env:
+          - name: POSTGRESQL_PASSWORD
+            value: "paperless"
+          - name: POSTGRESQL_DATABASE
+            value: "paperless"
+          - name: POSTGRESQL_USERNAME
+            value: "paperless"
     persistence:
       data:
         enabled: true
@@ -81,6 +78,11 @@ spec:
             mountPath: /usr/src/paperless/media
           - path: consume
             mountPath: /usr/src/paperless/consume
+      paperless-db:
+        enabled: true
+        existingClaim: paperless-db-pvc
+        mountPath: '-'
+
     resources:
       requests:
         memory: 512Mi
