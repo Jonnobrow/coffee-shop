@@ -31,6 +31,7 @@ spec:
       PAPERLESS_ADMIN_MAIL: "${SECRET_PAPERLESS_ADMIN_MAIL}"
       PAPERLESS_ADMIN_PASSWORD: "${SECRET_PAPERLESS_ADMIN_PASSWORD}"
       PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created}-{title}"
+      PAPERLESS_DBHOST: paperless-postgresql.home.svc.cluster.local
     ingress:
       main:
         enabled: true
@@ -52,6 +53,23 @@ spec:
       - name: broker
         image: redis:6.0
         imagePullPolicy: IfNotPresent
+      - name: database
+        postgresqlPassword: paperless
+        postgresqlUsername: paperless
+        postgresqlDatabase: paperless
+        persistence:
+          enabled: true
+          storageClassName: local-path
+          accessMode: ReadWriteOnce
+        image:
+          repository: bitnami/postgresql
+          tag: 13.4.0
+        volumePermissions:
+          enabled: true
+        psp:
+          create: true
+        rbac:
+          create: true
     persistence:
       data:
         enabled: true
