@@ -50,7 +50,8 @@ spec:
         - hosts:
           - "paperless.${SECRET_DOMAIN}"
     initContainers:
-      - name: postgresql-isready
+      postgresql-isready:
+        name: postgresql-isready
         image: bitnami/postgresql:13.4.0
         env:
           - name: POSTGRES_USER
@@ -60,10 +61,12 @@ spec:
           - "-c"
           - "until pg_isready -h paperless-postgresql -U ${POSTGRES_USER} ; do sleep 2 ; done"
     additionalContainers:
-      - name: broker
+      broker:
+        name: broker
         image: redis:6.0
         imagePullPolicy: IfNotPresent
-      - name: database
+      database:
+        name: database
         image: bitnami/postgresql:13.4.0
         volumeMounts:
           - mountPath: /bitnami/postgresql
