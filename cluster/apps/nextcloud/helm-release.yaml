@@ -67,6 +67,9 @@ spec:
           secure: 'ssl'
           name: "${SECRET_SMTP_USERNAME}"
           password: "${SECRET_SMTP_PASSWORD}"
+      phpConfigs:
+        max_children.conf: |-
+          pm.max_children = 240
       configs:
         other.config.php: |-
           <?php
