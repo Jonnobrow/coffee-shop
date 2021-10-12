@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -43,12 +44,12 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "note-multiple"
         hosts:
-        - host: "paperless.${SECRET_DOMAIN}"
-          paths:
-          - path: /
+          - host: "paperless.${SECRET_DOMAIN}"
+            paths:
+              - path: /
         tls:
-        - hosts:
-          - "paperless.${SECRET_DOMAIN}"
+          - hosts:
+              - "paperless.${SECRET_DOMAIN}"
     additionalContainers:
       broker:
         name: broker
@@ -91,5 +92,3 @@ spec:
         cpu: 500m
       limits:
         memory: 1024Mi
-
-

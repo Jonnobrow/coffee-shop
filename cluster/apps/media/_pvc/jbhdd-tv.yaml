@@ -35,4 +35,3 @@ spec:
   resources:
     requests:
       storage: 1Mi
-

@@ -16,4 +16,3 @@ Flux is used for GitOps.
     - Espresso: Proxmox VE Server
     - Cappuccino: K8s Virtual Machine
     - Ristretto: Raspberry Pi (PiHole)
-

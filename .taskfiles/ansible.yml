@@ -33,46 +33,28 @@ tasks:
   clean-images:
     desc: Clean up stale container images
     cmds:
-    - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -a 'k3s crictl rmi --prune' --become"
+      - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -a 'k3s crictl rmi --prune' --become"
     silent: true
 
   purge-manifests:
     desc: Delete all manifests under /var/lib/rancher/k3s/server/manifests
     cmds:
-    - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -a 'rm /var/lib/rancher/k3s/server/manifests/*' --become"
+      - "ansible {{.ANSIBLE_MASTER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml --one-line -a 'rm /var/lib/rancher/k3s/server/manifests/*' --become"
 
   playbook:ubuntu-prepare:
     desc: Prepare all the k8s nodes for running k3s
     cmds:
-    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu/prepare.yml"
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu/prepare.yml"
     silent: true
 
-      #  playbook:ubuntu-upgrade:
-      #    desc: Upgrade all the k8s nodes operating system
-      #    cmds:
-      #    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu/upgrade.yml"
-      #    silent: true
-      #
-      #  playbook:ubuntu-reboot:
-      #    desc: Reboot all the k8s nodes
-      #    cmds:
-      #    - "ansible {{.ANSIBLE_MASTER_GROUP}}:{{.ANSIBLE_WORKER_GROUP}} -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml -m reboot"
-      #    silent: true
-      #
   playbook:k3s-install:
     desc: Install k3s on the nodes
     cmds:
-    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s/install.yml"
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s/install.yml"
     silent: true
-      #
-      #  playbook:k3s-upgrade:
-      #    desc: Install k3s on the nodes
-      #    cmds:
-      #    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s/upgrade.yml"
-      #    silent: true
 
   playbook:unbound-install:
     desc: Install unbound
     cmds:
-    - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/unbound/install.yaml"
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/unbound/install.yaml"
     silent: true

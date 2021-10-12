@@ -7,4 +7,3 @@ skip_remove_packages: false
 
 # Timezone for the servers
 timezone: "Europe/London"
-

@@ -3,7 +3,7 @@
 - include: host.yml
   tags:
     - host
-        
+
 - include: locale.yml
   tags:
     - locale
@@ -11,7 +11,7 @@
 - include: packages.yml
   tags:
     - packages
-        
+
 - include: kernel.yml
   tags:
     - kernel
@@ -22,13 +22,12 @@
 
 - include: filesystem.yml
   tags:
-  - filesystem
+    - filesystem
 
 - include: unattended-upgrades.yml
   tags:
-  - unattended-upgrades
+    - unattended-upgrades
 
 - include: user.yml
   tags:
-  - user
-
+    - user

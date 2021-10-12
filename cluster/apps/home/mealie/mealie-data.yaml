@@ -17,11 +17,11 @@ spec:
   nodeAffinity:
     required:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - mocha
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - mocha
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

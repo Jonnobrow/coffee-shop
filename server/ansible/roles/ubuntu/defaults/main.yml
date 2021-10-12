@@ -2,7 +2,7 @@
 
 packages:
   apt_install:
-  - curl 
+  - curl
   - net-tools
   - nfs-common
   - unattended-upgrades

@@ -6,7 +6,7 @@ env:
   KEY_COMMENT: "flux secrets"
 
 tasks:
-  
+
   gen-key:
     desc: Generates a passwordless keypair
     cmds:
@@ -31,4 +31,3 @@ tasks:
           kubectl create secret generic sops-gpg \
           --namespace=flux-system \
           --from-file=sops.asc=/dev/stdin
-

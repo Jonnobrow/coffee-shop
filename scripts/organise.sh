@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#  ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
+#  ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
 # ||o |||r |||g |||a |||n |||i |||s |||e |||. |||s |||h ||
 # ||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|||__||
 # |/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
-# 
+#
 # Created by Jonathan Bartlett
 #
 # Dependencies: exiftool
@@ -25,7 +25,7 @@ usage: organise.sh [-h] [--dry-run] [--verbose] \
 [--in-dir \"path/to/dir\"] \
 [--out-dir \"path/to/dir\"] \
 [--version] [--no-create-dirs]
- ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
+ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ ____
 ||o |||r |||g |||a |||n |||i |||s |||e |||. |||s |||h ||
 ||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|||__||
 |/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
@@ -88,7 +88,7 @@ createdirs() {
 }
 
 moveCommand() {
-    datetime=$(exiftool -d '%Y/%m' -datetimeoriginal -S -s "$1") 
+    datetime=$(exiftool -d '%Y/%m' -datetimeoriginal -S -s "$1")
     sum=$(md5sum "$1")
     newname=$(echo "${sum%% *}.${1##*.}")
     if [[ -z "$datetime" ]]; then
@@ -103,7 +103,7 @@ moveCommand() {
                     mkdir -pv "$OUT_DIR/$datetime/"
                 else
                     echo "WARNING: Directory $OUT_DIR/$datetime"\
-                          "doesn't exist" 
+                          "doesn't exist"
                 fi
             }
         [ "$DRY_RUN" = false ] && cp "$1" "$OUT_DIR/$datetime/$newname"
@@ -127,7 +127,7 @@ CURRENT SETTINGS
 =======================================================================
 VERSION=$VERSION
 
-CREATE_DIRS=$CREATE_DIRS    
+CREATE_DIRS=$CREATE_DIRS
 IN_DIR=$IN_DIR
 OUT_DIR=$OUT_DIR
 
@@ -154,6 +154,6 @@ main() {
     [ "$CREATE_DIRS" ] && createdirs
     [ "$VERBOSE" ] && displaySettings
     moveAndRenamePictures
-} 
+}
 
 main

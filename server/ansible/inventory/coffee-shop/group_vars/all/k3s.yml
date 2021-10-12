@@ -16,7 +16,7 @@ k3s_install_hard_links: true
 
 k3s_registration_address: 192.168.4.3
 k3s_registration_domain: k8s.jonnobrow.co.uk
-  
+
 # Escalate user privileges for all tasks.
 k3s_become_for_all: true
 

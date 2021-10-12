@@ -4,8 +4,6 @@ version: '3'
 env:
   GITHUB_USER: jonnobrow
 
-
-
 tasks:
 
   sync:
@@ -18,7 +16,7 @@ tasks:
   bootstrap:
     desc: Bootstrap cluster with flux
     cmds:
-    - | 
+    - |
       flux bootstrap github \
         --owner=$GITHUB_USER \
         --repository=coffee-shop \

@@ -24,6 +24,6 @@ tasks:
   maintenance:disable:
     desc: Disables maintenance mode in nextcloud
     cmds:
-      - task: maintenance:enable
-        vars: {ACTION: "off"}
+    - task: maintenance:enable
+      vars: {ACTION: "off"}
     silent: true

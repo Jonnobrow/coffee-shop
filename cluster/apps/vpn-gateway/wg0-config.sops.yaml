@@ -1,3 +1,5 @@
+# yamllint disable
+---
 apiVersion: v1
 data:
     vpnConfigfile: ENC[AES256_GCM,data:cdidnfpDgWR2kVWq7mecns8PuqT9R+vBfM6CA94yFnLz/mDmrd4wnUUZtIm552T+6FLRZgzuO2cHFjI+IUZu4hdtExiCy7fIQ4nv0XozuUhyfss/C3jwtLzMne/e6rfLQC00rE/t5cj2Ucm0WpqGjQvlkGpUSDsrWbXQVCEwo0C6YDyTx+Wwe8SfsaT732SDGp8RRzwiNx4335Z5vBqzjphymIkQu+xWj9rkYVL6svO7RauudkVNPjyRYNy/1fPPnyd87TAp3Sx60bvYfPFfLUfAj2p3ilzOmsPw/j8QJLGXbd2RtOzmyCscUXHK8xo+votwc3xgZNvE/W6NHeSDLveJqwWaGO+vC3rfH7b8qxGoUw20mugtnDMVzc8LqbKw6MHhOEbErv+mDxv6SRe+2myvzO9w15xLnq3ZT2dPIBkUEWXhcBvYI5ErnYBsiOSKxIBxWyYQppyF/h/rTBnntzcPTn6KzGRhU7W79w==,iv:GAp5jqwpv6LYWNL6W7eSQE/Vi+Pl0NoBtdN7UTk/qCo=,tag:5Ry9nTiP2G82rwMkrF117Q==,type:str]

@@ -1,6 +1,4 @@
-
 ---
-
 - name: unbound | update ubuntu
   ansible.builtin.apt:
     update_cache: yes
@@ -42,6 +40,3 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-
-
-

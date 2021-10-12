@@ -31,4 +31,3 @@ spec:
     middlewares:
     - name: nextcloud-redirect
     - name: nextcloud-headers
-
