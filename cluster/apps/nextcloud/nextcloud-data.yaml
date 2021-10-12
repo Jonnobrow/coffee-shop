@@ -1,27 +1,27 @@
-#---
-#apiVersion: v1
-#kind: PersistentVolume
-#metadata:
-#  name: nextcloud-data
-#spec:
-#  storageClassName: nfs
-#  capacity:
-#    storage: 1Mi
-#  accessModes:
-#    - ReadWriteMany
-#  claimRef:
-#    name: nextcloud-data-pvc
-#    namespace: nextcloud
-#  nfs:
-#    path: /mnt/jbhdd/data/nextcloud
-#    server: 192.168.4.2
-#  mountOptions:
-#    - nfsvers=3
-#    - tcp
-#    - intr
-#    - hard
-#    - noatime
-#    - nodiratime
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nextcloud-data
+spec:
+  storageClassName: local-path
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: /var/lib/data/nextcloud
+  claimRef:
+    name: nextcloud-data-pvc
+    namespace: nextcloud
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - mocha
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
