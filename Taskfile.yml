@@ -14,6 +14,7 @@ includes:
   ansible: .taskfiles/ansible.yml
   flux: .taskfiles/flux.yml
   sops: .taskfiles/sops.yml
+  nextcloud: .taskfiles/nextcloud.yml
 
 tasks:
 
