@@ -124,6 +124,13 @@ spec:
         create: true
       rbac:
         create: true
+      resources:
+        requests:
+          memory: 1024Mi
+          cpu: 1000m
+        limits:
+          memory: 1024Mi
+          cpu: 1000m
     redis:
       enabled: true
       usePassword: true
