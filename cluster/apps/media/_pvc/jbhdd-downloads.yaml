@@ -13,7 +13,7 @@ spec:
     name: jbhdd-downloads-pvc
     namespace: media
   nfs:
-    path: tmp-media/downloads
+    path: /tmp-media/downloads
     server: 192.168.4.4
   mountOptions:
     - nfsvers=4.1

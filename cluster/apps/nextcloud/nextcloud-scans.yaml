@@ -13,7 +13,7 @@ spec:
     name: nextcloud-scans-pvc
     namespace: nextcloud
   nfs:
-    path: scans
+    path: /scans
     server: 192.168.4.4
   mountOptions:
     - nfsvers=4.1
