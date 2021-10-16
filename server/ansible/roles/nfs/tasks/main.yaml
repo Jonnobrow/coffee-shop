@@ -1,0 +1,40 @@
+---
+- name: nfs | update ubuntu
+  ansible.builtin.apt:
+    update_cache: yes
+    upgrade: full
+    autoremove: yes
+
+- name: nfs | install packages
+  ansible.builtin.apt:
+    name:
+      - nfs-kernel-server
+      - rpcbind
+      - nfs-common
+    state: present
+
+- name: nfs | rpcbind hosts.allow local traffic
+  ansible.builtin.blockinfile:
+    path: /etc/hosts.allow
+    block: |
+      rpcbind: 192.168.
+
+- name: nfs | rpcbind hosts.deny everything else
+  ansible.builtin.blockinfile:
+    path: /etc/hosts.deny
+    block: |
+      rpcbind: ALL
+
+- name: nfs | idmapd in nfs-common
+  ansible.builtin.blockinfile:
+    path: /etc/default/nfs-common
+    block: |
+      NEED_IDMAPD=YES
+
+- name: nfs | setup exports
+  ansible.builtin.template:
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r

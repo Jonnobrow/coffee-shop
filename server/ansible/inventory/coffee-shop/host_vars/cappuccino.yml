@@ -1,0 +1,17 @@
+---
+
+# IP address of node
+ansible_host: "192.168.4.4"
+
+# Ansible user to ssh into servers with
+ansible_user: "ubuntu"
+
+# Exports
+nfs_export_root: /mnt/jbhdd
+nfs_exports:
+  - movies
+  - tv
+  - music
+  - photos
+  - scans
+  - tmp-media/downloads

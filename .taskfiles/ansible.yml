@@ -58,3 +58,9 @@ tasks:
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/unbound/install.yaml"
     silent: true
+
+  playbook:nfs-install:
+    desc: Install and configure NFS Server
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/coffee-shop/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/nfs/install.yaml"
+    silent: true

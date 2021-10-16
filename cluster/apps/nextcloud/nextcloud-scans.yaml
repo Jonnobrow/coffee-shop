@@ -14,9 +14,9 @@ spec:
     namespace: nextcloud
   nfs:
     path: /mnt/jbhdd/scans
-    server: 192.168.4.2
+    server: 192.168.4.4
   mountOptions:
-    - nfsvers=3
+    - nfsvers=4.1
     - tcp
     - intr
     - hard
