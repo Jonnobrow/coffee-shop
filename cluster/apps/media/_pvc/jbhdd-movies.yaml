@@ -13,7 +13,7 @@ spec:
     name: jbhdd-movies-pvc
     namespace: media
   nfs:
-    path: /mnt/jbhdd/movies
+    path: movies
     server: 192.168.4.4
   mountOptions:
     - nfsvers=4.1
