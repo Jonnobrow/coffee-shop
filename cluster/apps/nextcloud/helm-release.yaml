@@ -58,6 +58,7 @@ spec:
           - 1310
         runAsUser: 82
         runAsGroup: 82
+        runAsNonRoot: true
       mail:
         enabled: true
         fromAddress: "${SECRET_NEXTCLOUD_MAIL_FROM}"
