@@ -53,7 +53,7 @@ spec:
         mountPath: "/mnt/photos"
       - name: scans
         mountPath: "/mnt/scans"
-      extraSecurityContext:
+      securityContext:
         supplementalGroups: 1310
       mail:
         enabled: true
