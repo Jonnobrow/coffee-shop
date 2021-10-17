@@ -54,7 +54,10 @@ spec:
       - name: scans
         mountPath: "/mnt/scans"
       securityContext:
-        supplementalGroups: 1310
+        supplementalGroups:
+          - 1310
+        runAsUser: 82
+        runAsGroup: 82
       mail:
         enabled: true
         fromAddress: "${SECRET_NEXTCLOUD_MAIL_FROM}"
