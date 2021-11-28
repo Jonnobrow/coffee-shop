@@ -20,7 +20,7 @@ tasks:
       flux bootstrap github \
         --owner=$GITHUB_USER \
         --repository=coffee-shop \
-        --branch=restructure \
+        --branch=main \
         --path=./cluster/base \
         --personal
     silent: true
