@@ -12,3 +12,4 @@ resources:
   - lwolf.yaml
   - gitea.yaml
   - prometheus-community.yaml
+  - grafana.yaml
