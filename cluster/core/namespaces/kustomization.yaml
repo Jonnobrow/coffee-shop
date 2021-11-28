@@ -9,3 +9,4 @@ resources:
   - security.yaml
   - nextcloud.yaml
   - development.yaml
+  - monitoring.yaml
