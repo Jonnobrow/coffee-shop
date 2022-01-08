@@ -13,3 +13,4 @@ resources:
   - gitea.yaml
   - prometheus-community.yaml
   - grafana.yaml
+  - renovate.yaml
