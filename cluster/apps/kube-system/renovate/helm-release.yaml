@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: renovate-bot
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: renovate
+      version: 31.21.0
+      sourceRef:
+        kind: HelmRepository
+        name: renovate
+        namespace: flux-system
+      interval: 5m
+  values:
+    renovate:
+      config: |
+        {
+          "platform": "github",
+          "endpoint": "https://api.github.com",
+          "token": "${SECRET_RENOVATE_TOKEN}",
+          "autodiscover": "false",
+          "repositories": ["jonnobrow/coffee-shop"]
+        }
