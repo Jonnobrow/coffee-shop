@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
       version: 6.17.3
       sourceRef:
@@ -50,30 +51,30 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-        - name: 'default'
-          orgId: 1
-          folder: ''
-          type: file
-          disableDeletion: false
-          editable: true
-          options:
-            path: /var/lib/grafana/dashboards/default
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
     datasources:
       deleteDatasources:
-      - name: Loki
-        orgId: 1
+        - name: Loki
+          orgId: 1
       datasources.yaml:
         apiVersion: 1
         datasources:
-        - name: Prometheus
-          type: prometheus
-          url: http://kube-prometheus-stack-prometheus:9090
-          access: proxy
-          isDefault: true
-          #- name: Loki
-          #  type: loki
-          #  access: proxy
-          #  url: http://loki:3100
+          - name: Prometheus
+            type: prometheus
+            url: http://kube-prometheus-stack-prometheus:9090
+            access: proxy
+            isDefault: true
+            #- name: Loki
+            #  type: loki
+            #  access: proxy
+            #  url: http://loki:3100
     dashboards:
       default:
         flux-cluster:
@@ -90,12 +91,12 @@ spec:
         enabled: true
         searchNamespace: ALL
     plugins:
-    - natel-discrete-panel
-    - pr0ps-trackmap-panel
-    - grafana-piechart-panel
-    - vonage-status-panel
-    - grafana-worldmap-panel
-    - grafana-clock-panel
+      - natel-discrete-panel
+      - pr0ps-trackmap-panel
+      - grafana-piechart-panel
+      - vonage-status-panel
+      - grafana-worldmap-panel
+      - grafana-clock-panel
     serviceMonitor:
       enabled: true
     ingress:
@@ -104,10 +105,10 @@ spec:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
-      - "grafana.${SECRET_DOMAIN}"
-      tls:
-      - hosts:
         - "grafana.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - "grafana.${SECRET_DOMAIN}"
     serviceAccount:
       create: true
       autoMount: true

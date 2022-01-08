@@ -9,6 +9,7 @@ spec:
   releaseName: photoprism
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: photoprism
       version: 6.0.1
       sourceRef:
@@ -50,12 +51,12 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "camera"
         hosts:
-        - host: "prism.${SECRET_DOMAIN}"
-          paths:
-          - path: /
+          - host: "prism.${SECRET_DOMAIN}"
+            paths:
+              - path: /
         tls:
-        - hosts:
-          - "prism.${SECRET_DOMAIN}"
+          - hosts:
+              - "prism.${SECRET_DOMAIN}"
     resources:
       requests:
         memory: 2Gi

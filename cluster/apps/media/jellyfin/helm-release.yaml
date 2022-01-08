@@ -9,6 +9,7 @@ spec:
   releaseName: jellyfin
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: jellyfin
       version: 9.1.0
       sourceRef:
@@ -34,12 +35,12 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "jellyfish"
         hosts:
-        - host: "jellyfin.${SECRET_DOMAIN}"
-          paths:
-          - path: /
+          - host: "jellyfin.${SECRET_DOMAIN}"
+            paths:
+              - path: /
         tls:
-        - hosts:
-          - "jellyfin.${SECRET_DOMAIN}"
+          - hosts:
+              - "jellyfin.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true

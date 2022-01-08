@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://docs.renovatebot.com/helm-charts
       chart: renovate
       version: 31.21.0
       sourceRef:

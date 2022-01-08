@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       version: 18.1.0
       sourceRef:
@@ -22,23 +23,23 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
-        - name: 'null'
+          - name: "null"
         route:
-          group_by: ['alertname', 'job']
+          group_by: ["alertname", "job"]
           group_wait: 30s
           group_interval: 5m
           repeat_interval: 6h
-          receiver: 'null'
+          receiver: "null"
           routes:
-          - receiver: 'null'
-            match:
-              alertname: Watchdog
+            - receiver: "null"
+              match:
+                alertname: Watchdog
         inhibit_rules:
-        - source_match:
-            severity: 'critical'
-          target_match:
-            severity: 'warning'
-          equal: ['alertname', 'namespace']
+          - source_match:
+              severity: "critical"
+            target_match:
+              severity: "warning"
+            equal: ["alertname", "namespace"]
       ingress:
         enabled: true
         pathType: Prefix
@@ -46,19 +47,19 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-        - "alert-manager.${SECRET_DOMAIN}"
-        tls:
-        - hosts:
           - "alert-manager.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - "alert-manager.${SECRET_DOMAIN}"
     nodeExporter:
       serviceMonitor:
         relabelings:
-        - action: replace
-          regex: (.*)
-          replacement: $1
-          sourceLabels:
-          - __meta_kubernetes_pod_node_name
-          targetLabel: kubernetes_node
+          - action: replace
+            regex: (.*)
+            replacement: $1
+            sourceLabels:
+              - __meta_kubernetes_pod_node_name
+            targetLabel: kubernetes_node
     grafana:
       enabled: false
       forceDeployDashboards: true
@@ -71,24 +72,24 @@ spec:
       enabled: true
       serviceMonitor:
         metricRelabelings:
-        - action: replace
-          sourceLabels:
-          - node
-          targetLabel: instance
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
     kubeApiServer:
       enabled: true
     kubeControllerManager:
       enabled: true
       endpoints:
-      - 192.168.4.4
+        - 192.168.4.4
     kubeScheduler:
       enabled: true
       endpoints:
-      - 192.168.4.4
+        - 192.168.4.4
     kubeProxy:
       enabled: true
       endpoints:
-      - 192.168.4.4
+        - 192.168.4.4
     prometheus:
       ingress:
         enabled: true
@@ -97,10 +98,10 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-        - "prometheus.${SECRET_DOMAIN}"
-        tls:
-        - hosts:
           - "prometheus.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - "prometheus.${SECRET_DOMAIN}"
       resources:
         requests:
           cpu: 1000m

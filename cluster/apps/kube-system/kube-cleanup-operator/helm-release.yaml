@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://charts.lwolf.org
       chart: kube-cleanup-operator
       version: 1.0.1
       sourceRef:
@@ -20,9 +21,9 @@ spec:
       create: true
       global: true
     args:
-    - --delete-failed-after=60m
-    - --delete-successful-after=120m
-    - --delete-pending-pods-after=60m
-    - --delete-evicted-pods-after=60m
-    - --delete-orphaned-pods-after=60m
-    - --legacy-mode=false
+      - --delete-failed-after=60m
+      - --delete-successful-after=120m
+      - --delete-pending-pods-after=60m
+      - --delete-evicted-pods-after=60m
+      - --delete-orphaned-pods-after=60m
+      - --legacy-mode=false

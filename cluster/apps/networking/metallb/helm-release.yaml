@@ -9,6 +9,7 @@ spec:
   releaseName: metallb
   chart:
     spec:
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: metallb
       version: 2.5.5
       sourceRef:
@@ -18,10 +19,10 @@ spec:
   values:
     configInline:
       address-pools:
-      - name: default
-        protocol: layer2
-        addresses:
-        - "${METALLB_LB_RANGE}"
+        - name: default
+          protocol: layer2
+          addresses:
+            - "${METALLB_LB_RANGE}"
     controller:
       image:
         repository: bitnami/metallb-controller
