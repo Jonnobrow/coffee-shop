@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://dl.gitea.io/charts
       chart: gitea
-      version: 4.1.1
+      version: 5.0.0
       sourceRef:
         name: gitea
         namespace: flux-system
