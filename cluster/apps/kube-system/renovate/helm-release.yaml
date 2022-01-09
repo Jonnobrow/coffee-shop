@@ -31,6 +31,5 @@ spec:
           "repositories": ["Jonnobrow/coffee-shop"],
         }
     secrets:
-      GITHUB_COM_TOKEN: "${SECRET_RENOVATE_TOKEN}"
       RENOVATE_TOKEN: "${SECRET_RENOVATE_TOKEN}"
       RENOVATE_GIT_AUTHOR: "JonnobrowRenovateBot <renovate@jonnobrow.co.uk>"
