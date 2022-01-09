@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "20211010"
+      tag: "20220107"
     env:
       PHOTOPRISM_DEBUG: false
       PHOTOPRISM_PUBLIC: true
