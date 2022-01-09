@@ -1,4 +1,5 @@
 {
+  "gitAuthor": "renovate@jonnobrow.co.uk",
   "extends": [
     ":enableRenovate",
     "config:base",

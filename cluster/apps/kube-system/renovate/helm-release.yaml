@@ -17,12 +17,20 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: renovate/renovate
+      tag: 31.21.0
+    cronjob:
+      schedule: "@hourly"
     renovate:
       config: |
         {
           "platform": "github",
           "endpoint": "https://api.github.com",
-          "token": "${SECRET_RENOVATE_TOKEN}",
           "autodiscover": "false",
-          "repositories": ["jonnobrow/coffee-shop"]
+          "repositories": ["Jonnobrow/coffee-shop"],
         }
+    secrets:
+      GITHUB_COM_TOKEN: "${SECRET_RENOVATE_TOKEN}"
+      RENOVATE_TOKEN: "${SECRET_RENOVATE_TOKEN}"
+      RENOVATE_GIT_AUTHOR: "JonnobrowRenovateBot <renovate@jonnobrow.co.uk>"
