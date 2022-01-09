@@ -120,7 +120,7 @@ spec:
         accessMode: ReadWriteOnce
       image:
         repository: bitnami/postgresql
-        tag: 13.5.0
+        tag: 14.1.0
       volumePermissions:
         enabled: true
       psp:
