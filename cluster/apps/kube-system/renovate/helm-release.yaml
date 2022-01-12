@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: renovate/renovate
-      tag: 31.22.1
+      tag: 31.23.3
     cronjob:
       schedule: "@hourly"
     renovate:
