@@ -13,7 +13,7 @@ spec:
       chart: drone
       version: 0.1.7
       sourceRef:
-        name: gitea
+        name: drone
         namespace: flux-system
         kind: HelmRepository
   values:

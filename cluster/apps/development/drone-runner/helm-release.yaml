@@ -13,7 +13,7 @@ spec:
       chart: drone-runner-kube
       version: 0.1.5
       sourceRef:
-        name: gitea
+        name: drone
         namespace: flux-system
         kind: HelmRepository
   values:
