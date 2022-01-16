@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: drone/drone
-      tag: 1.9.0
+      tag: 2.7.3
       pullPolicy: Always
     ingress:
       enabled: true
@@ -32,8 +32,7 @@ spec:
       hosts:
         - host: "ci.${SECRET_DOMAIN}"
           paths:
-            - path: /
-              pathType: Prefix
+            - "/"
       tls:
         - hosts:
             - "ci.${SECRET_DOMAIN}"
