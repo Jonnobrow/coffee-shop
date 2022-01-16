@@ -23,7 +23,7 @@ spec:
       pullPolicy: Always
     env:
       # Drone Server Setup
-      DRONE_RPC_PROTO: https
+      DRONE_RPC_PROTO: http
       DRONE_RPC_SECRET: "${SECRET_DRONE_RPC_SECRET}"
       DRONE_NAMESPACE_DEFAULT: development
     rbac:
