@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: drone-runner
+  namespace: development
+spec:
+  interval: 5m
+  releaseName: drone-runner-kube
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.drone.io
+      chart: drone-runner-kube
+      version: 0.1.5
+      sourceRef:
+        name: gitea
+        namespace: flux-system
+        kind: HelmRepository
+  values:
+    image:
+      repository: drone/drone-runner-kube
+      tag: 1.0.0-beta.6
+      pullPolicy: Always
+    env:
+      # Drone Server Setup
+      DRONE_RPC_PROTO: https
+      DRONE_RPC_SECRET: "${SECRET_DRONE_RPC_SECRET}"
+      DRONE_NAMESPACE_DEFAULT: development
+    rbac:
+      buildNamespaces:
+        - development

@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: "3"
 
 vars:
   POD:
@@ -7,16 +7,15 @@ vars:
   NAMESPACE: nextcloud
 
 tasks:
-
   maintenance:enable:
     desc: Enables maintenance mode in nextcloud
     cmds:
-    - |
-      kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
-        su - -s '/bin/sh' www-data -c \
-          "php -d memory_limit=-1 \
-          /var/www/html/occ maintenance:mode --{{.ACTION}}" \
-        >/dev/null 2>&1
+      - |
+        kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
+          su - -s '/bin/sh' www-data -c \
+            "php -d memory_limit=-1 \
+            /var/www/html/occ maintenance:mode --{{.ACTION}}" \
+          >/dev/null 2>&1
     vars:
       ACTION: '{{default "on" .ACTION}}'
     silent: true
@@ -24,16 +23,26 @@ tasks:
   maintenance:disable:
     desc: Disables maintenance mode in nextcloud
     cmds:
-    - task: maintenance:enable
-      vars: {ACTION: "off"}
+      - task: maintenance:enable
+        vars: { ACTION: "off" }
     silent: true
+
+  run-command:
+    desc: Run a generic command in nextcloud
+    cmds:
+      - |
+        kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
+          su - -s '/bin/sh' www-data -c \
+            "php -d memory_limit=-1 \
+            /var/www/html/occ {{.CLI_ARGS}}"
+    interactive: true
 
   trashbin:cleanup:
     desc: Runs the trashin:cleanup command for all users
     cmds:
-    - |
-      kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
-        su - -s '/bin/sh' www-data -c \
-          "php -d memory_limit=-1 \
-           /var/www/html/occ trashbin:cleanup --all-users"
+      - |
+        kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
+          su - -s '/bin/sh' www-data -c \
+            "php -d memory_limit=-1 \
+             /var/www/html/occ trashbin:cleanup --all-users"
     silent: true

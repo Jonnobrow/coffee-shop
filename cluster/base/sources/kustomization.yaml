@@ -14,3 +14,4 @@ resources:
   - prometheus-community.yaml
   - grafana.yaml
   - renovate.yaml
+  - drone.yaml
