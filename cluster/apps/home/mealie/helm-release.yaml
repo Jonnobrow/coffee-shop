@@ -26,7 +26,7 @@ spec:
       API_DOCS: "False"
     image:
       repository: hkotel/mealie
-      tag: v0.5.4
+      tag: v0.5.6
     hostname: mealie
     ingress:
       main:
