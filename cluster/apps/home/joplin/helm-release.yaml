@@ -61,7 +61,7 @@ spec:
         cpu: 100m
         memory: 128M
     postgresql:
-      enabled: false
+      enabled: true
       postgresqlUsername: joplin
       postgresqlPassword: joplin-postgresql
       postgresqlDatabase: joplin
