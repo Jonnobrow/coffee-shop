@@ -26,7 +26,7 @@ spec:
       # -- Use pg for postgres
       DB_CLIENT: pg
       # -- Postgres DB Host
-      POSTGRES_HOST: joplin-postgresql
+      POSTGRES_HOST: joplin-server-postgresql
       # -- Postgres DB port
       POSTGRES_PORT: 5432
       # -- Postgres DB name
