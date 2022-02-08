@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: joplin/server
-      tag: 2.7.8-beta
+      tag: 2.7.4-beta
     env:
       TZ: "Europe/London"
       APP_BASE_URL: https://joplin.${SECRET_DOMAIN}
