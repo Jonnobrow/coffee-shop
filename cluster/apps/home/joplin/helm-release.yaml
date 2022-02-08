@@ -1,0 +1,72 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: joplin-server
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: joplin-server
+      version: 4.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: joplin/server
+      tag: 2.1.2
+    env:
+      TZ: "Europe/London"
+      APP_BASE_URL: https://joplin.${SECRET_DOMAIN}
+      # -- Use pg for postgres
+      DB_CLIENT: pg
+      # -- Postgres DB Host
+      POSTGRES_HOST: joplin-postgresql
+      # -- Postgres DB port
+      POSTGRES_PORT: 5432
+      # -- Postgres DB name
+      POSTGRES_DATABASE: joplin
+      # -- Postgres DB Username
+      POSTGRES_USER: joplin
+      # -- Postgres DB password
+      POSTGRES_PASSWORD: joplin-postgresql
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+        hosts:
+          - host: "joplin.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "joplin.${SECRET_DOMAIN}"
+    persistence:
+      data:
+        enabled: true
+        storageClass: "local-path"
+        accessMode: ReadWriteOnce
+        size: 2Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128M
+    postgresql:
+      enabled: false
+      postgresqlUsername: joplin
+      postgresqlPassword: joplin-postgresql
+      postgresqlDatabase: joplin
+      persistence:
+        enabled: true
+        storageClass: "local-path"
+        accessMode: ReadWriteOnce
+        size: 10Gi
