@@ -8,3 +8,5 @@ resources:
   - photoprism
   - joplin
   - frigate
+  - mosquitto
+  - home-assistant
