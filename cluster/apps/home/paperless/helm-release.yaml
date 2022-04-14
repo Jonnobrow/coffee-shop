@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: paperless
-      version: 8.6.0
+      version: 8.6.1
       sourceRef:
         name: k8s-at-home
         namespace: flux-system
