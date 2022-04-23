@@ -20,3 +20,58 @@ spec:
     controller:
       image: "jenkins/jenkins"
       tag: "2.332.2-jdk11"
+      installPlugins:
+        - ansicolor:1.0.1
+        - configuration-as-code:1414.v878271fc496f
+        - git:4.10.0
+        - git-client:3.11.0
+        - github-branch-source:1598.v91207e9f9b_4a_
+        - http_request:1.14
+        - job-dsl:1.78.1
+        - kubernetes:1.31.2
+        - pipeline-github:2.8-138.d766e30bb08b
+        - pipeline-utility-steps:2.12.0
+        - workflow-job:1174.vdcb_d054cf74a_
+        - workflow-aggregator:2.6
+      JCasC:
+        enabled: true
+        defaultConfig: true
+        configScripts:
+          unclassified: |
+            unclassified:
+              globalLibraries:
+                libraries:
+                  - name: "jonnobrow"
+                    defaultVersion: "main"
+                    includeInChangesets: false
+                    retriever:
+                      modernSCM:
+                        scm:
+                          github:
+                            repoOwner: "jonnobrow"
+                            repository: "coffee-shop"
+                            repositoryUrl: "https://github.com/jonnobrow/coffee-shop"
+          jobs: |
+            jobs:
+              - script: |
+                  folder('Seed')
+              - script: >
+                  job('/Seed/Job_DSL_Seed') {
+                    scm {
+                      git {
+                        branch 'main'
+                        remote {
+                          url 'https://github.com/jonnobrow/coffee-shop.git'
+                        }
+                      }
+                    }
+                    triggers {
+                        scm('*/15 * * * *')
+                    }
+                    steps {
+                      jobDsl {
+                        targets 'ci/lib/seed/seed.groovy'
+                        removedJobAction 'DELETE'
+                      }
+                    }
+                  }
