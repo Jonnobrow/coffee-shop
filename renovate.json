@@ -25,6 +25,11 @@
   },
   "regexManagers": [
     {
+      "fileMatch": ["ci/jenkins-image/plugins.txt"],
+      "matchStrings": ["(?<depName>.*?):(?<currentValue.*)\n"],
+      "datasourceTemplate": "jenkins-plugins"
+    },
+    {
       "fileMatch": ["cluster/.+\\.yaml$"],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
