@@ -3,8 +3,8 @@
     ":enableRenovate",
     "config:base",
     ":semanticCommits",
-    ":separatePatchReleases",
-    "docker:enableMajor"
+    "docker:enableMajor",
+    "group:allNonMajor"
   ],
   "timezone": "Europe/London",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
