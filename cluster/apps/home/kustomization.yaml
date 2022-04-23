@@ -7,6 +7,6 @@ resources:
   - paperless
   - photoprism
   - joplin
-  - frigate
+    #  - frigate
   - mosquitto
   - home-assistant
