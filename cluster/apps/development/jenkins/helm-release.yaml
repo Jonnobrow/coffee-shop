@@ -18,6 +18,16 @@ spec:
         kind: HelmRepository
   values:
     controller:
+      ingress:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare-ips@kubernetescrd"
+          hajimari.io/enable: "true"
+        hostName: "jenkins.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - "jenkins.${SECRET_DOMAIN}"
       image: "ghcr.io/jonnobrow/coffee-shop/jenkins"
       tag: "0.1.0"
       installPlugins: false
