@@ -25,13 +25,13 @@ def call(Map params = [:]) {
         vars: []
     ]
 
+    final Map finalParams = defaultParams << params
+
     def baseCommands = [
         apply: "apply",
         destroy: "apply -destroy",
-        init: "init ${initUpgrade ? "-upgrade" : ""}".trim(),
+        init: "init ${finalParams.initUpgrade ? "-upgrade" : ""}".trim(),
     ]
-
-    final Map finalParams = defaultParams << params
 
     def terraform = finalParams.binary
     def command = baseCommands.get(finalParams.command, baseCommands.init)
