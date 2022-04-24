@@ -41,7 +41,7 @@ def call(Map params = [:]) {
     finalParams.targets.each{target ->
         parallelExecutions["${target}"] = {
             stage("${finalParams.command} ${target}") {
-                sh """${terraform} ${command} ${varsf(finalParams.vars)} ${extraArgs.join('')}""".trim()
+                sh """${terraform} ${command} ${varsf(finalParams.vars)} ${finalParams.extraArgs.join(' ')}""".trim()
             }
         }
     }

@@ -35,6 +35,10 @@ spec:
         enabled: true
         defaultConfig: true
         configScripts:
+          security: |
+            security:
+              globaljobdslsecurityconfiguration:
+                useScriptSecurity: false
           unclassified: |
             unclassified:
               globalLibraries:
