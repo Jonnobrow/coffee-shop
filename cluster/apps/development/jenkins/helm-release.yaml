@@ -68,7 +68,7 @@ spec:
                     }
                     steps {
                       jobDsl {
-                        targets 'ci/lib/seed/seed.groovy'
+                        targets 'ci/lib/seed/Seed.groovy'
                         removedJobAction 'DELETE'
                       }
                     }
