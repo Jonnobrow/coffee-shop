@@ -19,7 +19,7 @@ spec:
   values:
     controller:
       image: "ghcr.io/jonnobrow/coffee-shop/jenkins"
-      tag: "main"
+      tag: "0.1.0"
       installPlugins: false
       JCasC:
         enabled: true
