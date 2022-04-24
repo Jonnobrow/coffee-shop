@@ -15,9 +15,7 @@ environments.each {env ->
                 script("""
                 @Library('jonnobrow') _
 
-                node {
-                    Terraform([command: 'init', targets: ['${env}']])
-                }
+                Pipeline([envs: ['${env}01', '${env}02', '${env}03']])
                 """.stripIndent())
             }
         }
