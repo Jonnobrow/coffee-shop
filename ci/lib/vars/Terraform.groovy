@@ -45,6 +45,8 @@ def call(Map params = [:]) {
             }
         }
     }
+
+    parallel parallelExecutions
 }
 
 def varsf(vars) {

@@ -15,8 +15,10 @@ environments.each {env ->
                 script("""
                 @Library('jonnobrow') _
 
-                Terraform([command: 'init', targets: ['${env}']])
-                """)
+                node {
+                    Terraform([command: 'init', targets: ['${env}']])
+                }
+                """.stripIndent())
             }
         }
     }
