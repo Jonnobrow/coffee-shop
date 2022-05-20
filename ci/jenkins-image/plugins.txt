@@ -5,7 +5,7 @@ git-client:3.11.0
 github-branch-source:1598.v91207e9f9b_4a_
 http_request:1.14
 job-dsl:1.78.1
-kubernetes:1.31.2
+kubernetes:3580.v78271e5631dc
 pipeline-github:2.8-138.d766e30bb08b
 pipeline-utility-steps:2.12.0
 workflow-job:1174.vdcb_d054cf74a_
