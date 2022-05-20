@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.jenkins.io
       chart: jenkins
-      version: 3.12.0
+      version: 4.1.1
       sourceRef:
         name: jenkins
         namespace: flux-system
