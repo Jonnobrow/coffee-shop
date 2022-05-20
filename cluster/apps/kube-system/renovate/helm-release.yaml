@@ -33,3 +33,4 @@ spec:
     secrets:
       RENOVATE_TOKEN: "${SECRET_RENOVATE_TOKEN}"
       RENOVATE_GIT_AUTHOR: "JonnobrowRenovateBot <renovate@jonnobrow.co.uk>"
+      RENOVATE_BINARY_SOURCE: install
