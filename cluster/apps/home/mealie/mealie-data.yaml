@@ -11,9 +11,6 @@ spec:
     - ReadWriteOnce
   local:
     path: /var/lib/data/mealie
-  claimRef:
-    name: mealie-data-pvc
-    namespace: home
   nodeAffinity:
     required:
       nodeSelectorTerms:

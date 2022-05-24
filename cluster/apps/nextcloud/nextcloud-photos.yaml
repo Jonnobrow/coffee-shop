@@ -9,9 +9,6 @@ spec:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
-  claimRef:
-    name: nextcloud-photos-pvc
-    namespace: nextcloud
   nfs:
     path: /photos
     server: 192.168.4.4

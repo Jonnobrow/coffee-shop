@@ -11,9 +11,6 @@ spec:
     - ReadWriteOnce
   local:
     path: /var/lib/data/paperless
-  claimRef:
-    name: paperless-data-pvc
-    namespace: home
   nodeAffinity:
     required:
       nodeSelectorTerms:

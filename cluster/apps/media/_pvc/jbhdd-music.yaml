@@ -9,9 +9,6 @@ spec:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
-  claimRef:
-    name: jbhdd-music-pvc
-    namespace: media
   nfs:
     path: /music
     server: 192.168.4.4

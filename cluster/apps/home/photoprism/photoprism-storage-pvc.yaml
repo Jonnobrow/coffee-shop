@@ -11,9 +11,6 @@ spec:
     - ReadWriteOnce
   local:
     path: /var/lib/data/photoprism
-  claimRef:
-    name: photoprism-storage-pvc
-    namespace: home
   nodeAffinity:
     required:
       nodeSelectorTerms:

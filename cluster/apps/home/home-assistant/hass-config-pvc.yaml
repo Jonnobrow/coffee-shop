@@ -11,9 +11,6 @@ spec:
     - ReadWriteOnce
   local:
     path: /var/lib/data/hass
-  claimRef:
-    name: hass-config-pvc
-    namespace: home
   nodeAffinity:
     required:
       nodeSelectorTerms:

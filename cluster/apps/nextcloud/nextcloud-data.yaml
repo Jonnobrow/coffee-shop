@@ -11,9 +11,6 @@ spec:
     - ReadWriteOnce
   local:
     path: /var/lib/data/nextcloud
-  claimRef:
-    name: nextcloud-data-pvc
-    namespace: nextcloud
   nodeAffinity:
     required:
       nodeSelectorTerms:

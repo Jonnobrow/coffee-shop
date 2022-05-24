@@ -9,9 +9,6 @@ spec:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
-  claimRef:
-    name: paperless-scans-pvc
-    namespace: home
   nfs:
     path: /scans
     server: 192.168.4.4

@@ -9,9 +9,6 @@ spec:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
-  claimRef:
-    name: jbhdd-tv-pvc
-    namespace: media
   nfs:
     path: /tv
     server: 192.168.4.4
