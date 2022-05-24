@@ -16,7 +16,7 @@ metadata:
   name: nextcloud-redirect-index
   namespace: networking
 spec:
-  replacePathRegex:
+  redirectRegex:
     regex: "https://([^/]*)/\\.well-known/(webfinger|nodeinfo)"
     replacement: "https://${1}/index.php/.well-known/${2}"
     permanent: true
@@ -40,6 +40,6 @@ metadata:
 spec:
   chain:
     middlewares:
-    - name: nextcloud-redirect
-    - name: nextcloud-redirect-index
-    - name: nextcloud-headers
+      - name: nextcloud-redirect
+      - name: nextcloud-redirect-index
+      - name: nextcloud-headers
