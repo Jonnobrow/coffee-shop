@@ -111,9 +111,10 @@ spec:
       password: "${SECRET_NEXTCLOUD_POSTGRES_PASSWORD}"
     postgresql:
       enabled: true
-      postgresqlUsername: nextcloud
-      postgresqlPassword: "${SECRET_NEXTCLOUD_POSTGRES_PASSWORD}"
-      postgresqlDatabase: nextcloud
+      auth:
+        username: nextcloud
+        password: "${SECRET_NEXTCLOUD_POSTGRES_PASSWORD}"
+        database: nextcloud
       persistence:
         enabled: true
         storageClassName: local-path

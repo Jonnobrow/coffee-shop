@@ -64,9 +64,10 @@ spec:
         memory: 128M
     postgresql:
       enabled: true
-      postgresqlUsername: joplin
-      postgresqlPassword: joplin-postgresql
-      postgresqlDatabase: joplin
+      auth:
+        username: joplin
+        password: joplin-postgresql
+        database: joplin
       persistence:
         enabled: true
         storageClass: "local-path"
