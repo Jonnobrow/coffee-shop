@@ -18,7 +18,7 @@ metadata:
 spec:
   redirectRegex:
     regex: "https://([^/]*)/\\.well-known/(webfinger|nodeinfo)"
-    replacement: "https://${1}/index.php/.well-known/${2}"
+    replacement: "https://$$1/index.php/.well-known/$$2"
     permanent: true
 ---
 apiVersion: traefik.containo.us/v1alpha1
