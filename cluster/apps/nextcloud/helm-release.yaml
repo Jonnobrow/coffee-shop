@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 24.0.0-fpm-alpine
+      tag: 24.0.1-fpm-alpine
     ingress:
       enabled: true
       ingressClassName: "traefik"
@@ -120,7 +120,7 @@ spec:
         accessMode: ReadWriteOnce
       image:
         repository: bitnami/postgresql
-        tag: 13.6.0
+        tag: 13.7.0
       volumePermissions:
         enabled: true
       psp:
