@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: paperless
-      version: 8.8.2
+      version: 8.8.3
       sourceRef:
         name: k8s-at-home
         namespace: flux-system
@@ -58,7 +58,7 @@ spec:
         imagePullPolicy: IfNotPresent
       database:
         name: database
-        image: bitnami/postgresql:13.6.0
+        image: bitnami/postgresql:13.7.0
         volumeMounts:
           - mountPath: /bitnami/postgresql
             name: paperless-db
