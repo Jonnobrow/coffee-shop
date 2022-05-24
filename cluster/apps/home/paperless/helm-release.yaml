@@ -34,6 +34,7 @@ spec:
       PAPERLESS_ADMIN_PASSWORD: "${SECRET_PAPERLESS_ADMIN_PASSWORD}"
       PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created}-{title}"
       PAPERLESS_DBHOST: localhost
+      PAPERLESS_URL: "https://paperless.${SECRET_DOMAIN}"
     ingress:
       main:
         enabled: true
