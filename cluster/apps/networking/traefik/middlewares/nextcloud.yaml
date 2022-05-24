@@ -13,6 +13,17 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
+  name: nextcloud-redirect-index
+  namespace: networking
+spec:
+  replacePathRegex:
+    regex: "https://([^/]*)/\\.well-known/(webfinger|nodeinfo)"
+    replacement: "https://${1}/index.php/.well-known/${2}"
+    permanent: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
   name: nextcloud-headers
   namespace: networking
 spec:
@@ -30,4 +41,5 @@ spec:
   chain:
     middlewares:
     - name: nextcloud-redirect
+    - name: nextcloud-redirect-index
     - name: nextcloud-headers

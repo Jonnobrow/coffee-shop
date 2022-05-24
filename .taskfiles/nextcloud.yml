@@ -3,19 +3,16 @@ version: "3"
 
 vars:
   POD:
-    sh: kubectl get pods -n nextcloud -l app.kubernetes.io/component=app -o name
+    sh: kubectl get pods -n nextcloud -l app.kubernetes.io/component=app -o name || echo "nextcloud"
   NAMESPACE: nextcloud
 
 tasks:
   maintenance:enable:
     desc: Enables maintenance mode in nextcloud
     cmds:
-      - |
-        kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
-          su - -s '/bin/sh' www-data -c \
-            "php -d memory_limit=-1 \
-            /var/www/html/occ maintenance:mode --{{.ACTION}}" \
-          >/dev/null 2>&1
+      - task: run-command
+        vars:
+          ARGS: "maintenance:mode --{{.ACTION}}"
     vars:
       ACTION: '{{default "on" .ACTION}}'
     silent: true
@@ -34,7 +31,9 @@ tasks:
         kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
           su - -s '/bin/sh' www-data -c \
             "php -d memory_limit=-1 \
-            /var/www/html/occ {{.CLI_ARGS}}"
+            /var/www/html/occ {{.ARGS}}"
+    vars:
+      ARGS: '{{default .CLI_ARGS .ARGS}}'
     interactive: true
 
   trashbin:cleanup:
