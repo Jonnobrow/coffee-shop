@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nextcloud-db
+  name: joplin-data
 spec:
   storageClassName: local-path
   capacity:
@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   local:
-    path: /var/lib/data/nextcloud-db
+    path: /var/lib/data/joplin
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -23,11 +23,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nextcloud-db-pvc
-  namespace: nextcloud
+  name: joping-data-pvc
+  namespace: home
 spec:
   storageClassName: local-path
-  volumeName: "nextcloud-db"
+  volumeName: joplin-data
   accessModes:
     - ReadWriteOnce
   resources:

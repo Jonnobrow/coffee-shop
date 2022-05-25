@@ -111,17 +111,20 @@ spec:
       password: "${SECRET_NEXTCLOUD_POSTGRES_PASSWORD}"
     postgresql:
       enabled: true
-      auth:
-        username: nextcloud
-        password: "${SECRET_NEXTCLOUD_POSTGRES_PASSWORD}"
-        database: nextcloud
-      persistence:
-        enabled: true
-        storageClassName: local-path
-        accessMode: ReadWriteOnce
+      global:
+        postgresql:
+          auth:
+            username: nextcloud
+            password: "${SECRET_NEXTCLOUD_POSTGRES_PASSWORD}"
+            database: nextcloud
+      primary:
+        persistence:
+          enabled: true
+          storageClassName: local-path
+          accessMode: ReadWriteOnce
       image:
         repository: bitnami/postgresql
-        tag: 13.7.0
+        tag: 14.3.0-debian-10-r8
       volumePermissions:
         enabled: true
       psp:

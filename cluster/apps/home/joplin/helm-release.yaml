@@ -64,12 +64,19 @@ spec:
         memory: 128M
     postgresql:
       enabled: true
-      auth:
-        username: joplin
-        password: joplin-postgresql
-        database: joplin
-      persistence:
-        enabled: true
-        storageClass: "local-path"
-        accessMode: ReadWriteOnce
-        size: 10Gi
+      image:
+        repository: bitnami/postgresql
+        tag: 14.3.0-debian-10-r8
+      global:
+        postgresql:
+          auth:
+            username: joplin
+            password: joplin-postgresql
+            database: joplin
+      primary:
+        persistence:
+          enabled: true
+          storageClass: "local-path"
+          accessMode: ReadWriteOnce
+          size: 10Gi
+          existingClaim: joplin-data
