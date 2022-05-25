@@ -122,6 +122,7 @@ spec:
           enabled: true
           storageClassName: local-path
           accessMode: ReadWriteOnce
+          existingClaim: nextcloud-db-pvc
       image:
         repository: bitnami/postgresql
         tag: 14.3.0-debian-10-r8
