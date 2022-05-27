@@ -87,7 +87,6 @@ spec:
         enabled: true
         existingClaim: paperless-db-pvc
         mountPath: "-"
-
     resources:
       requests:
         memory: 512Mi
