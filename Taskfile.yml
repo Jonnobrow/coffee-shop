@@ -15,6 +15,7 @@ includes:
   flux: .taskfiles/flux.yml
   sops: .taskfiles/sops.yml
   nextcloud: .taskfiles/nextcloud.yml
+  db: .taskfiles/db.yml
 
 tasks:
   kubeconfig:

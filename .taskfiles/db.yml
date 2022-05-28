@@ -1,0 +1,68 @@
+---
+version: "3"
+
+tasks:
+  backup:
+    cmds:
+      - |
+        kubectl exec -n {{ .NAMESPACE }} {{ .POD }} --container {{ .CONTAINER }} -- \
+        /bin/bash -c "PGPASSWORD={{ .DB_PASS }}                 \
+                     /opt/bitnami/postgresql/bin/pg_dump        \
+                     -U{{ .DB_USER }} {{ .DB }}" > pgdump-$(date -u +'%s')-{{.DB}}.sql
+    vars:
+      CONTAINER: '{{default "" .CONTAINER }}'
+    interactive: true
+
+  restore:
+    cmds:
+      - |
+        kubectl exec -i -n {{ .NAMESPACE }} {{ .POD }} --container {{ .CONTAINER }} -- \
+        /bin/bash -c "PGPASSWORD={{ .DB_PASS }}                 \
+                     /opt/bitnami/postgresql/bin/psql     \
+                     -U{{ .DB_USER }} -d {{ .DB }} -f -" < {{ .CLI_ARGS }}
+
+  backup:joplin:
+    cmds:
+      - task: backup
+        vars:
+          NAMESPACE: home
+          POD: joplin-server-postgresql-0
+          DB_USER: joplin
+          DB_PASS: joplin-postgresql
+          DB: joplin
+          CONTAINER: postgresql
+
+  restore:joplin:
+    cmds:
+      - task: restore
+        vars:
+          NAMESPACE: home
+          POD: joplin-server-postgresql-0
+          DB_USER: joplin
+          DB_PASS: joplin-postgresql
+          DB: joplin
+          CONTAINER: postgresql
+
+  backup:paperless:
+    cmds:
+      - task: backup
+        vars:
+          NAMESPACE: home
+          POD:
+            sh: kubectl get pods -n home -l app.kubernetes.io/name=paperless -o name
+          DB_USER: paperless
+          DB_PASS: paperless
+          DB: paperless
+          CONTAINER: database
+
+  restore:paperless:
+    cmds:
+      - task: restore
+        vars:
+          NAMESPACE: home
+          POD:
+            sh: kubectl get pods -n home -l app.kubernetes.io/name=paperless -o name
+          DB_USER: paperless
+          DB_PASS: paperless
+          DB: paperless
+          CONTAINER: database
