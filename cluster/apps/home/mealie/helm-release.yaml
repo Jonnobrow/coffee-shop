@@ -11,22 +11,17 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: mealie
-      version: 4.2.2
+      version: 5.0.0
       sourceRef:
         name: k8s-at-home
         namespace: flux-system
         kind: HelmRepository
   values:
     env:
-      PUID: 1001
-      PGID: 1001
-      DEFAULT_EMAIL: "${SECRET_MEALIE_EMAIL}"
-      DEFAULT_PASSWORD: "${SECRET_MEALIE_PASSWORD}"
-      BASE_URL: "https://mealie.${SECRET_DOMAIN}"
-      API_DOCS: "False"
+      ALLOW_SIGNUP: "False"
     image:
       repository: hkotel/mealie
-      tag: v0.5.6
+      tag: frontend-v1.0.0beta-2
     hostname: mealie
     ingress:
       main:
@@ -46,10 +41,27 @@ spec:
           - hosts:
               - "mealie.${SECRET_DOMAIN}"
     persistence:
-      config:
-        enabled: false
       data:
         enabled: true
         existingClaim: mealie-data-pvc
         mountPath: /app/data
         readOnly: false
+    api:
+      image:
+        repository: hkotel/mealie
+        tag: api-v1.0.0beta-2
+      env:
+        PUID: 1001
+        PGID: 1001
+        DEFAULT_EMAIL: "${SECRET_MEALIE_EMAIL}"
+        DEFAULT_PASSWORD: "${SECRET_MEALIE_PASSWORD}"
+        BASE_URL: "https://mealie.${SECRET_DOMAIN}"
+        API_DOCS: "False"
+        SMTP_HOST: "${SECRET_SMTP_HOST}"
+        SMTP_USER: "${SECRET_SMTP_USERNAME}"
+        SMTP_PASSWORD: "${SECRET_SMTP_PASSWORD}"
+        SMTP_FROM_EMAIL: "${SECRET_MEALIE_EMAIL}"
+        ALLOW_SIGNUP: "False"
+      volumeMounts:
+        - name: data
+          mountPath: /app/data
