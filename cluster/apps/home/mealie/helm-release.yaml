@@ -51,8 +51,8 @@ spec:
         repository: hkotel/mealie
         tag: api-v1.0.0beta-2
       env:
-        PUID: 1001
-        PGID: 1001
+        PUID: '"1001"'
+        PGID: '"1001"'
         DEFAULT_EMAIL: "${SECRET_MEALIE_EMAIL}"
         DEFAULT_PASSWORD: "${SECRET_MEALIE_PASSWORD}"
         BASE_URL: "https://mealie.${SECRET_DOMAIN}"
