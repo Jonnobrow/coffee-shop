@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://docs.renovatebot.com/helm-charts
       chart: renovate
-      version: 32.70.0
+      version: 32.71.3
       sourceRef:
         kind: HelmRepository
         name: renovate
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: renovate/renovate
-      tag: 32.71.0
+      tag: 32.71.4
     cronjob:
       schedule: "@hourly"
     renovate:
