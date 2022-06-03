@@ -23,7 +23,7 @@ spec:
         existingClaim: hass-config-pvc
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.5.5
+      tag: 2022.6.1
     ingress:
       main:
         enabled: true
