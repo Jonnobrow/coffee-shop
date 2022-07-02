@@ -3,8 +3,7 @@
     ":enableRenovate",
     "config:base",
     ":semanticCommits",
-    "docker:enableMajor",
-    "group:allNonMajor"
+    "docker:enableMajor"
   ],
   "timezone": "Europe/London",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
@@ -59,6 +58,23 @@
     {
       "matchDatasources": ["docker"],
       "commitMessageExtra": "to {{newVersion}}"
+    },
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "excludePackagePatterns": "^nextcloud",
+    },
+    {
+      "matchPackagePatterns": [ "^nextcloud" ],
+      "groupName": "all nextcloud dependencies",
+      "groupSlug": "all-nextcloud"
     }
   ]
 }
