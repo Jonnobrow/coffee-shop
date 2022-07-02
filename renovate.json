@@ -1,80 +1,104 @@
 {
-  "extends": [
-    ":enableRenovate",
-    "config:base",
-    ":semanticCommits",
-    "docker:enableMajor"
-  ],
-  "timezone": "Europe/London",
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
-  "docker-compose": {
-    "fileMatch": [
-      "(^|/)docker-compose.*.ya?ml$",
-      "(^|/)docker-compose.*.ya?ml.j2$"
+    "extends": [
+        ":enableRenovate",
+        "config:base",
+        ":semanticCommits",
+        "docker:enableMajor"
+    ],
+    "timezone": "Europe/London",
+    "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+    "suppressNotifications": [
+        "prIgnoreNotification"
+    ],
+    "rebaseWhen": "conflicted",
+    "docker-compose": {
+        "fileMatch": [
+            "(^|/)docker-compose.*.ya?ml$",
+            "(^|/)docker-compose.*.ya?ml.j2$"
+        ]
+    },
+    "helm-values": {
+        "fileMatch": [
+            "cluster/.+/helm-release\\.yaml$"
+        ]
+    },
+    "kubernetes": {
+        "fileMatch": [
+            "cluster/.+\\.yaml$"
+        ],
+        "ignorePaths": [
+            "cluster/base/"
+        ]
+    },
+    "regexManagers": [
+        {
+            "fileMatch": [
+                "ci/jenkins-image/plugins.txt"
+            ],
+            "matchStrings": [
+                "(?<depName>.*?):(?<currentValue>.*?)\n"
+            ],
+            "datasourceTemplate": "jenkins-plugins"
+        },
+        {
+            "fileMatch": [
+                "cluster/.+\\.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
+            ],
+            "datasourceTemplate": "helm"
+        },
+        {
+            "fileMatch": [
+                "cluster/crds/cert-manager/.+\\.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
+            ],
+            "datasourceTemplate": "helm"
+        },
+        {
+            "fileMatch": [
+                "cluster/crds/traefik/.+\\.yaml$"
+            ],
+            "matchStrings": [
+                "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n"
+            ],
+            "datasourceTemplate": "helm"
+        }
+    ],
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "helm"
+            ],
+            "ignoreDeprecated": true
+        },
+        {
+            "matchDatasources": [
+                "docker"
+            ],
+            "commitMessageExtra": "to {{newVersion}}"
+        },
+        {
+            "matchPackagePatterns": [
+                "*"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "groupName": "all non-major dependencies",
+            "groupSlug": "all-minor-patch",
+            "excludePackagePatterns": "^nextcloud"
+        },
+        {
+            "matchPackagePatterns": [
+                "^nextcloud"
+            ],
+            "groupName": "all nextcloud dependencies",
+            "groupSlug": "all-nextcloud"
+        }
     ]
-  },
-  "helm-values": {
-    "fileMatch": ["cluster/.+/helm-release\\.yaml$"]
-  },
-  "kubernetes": {
-    "fileMatch": ["cluster/.+\\.yaml$"],
-    "ignorePaths": ["cluster/base/"]
-  },
-  "regexManagers": [
-    {
-      "fileMatch": ["ci/jenkins-image/plugins.txt"],
-      "matchStrings": ["(?<depName>.*?):(?<currentValue>.*?)\n"],
-      "datasourceTemplate": "jenkins-plugins"
-    },
-    {
-      "fileMatch": ["cluster/.+\\.yaml$"],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    {
-      "fileMatch": ["cluster/crds/cert-manager/.+\\.yaml$"],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    {
-      "fileMatch": ["cluster/crds/traefik/.+\\.yaml$"],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "helm"
-    }
-  ],
-  "packageRules": [
-    {
-      "matchDatasources": ["helm"],
-      "ignoreDeprecated": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "commitMessageExtra": "to {{newVersion}}"
-    },
-    {
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "excludePackagePatterns": "^nextcloud",
-    },
-    {
-      "matchPackagePatterns": [ "^nextcloud" ],
-      "groupName": "all nextcloud dependencies",
-      "groupSlug": "all-nextcloud"
-    }
-  ]
 }
