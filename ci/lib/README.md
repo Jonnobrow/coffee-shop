@@ -1,1 +1,0 @@
-# CI Library for Jenkins

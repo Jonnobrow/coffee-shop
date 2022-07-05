@@ -36,6 +36,16 @@ tasks:
       ARGS: '{{default .CLI_ARGS .ARGS}}'
     interactive: true
 
+  run-command:console:
+    desc: Run a console command in nextcloud
+    cmds:
+      - |
+        kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
+          su - -s '/bin/sh' www-data -c \
+            "php -d memory_limit=-1 \
+            /var/www/html/console.php {{.CLI_ARGS}}"
+    interactive: true
+
   trashbin:cleanup:
     desc: Runs the trashin:cleanup command for all users
     cmds:
