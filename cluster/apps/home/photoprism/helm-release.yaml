@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: photoprism
-      version: 6.6.3
+      version: 6.6.4
       sourceRef:
         name: k8s-at-home
         kind: HelmRepository
