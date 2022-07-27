@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: metallb
-      version: 3.0.10
+      version: 3.0.11
       sourceRef:
         name: bitnami
         namespace: flux-system
@@ -30,4 +30,4 @@ spec:
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.13.3
+        tag: 0.13.4
