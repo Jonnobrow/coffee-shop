@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "20221105"
+      tag: "221105-jammy"
     env:
       PHOTOPRISM_DEBUG: false
       PHOTOPRISM_PUBLIC: true
