@@ -22,7 +22,7 @@ spec:
       tag: "221105-jammy"
     env:
       PHOTOPRISM_DEBUG: false
-      PHOTOPRISM_PUBLIC: true
+      PHOTOPRISM_AUTH_MODE: "password"
       PHOTOPRISM_SITE_TITLE: "PhotoPrism"
       PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
       PHOTOPRISM_SITE_AUTHOR: "jonnobrow"
