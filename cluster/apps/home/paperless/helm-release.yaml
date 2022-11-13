@@ -13,7 +13,7 @@ spec:
       chart: paperless
       version: 9.2.2
       sourceRef:
-        name: k8s-at-home
+        name: djjudas21
         namespace: flux-system
         kind: HelmRepository
   values:
