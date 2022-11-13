@@ -28,7 +28,7 @@ tasks:
     desc: Run a generic command in nextcloud
     cmds:
       - |
-        kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
+        kubectl exec -it -n {{.NAMESPACE}} {{.POD}} -- \
           su - -s '/bin/sh' www-data -c \
             "php -d memory_limit=-1 \
             /var/www/html/occ {{.ARGS}}"

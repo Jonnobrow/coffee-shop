@@ -9,9 +9,9 @@ spec:
   releaseName: paperless
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts
+      # renovate: registryUrl=https://djjudas21.github.io/charts/
       chart: paperless
-      version: 8.8.3
+      version: 9.2.2
       sourceRef:
         name: k8s-at-home
         namespace: flux-system
