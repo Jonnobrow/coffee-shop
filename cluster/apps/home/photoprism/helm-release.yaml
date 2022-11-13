@@ -9,17 +9,17 @@ spec:
   releaseName: photoprism
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts
+      # renovate: registryUrl=https://djjudas21.github.io/charts/
       chart: photoprism
-      version: 6.6.4
+      version: 7.2.6
       sourceRef:
-        name: k8s-at-home
+        name: djjudas21
         kind: HelmRepository
         namespace: flux-system
   values:
     image:
       repository: photoprism/photoprism
-      tag: "20220121"
+      tag: "20221105"
     env:
       PHOTOPRISM_DEBUG: false
       PHOTOPRISM_PUBLIC: true

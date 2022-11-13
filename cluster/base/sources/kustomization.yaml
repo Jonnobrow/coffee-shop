@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - jetstack.yaml
   - k8s-at-home.yaml
+  - djjudas21.yaml
   - bitnami.yaml
   - ingress-nginx.yaml
   - hajimari.yaml
