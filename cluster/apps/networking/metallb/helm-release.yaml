@@ -30,4 +30,4 @@ spec:
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.13.3
+        tag: 0.12.1
