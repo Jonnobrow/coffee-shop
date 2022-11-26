@@ -28,6 +28,8 @@ spec:
         repository: bitnami/metallb-controller
         tag: 0.12.1
     speaker:
+      containerPorts:
+      	metrics: 7473
       image:
         repository: bitnami/metallb-speaker
         tag: 0.12.1
