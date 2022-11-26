@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "221105-jammy"
+      tag: "221118-jammy"
     env:
       PHOTOPRISM_DEBUG: false
       PHOTOPRISM_AUTH_MODE: "password"
