@@ -5,7 +5,7 @@ resources:
   - jetstack.yaml
   - k8s-at-home.yaml
   - djjudas21.yaml
-  - truecharts.yaml
+#  - truecharts.yaml
   - bitnami.yaml
   - ingress-nginx.yaml
   - hajimari.yaml
