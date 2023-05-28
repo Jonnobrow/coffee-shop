@@ -21,7 +21,7 @@ spec:
       ALLOW_SIGNUP: "False"
     image:
       repository: hkotel/mealie
-      tag: frontend-v1.0.0beta-2
+      tag: frontend-v1.0.0beta-5
     hostname: mealie
     ingress:
       main:
@@ -49,7 +49,7 @@ spec:
     api:
       image:
         repository: hkotel/mealie
-        tag: api-v1.0.0beta-2
+        tag: api-v1.0.0beta-5
       env:
         PUID: '1001'
         PGID: '1001'
