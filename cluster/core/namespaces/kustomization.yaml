@@ -10,3 +10,4 @@ resources:
   - nextcloud.yaml
   - development.yaml
   - monitoring.yaml
+  - metallb-system.yaml
