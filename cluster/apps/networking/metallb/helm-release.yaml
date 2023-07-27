@@ -26,10 +26,12 @@ spec:
     controller:
       image:
         repository: bitnami/metallb-controller
-        tag: 0.12.1
+        tag: 0.13.10-debian-11-r53
+      psp:
+        create: false
     speaker:
-      containerPorts:
-        metrics: 7473
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.12.1
+        tag: 0.13.10-debian-11-r53
+      psp:
+        create: false
