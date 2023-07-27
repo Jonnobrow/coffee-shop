@@ -11,25 +11,21 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: metallb
-      version: 3.0.10
+      version: 4.5.7
       sourceRef:
         name: bitnami
         namespace: flux-system
         kind: HelmRepository
   values:
-    configInline:
-      address-pools:
-        - name: default
-          protocol: layer2
-          addresses:
-            - "${METALLB_LB_RANGE}"
     controller:
       image:
         repository: bitnami/metallb-controller
-        tag: 0.12.1
+        tag: 0.13.10-debian-11-r53
+      psp:
+        create: false
     speaker:
-      containerPorts:
-        metrics: 7472
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.12.1
+        tag: 0.13.10-debian-11-r53
+      psp:
+        create: false
