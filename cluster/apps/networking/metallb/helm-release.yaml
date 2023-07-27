@@ -29,7 +29,7 @@ spec:
         tag: 0.12.1
     speaker:
       containerPorts:
-        metrics: 7473
+        metrics: 7472
       image:
         repository: bitnami/metallb-speaker
         tag: 0.12.1
