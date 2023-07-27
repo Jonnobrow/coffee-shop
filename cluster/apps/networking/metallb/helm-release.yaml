@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
         kind: HelmRepository
   values:
+    installCrds: false
     controller:
       image:
         repository: bitnami/metallb-controller
