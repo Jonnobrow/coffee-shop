@@ -5,4 +5,8 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 patches:
-- sops-config.yaml
+- path: sops-config.yaml
+  target:
+    kind: Kustomization
+    name: flux-system
+    namespace: flux-system
