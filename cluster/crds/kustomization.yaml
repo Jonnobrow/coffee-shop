@@ -5,4 +5,4 @@ resources:
 - external-dns
 - cert-manager
 - traefik
-- metallb
+  #- metallb
