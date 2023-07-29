@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.truecharts.org
       chart: openhab
-      version: 3.0.2
+      version: 5.0.19
       sourceRef:
         name: truecharts
         namespace: flux-system
