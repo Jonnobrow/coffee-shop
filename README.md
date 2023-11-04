@@ -38,7 +38,9 @@ After pre-commit is installed on your machine run:
 pre-commit install-hooks
 ```
 
-## Managing Secrets
+## Diagrams
+
+![CoffeeShop Network](./CoffeeShop.drawio.svg)
 
 
 ## :handshake:&nbsp; Thanks
