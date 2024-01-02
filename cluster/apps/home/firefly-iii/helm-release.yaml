@@ -27,7 +27,7 @@ spec:
         PGPASSWORD: "${SECRET_FIREFLY_DB_PASSWORD}"
         POSTGRES_PASSWORD: "${SECRET_FIREFLY_DB_PASSWORD}"
         POSTGRES_USER: "${SECRET_FIREFLY_DB_USERNAME}"
-    firefly-iii-importer:
+    importer:
       fireflyiii:
         vanityUrl: "https://firefly.${SECRET_DOMAIN}"
       config:
