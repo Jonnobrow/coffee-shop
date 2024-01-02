@@ -5,16 +5,13 @@ resources:
   - jetstack.yaml
   - k8s-at-home.yaml
   - djjudas21.yaml
-#  - truecharts.yaml
   - bitnami.yaml
   - ingress-nginx.yaml
   - hajimari.yaml
   - traefik.yaml
   - nextcloud.yaml
   - lwolf.yaml
-  - gitea.yaml
   - prometheus-community.yaml
   - grafana.yaml
   - renovate.yaml
-  - drone.yaml
-  - jenkins.yaml
+  - firefly.yaml

@@ -6,6 +6,7 @@ resources:
   #- mealie
   - paperless
   - photoprism
+  - firefly-iii
     #- joplin
     #  - openhab
     #  - frigate
