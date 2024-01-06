@@ -29,6 +29,7 @@ spec:
         POSTGRES_USER: "${SECRET_FIREFLY_DB_USERNAME}"
     importer:
       fireflyiii:
+        url: "http://firefly-iii:80"
         vanityUrl: "https://firefly.${SECRET_DOMAIN}"
       config:
         env:
@@ -39,6 +40,7 @@ spec:
         existingClaim: firefly-iii-pvc
       config:
         env:
+          DB_HOST: firefly-iii-firefly-db
           DB_USERNAME: "${SECRET_FIREFLY_DB_USERNAME}"
           SITE_OWNER: "${SECRET_FIREFLY_SITE_OWNER}"
       secrets:
