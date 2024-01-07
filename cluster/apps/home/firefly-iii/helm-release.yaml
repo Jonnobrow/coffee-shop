@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://firefly-iii.github.io/kubernetes/
       chart: firefly-iii-stack
-      version: 1.7.2
+      version: 0.7.2
       sourceRef:
         name: firefly-iii
         namespace: flux-system
