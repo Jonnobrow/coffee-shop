@@ -24,7 +24,7 @@ spec:
         pullPolicy: IfNotPresent
       ingress:
         main:
-          enabled: false
+          enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
             traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare-ips@kubernetescrd"
