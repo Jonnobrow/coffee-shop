@@ -9,9 +9,9 @@ spec:
   releaseName: immich
   chart:
     spec:
-      # renovate: registryUrl=https://djjudas21.github.io/charts/
+      # renovate: registryUrl=https://immich-app.github.io/immich-charts
       chart: immich
-      version: 7.2.6
+      version: 0.3.1
       sourceRef:
         name: immich
         kind: HelmRepository
