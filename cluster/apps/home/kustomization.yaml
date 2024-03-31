@@ -6,8 +6,8 @@ resources:
   #- mealie
   - paperless
   - photoprism
-  - firefly-iii
-  - immich
+  #- firefly-iii
+  #  - immich
     #- joplin
     #  - openhab
     #  - frigate
