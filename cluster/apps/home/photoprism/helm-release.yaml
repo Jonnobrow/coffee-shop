@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: photoprism
@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://djjudas21.github.io/charts/
       chart: photoprism
-      version: 7.2.6
+      version: 7.4.10
       sourceRef:
         name: djjudas21
         kind: HelmRepository

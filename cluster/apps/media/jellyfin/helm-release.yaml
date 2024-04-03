@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: jellyfin
@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts
       chart: jellyfin
-      version: 9.4.2
+      version: 9.5.3
       sourceRef:
         name: k8s-at-home
         namespace: flux-system
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: jellyfin/jellyfin
-      tag: 10.8.1
+      tag: 10.8.13
     env:
       TZ: "Europe/London"
       JELLYFIN_PublishedServerUrl: "jellyfin.${SECRET_DOMAIN}"
