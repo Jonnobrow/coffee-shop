@@ -98,7 +98,8 @@ spec:
             ),
             'overwritehost' => 'nc.${SECRET_DOMAIN}',
             'overwriteprotocol' => 'https',
-            'overwrite.cli.url' => 'https://nc.${SECRET_DOMAIN}'
+            'overwrite.cli.url' => 'https://nc.${SECRET_DOMAIN}',
+            'maintenance_window_start' => 1,
           );
     nginx:
       enabled: true
