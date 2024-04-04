@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 28.0.3-fpm-alpine
+      tag: 28.0.4-fpm-alpine
     ingress:
       enabled: true
       ingressClassName: "traefik"
@@ -95,8 +95,7 @@ spec:
             ),
             'overwritehost' => 'nc.${SECRET_DOMAIN}',
             'overwriteprotocol' => 'https',
-            'overwrite.cli.url' => 'https://nc.${SECRET_DOMAIN}',
-            'maintenance_window_start' => 1',
+            'overwrite.cli.url' => 'https://nc.${SECRET_DOMAIN}'
           );
     nginx:
       enabled: true
