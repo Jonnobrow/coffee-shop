@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: firefly-iii
@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://firefly-iii.github.io/kubernetes/
       chart: firefly-iii-stack
-      version: 0.7.2
+      version: 0.7.3
       sourceRef:
         name: firefly-iii
         namespace: flux-system
