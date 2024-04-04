@@ -31,6 +31,9 @@ spec:
     customFrameOptionsValue: "SAMEORIGIN"
     customResponseHeaders:
       Strict-Transport-Security: "15552000"
+    hostsProxyHeaders:
+      - "X-Forwarded-Host"
+    referrerPolicy: "same-origin"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
