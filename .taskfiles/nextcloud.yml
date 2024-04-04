@@ -29,9 +29,8 @@ tasks:
     cmds:
       - |
         kubectl exec -it -n {{.NAMESPACE}} {{.POD}} -- \
-          su - -s '/bin/sh' www-data -c \
-            "php -d memory_limit=-1 \
-            /var/www/html/occ {{.ARGS}}"
+            php -d memory_limit=-1 \
+            /var/www/html/occ {{.ARGS}}
     vars:
       ARGS: '{{default .CLI_ARGS .ARGS}}'
     interactive: true
@@ -41,9 +40,8 @@ tasks:
     cmds:
       - |
         kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
-          su - -s '/bin/sh' www-data -c \
-            "php -d memory_limit=-1 \
-            /var/www/html/console.php {{.CLI_ARGS}}"
+            php -d memory_limit=-1 \
+            /var/www/html/console.php {{.CLI_ARGS}}
     interactive: true
 
   trashbin:cleanup:
@@ -51,7 +49,6 @@ tasks:
     cmds:
       - |
         kubectl exec -n {{.NAMESPACE}} {{.POD}} -- \
-          su - -s '/bin/sh' www-data -c \
-            "php -d memory_limit=-1 \
-             /var/www/html/occ trashbin:cleanup --all-users"
+            php -d memory_limit=-1 \
+             /var/www/html/occ trashbin:cleanup --all-users
     silent: true
