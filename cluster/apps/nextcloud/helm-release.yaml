@@ -124,14 +124,14 @@ spec:
           accessMode: ReadWriteOnce
           existingClaim: nextcloud-db-pvc
       # BEGIN: Uncomment when upgrading
-      containerSecurityContext:
-        runAsUser: 0
-      diagnosticMode:
-        enabled: true
+      # containerSecurityContext:
+      #   runAsUser: 0
+      # diagnosticMode:
+      #   enabled: true
       # END: Uncomment when upgrading
       image:
         repository: bitnami/postgresql
-        tag: 16.2.0-debian-12-r12
+        tag: 14.3.0-debian-10-r8
       volumePermissions:
         enabled: true
       psp:
