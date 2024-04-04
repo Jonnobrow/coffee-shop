@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nextcloud-db
+  name: nextcloud-data
 spec:
   storageClassName: local-path
   capacity:
-    storage: 10Gi
+    storage: 25Gi
   accessModes:
     - ReadWriteOnce
   local:
-    path: /var/lib/data/nextcloud-db
+    path: /var/lib/data/nextcloud
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -23,13 +23,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nextcloud-db-pvc
+  name: nextcloud-data-pvc
   namespace: nextcloud
 spec:
   storageClassName: local-path
-  volumeName: "nextcloud-db"
+  volumeName: "nextcloud-data"
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 25Gi
