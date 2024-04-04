@@ -123,9 +123,15 @@ spec:
           storageClassName: local-path
           accessMode: ReadWriteOnce
           existingClaim: nextcloud-db-pvc
+      # BEGIN: Uncomment when upgrading
+      containerSecurityContext:
+        runAsUser: 0
+      diagnosticMode:
+        enabled: true
+      # END: Uncomment when upgrading
       image:
         repository: bitnami/postgresql
-        tag: 14.3.0-debian-10-r8
+        tag: 16.2.0-debian-12-r12
       volumePermissions:
         enabled: true
       psp:
