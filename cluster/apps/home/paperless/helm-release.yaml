@@ -37,10 +37,13 @@ spec:
       PAPERLESS_URL: "https://paperless.${SECRET_DOMAIN}"
       # Resource consumption params
       PAPERLESS_OCR_PAGES: 1
-      PAPERLESS_TASK_WORKERS: 2
+      PAPERLESS_TASK_WORKERS: 1
       PAPERLESS_THREADS_PER_WORKER: 1
       PAPERLESS_WEBSERVER_WORKERS: 1
+      PAPERLESS_OCR_MODE: skip
       PAPERLESS_ENABLE_NLTK: "false"
+      PAPERLESS_CONVERT_MEMORY_LIMIT: 128
+      PAPERLESS_CONSUMER_INOTIFY_DELAY: 5
     ingress:
       main:
         enabled: true
