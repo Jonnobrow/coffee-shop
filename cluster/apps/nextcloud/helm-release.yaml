@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 25.0.1-fpm-alpine
+      tag: 26.0.13-fpm-alpine
     ingress:
       enabled: true
       ingressClassName: "traefik"
