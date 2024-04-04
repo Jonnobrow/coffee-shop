@@ -35,6 +35,12 @@ spec:
       PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created}-{title}"
       PAPERLESS_DBHOST: localhost
       PAPERLESS_URL: "https://paperless.${SECRET_DOMAIN}"
+      # Resource consumption params
+      PAPERLESS_OCR_PAGES: 1
+      PAPERLESS_TASK_WORKERS: 2
+      PAPERLESS_THREADS_PER_WORKER: 1
+      PAPERLESS_WEBSERVER_WORKERS: 1
+      PAPERLESS_ENABLE_NLTK: "false"
     ingress:
       main:
         enabled: true
@@ -90,6 +96,6 @@ spec:
     resources:
       requests:
         memory: 512Mi
-        cpu: 500m
+        cpu: 2000m
       limits:
         memory: 1024Mi
