@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 27.1.8-fpm-alpine
+      tag: 28.0.4-fpm-alpine
     ingress:
       enabled: true
       ingressClassName: "traefik"
@@ -125,7 +125,7 @@ spec:
           existingClaim: nextcloud-db-pvc
       image:
         repository: bitnami/postgresql
-        tag: 14.3.0-debian-10-r8
+        tag: 15.6.0-debian-12-r11
       volumePermissions:
         enabled: true
       psp:
@@ -139,6 +139,8 @@ spec:
         limits:
           memory: 1024Mi
           cpu: 1000m
+      diagnosticMode:
+        enabled: true
     redis:
       enabled: true
       usePassword: true
