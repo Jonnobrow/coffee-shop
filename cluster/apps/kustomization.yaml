@@ -6,6 +6,3 @@ resources:
 - home
 - nextcloud
 - kube-system
-#- development
-#- media
-#- monitoring
