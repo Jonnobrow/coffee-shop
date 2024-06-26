@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://nextcloud.github.io/helm
       chart: nextcloud
-      version: 4.6.5
+      version: 4.6.11
       sourceRef:
         name: nextcloud
         kind: HelmRepository
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: nextcloud
-      tag: 28.0.4-fpm-alpine
+      tag: 28.0.7-fpm-alpine
     ingress:
       enabled: true
       ingressClassName: "traefik"
