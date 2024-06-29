@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: immich
@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://immich-app.github.io/immich-charts
       chart: immich
-      version: 0.4.0
+      version: 0.7.0
       sourceRef:
         name: immich
         kind: HelmRepository

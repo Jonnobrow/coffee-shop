@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: paperless
@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
       pullPolicy: IfNotPresent
-      tag: 2.6.3
+      tag: 2.10.2
     env:
       COMPOSE_PROJECT_NAME: paperless-jb
       PAPERLESS_REDIS: redis://localhost:6379
@@ -68,7 +68,7 @@ spec:
         imagePullPolicy: IfNotPresent
       database:
         name: database
-        image: bitnami/postgresql:14.3.0-debian-10-r8
+        image: bitnami/postgresql:14.12.0-debian-12-r15
         volumeMounts:
           - mountPath: /bitnami/postgresql
             name: paperless-db
