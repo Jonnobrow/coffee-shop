@@ -30,7 +30,7 @@ spec:
   headers:
     customFrameOptionsValue: "SAMEORIGIN"
     customResponseHeaders:
-      Strict-Transport-Security: "15552000"
+      Strict-Transport-Security: "max-age=15552000; includeSubDomains; preload"
     hostsProxyHeaders:
       - "X-Forwarded-Host"
     referrerPolicy: "same-origin"
