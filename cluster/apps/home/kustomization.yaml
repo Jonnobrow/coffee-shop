@@ -6,4 +6,4 @@ resources:
   - photoprism
   # To be revisited:
   #- mealie
-  #- immich
+  - immich
