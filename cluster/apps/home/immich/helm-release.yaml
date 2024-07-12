@@ -55,3 +55,18 @@ spec:
       persistence:
         library:
           existingClaim: immich-photos-pvc
+      config:
+        server:
+          externalDomain: "immich.${SECRET_DOMAIN}"
+          loginPageMessage: "Welcome the Immich's of Jonathan and Izzy"
+        notifications:
+          smtp:
+            enabled: true
+            from: "immich@${SECRET_DOMAIN}"
+            replyTo: "no-reply@${SECRET_DOMAIN}"
+            transport:
+              ignoreCert: false
+              host: "${SECRET_SMTP_HOST}"
+              port: 587
+              username: "${SECRET_SMTP_USERNAME}"
+              password: "${SECRET_SMTP_PASSWORD}"
