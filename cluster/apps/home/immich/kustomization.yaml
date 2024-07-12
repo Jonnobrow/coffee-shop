@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
 - helm-release.yaml
 - immich-photos.yaml
+- immich-external-photos.yaml

@@ -42,6 +42,11 @@ spec:
           tls:
             - hosts:
                 - "immich.${SECRET_DOMAIN}"
+      persistence:
+        external:
+          enabled: true
+          existingClaim: immich-external-photos-pvc
+          readOnly: true
     redis:
       enabled: true
     postgresql:
