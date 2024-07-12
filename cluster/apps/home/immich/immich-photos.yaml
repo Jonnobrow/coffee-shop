@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    path: /photos
+    path: /photos-new
     server: 192.168.4.4
   mountOptions:
     - nfsvers=4.1
