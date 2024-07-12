@@ -55,7 +55,7 @@ spec:
       persistence:
         library:
           existingClaim: immich-photos-pvc
-      config:
+      configuration:
         server:
           externalDomain: "immich.${SECRET_DOMAIN}"
           loginPageMessage: "Welcome the Immich's of Jonathan and Izzy"
