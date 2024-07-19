@@ -11,3 +11,4 @@ resources:
   - development.yaml
   - monitoring.yaml
   - metallb-system.yaml
+  - cnpg-system.yaml

@@ -16,3 +16,4 @@ resources:
   - renovate.yaml
   - firefly.yaml
   - immich.yaml
+  - cnpg.yaml
