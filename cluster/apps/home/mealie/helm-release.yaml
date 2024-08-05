@@ -30,7 +30,7 @@ spec:
       SMTP_FROM_EMAIL: "${SECRET_MEALIE_EMAIL}"
       ALLOW_SIGNUP: 'false'
     image:
-      repository: mealie-recipes/mealie
+      repository: ghcr.io/mealie-recipes/mealie
       tag: v1.11.0
     hostname: mealie
     ingress:
