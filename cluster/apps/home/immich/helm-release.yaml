@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://immich-app.github.io/immich-charts
       chart: immich
-      version: 0.7.0
+      version: 0.7.1
       sourceRef:
         name: immich
         kind: HelmRepository
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: v1.108.0
+      tag: v1.111.0
     server:
       enabled: true
       image:
