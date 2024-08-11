@@ -7,7 +7,7 @@ ansible_host: "192.168.4.4"
 ansible_user: "ubuntu"
 
 # Exports
-nfs_export_root: /mnt/jbhdd
+nfs_export_root: /mnt/tank
 nfs_exports:
   - movies
   - tv
@@ -15,3 +15,4 @@ nfs_exports:
   - photos
   - scans
   - tmp-media/downloads
+  - backup
