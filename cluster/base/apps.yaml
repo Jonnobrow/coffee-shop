@@ -23,4 +23,4 @@ spec:
       - kind: ConfigMap
         name: cluster-settings
       - kind: Secret
-        name: cluster-secrets
+        name: cluster-secretsGitRepo

@@ -1,14 +1,13 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 vars:
-  PROJECT_DIR:
-    sh: "git rev-parse --show-toplevel"
-  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
-  ANSIBLE_DIR: "{{.PROJECT_DIR}}/server/ansible"
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/server/ansible"
 
 env:
-  KUBECONFIG: "{{.PROJECT_DIR}}/kubeconfig"
+  KUBECONFIG: "{{.KUBERNETES_DIR}}/coffee-shop-2/kubeconfig"
 
 includes:
   ansible: .taskfiles/ansible.yml
@@ -16,13 +15,18 @@ includes:
   sops: .taskfiles/sops.yml
   nextcloud: .taskfiles/nextcloud.yml
   db: .taskfiles/db.yml
+  bootstrap: .taskfiles/bootstrap.yml
 
 tasks:
   kubeconfig:
     desc: Remotely fetch kubeconfig from k3s
+    vars:
+      cluster: '{{.cluster | default "coffee-shop-2"}}'
     cmds:
-      - rsync --verbose --progress --partial --rsync-path="sudo rsync" ubuntu@192.168.4.3:/etc/rancher/k3s/k3s.yaml ./kubeconfig
-      - '{{if eq OS "linux"}}sed -i{{else}}sed -i ""{{end}} "s/127.0.0.1/192.168.4.3/g" ./kubeconfig'
-      - '{{if eq OS "linux"}}sed -i{{else}}sed -i ""{{end}} "s/default/coffee-shop/g" ./kubeconfig'
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" ubuntu@192.168.4.3:/etc/rancher/k3s/k3s.yaml {{.KUBECONFIG}}
+      - '{{if eq OS "linux"}}sed -i{{else}}sed -i ""{{end}} "s/127.0.0.1/192.168.4.3/g" {{.KUBECONFIG}}'
+      - '{{if eq OS "linux"}}sed -i{{else}}sed -i ""{{end}} "s/default/{{.cluster}}/g" {{.KUBECONFIG}}'
       - chmod go-r kubeconfig
     silent: true
+
+  default: task -l

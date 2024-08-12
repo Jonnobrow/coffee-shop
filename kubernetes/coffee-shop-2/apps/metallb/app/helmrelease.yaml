@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: metallb-system
+spec:
+  chart:
+    spec:
+      chart: metallb
+      version: 0.14.8
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        namespace: metallb-system
+        name: metallb
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  interval: 1h
+  driftDetection:
+    mode: enabled

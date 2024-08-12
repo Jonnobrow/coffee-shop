@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  flux:
+    vars:
+      cluster: '{{.cluster | default "coffee-shop-2"}}'
+    cmds:
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/gpg-key.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/github-deploy-key.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/cluster/vars/cluster-secrets.secret.sops.yaml | kubectl --context {{.cluster}} apply --server-side --filename -
+      - kubectl --context {{.cluster}} apply --server-side --filename {{.KUBERNETES_DIR}}/{{.cluster}}/cluster/vars/cluster-settings.yaml
+      - kubectl --context {{.cluster}} apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/cluster/config

@@ -1,54 +1,111 @@
-# ☕Coffee Shop
+> [!CAUTION]
+> This is a work-in-progress. For the "stable" code see: https://github.com/Jonnobrow/coffee-shop/tree/main
 
-This repository contains the deploy files and other useful information
-for my K8s Server.
+<div align="center">
 
-## Why Coffee Shop?
+### Coffee Shop 2.0 ☕
+
+_... managed with Flux and Renovate :robot:
+
+</div>
+
+## 📖 Overview
+
+This is the repository for my home infrastructure and Kubernetes cluster. I follow infrastructure as Code (IaC) and GitOps practices using
+tooling like [Terraform](https://www.terraform.io/), [Kubernetes](https://kubernetes.io/), [FluxCD](https://github.com/fluxcd/flux2), and
+[Renovate](https://github.com/renovatebot/renovate).
+
+## ☕ Why Coffee Shop?
 - I like Coffee!
 - *therefore* my servers and devices are coffee themed
     - Espresso: Proxmox VE Server
-    - Cappuccino: NAS Virtual Machine (NFS Shares right now)
-    - Mocha: K3S Virtual Machine
-    - Ristretto: Raspberry Pi (PiHole) **[OFFLINE]**
+    - Cappuccino: NAS Virtual Machine (NFS+Samba Shares right now)
+    - Mocha: Virtual Machine running K3s
+    - Picolo: LXC Container running PiHole
+    - Ristretto: Raspberry Pi 5 running Home Assistant
 
-## Ansible
-- There are ansible roles for setting up infrastructure
+## :bricks:&nbsp; Infrastructure
 
-## Some of the notable services
+**Currently the base infrastructure is manually provisioned :clown_face:**
+
+## :technologist:&nbsp; Configuration
+
+I use [Ansible](https://www.ansible.com/) roles for setting up infrastructure.
+
+## ⛵ Kubernetes
+
+### Installation
+
+[k3s](https://k3s.io) provisioned on a PVE Virtual Machine running Ubuntu. I only have a single physical machine so currently only
+run a single node - this may change as time goes on.
+
+### Core Components
 - [cert-manager](https://cert-manager.io/) - SSL certificates - with Cloudflare DNS challenge
 - [flux](https://toolkit.fluxcd.io/) - GitOps tool for deploying manifests from the `cluster` directory
-- [hajimari](https://github.com/toboshii/hajimari) - start page with ingress discovery
 - [local-path-provisioner](https://github.com/rancher/local-path-provisioner) - default storage class provided by k3s
 - [metallb](https://metallb.universe.tf/) - bare metal load balancer
 - [traefik](https://traefik.io) - ingress controller
 
-A full list with services will be available soon on my blog:
-[](https://jonathanbartlett.co.uk) so subscribe over there or check back here if
-you are interested.
+### GitOps
 
-## pre-commit
-It is advisable to install [pre-commit](https://pre-commit.com/)
-and the pre-commit hooks that come with this repository.
-[sops-pre-commit](https://github.com/k8s-at-home/sops-pre-commit) will check to
-make sure you are not by accident committing your secrets un-encrypted.
+[FluxCD](https://github.com/fluxcd/flux2) watches the clusters in my [kubernetes](./kubernetes/) folder (see Directories below)
+and makes the changes to my clusters based on the state of my Git repository.
 
-After pre-commit is installed on your machine run:
+Flux will recursively search the `kubernetes/${cluster}/apps` folder until it finds the most top level `kustomization.yaml` per directory and
+then apply all the resources listed in it. That `kustomization.yaml` will generally only have a namespace resource and one or many Flux
+kustomizations (`ks.yaml`). Under the control of those Flux kustomizations there will be a `HelmRelease` or other resources related to
+the application which will be applied.
 
-```bash
-pre-commit install-hooks
+[Renovate](https://github.com/renovatebot/renovate) watches my **entire** repository looking for dependency updates, when they are found
+a PR is automatically created. When some PRs are merged Flux applies the changes to my cluster.
+
+### Directories
+
+This Git repository contains the following directories under [Kubernetes](./kubernetes/).
+
+```sh
+📁 kubernetes
+├── 📁 apps           # applications
+├── 📁 bootstrap      # bootstrap procedures
+└── 📁 cluster        # core flux configuration
 ```
 
-## Diagrams
+### Repo Index
 
-![CoffeeShop Network](./CoffeeShop.drawio.svg)
-
+<!-- Begin apps section -->
+<table>
+  <tr>
+    <th>Namespace</th>
+    <th>Kind</th>
+    <th>Name</th>
+    <th>Supporting Services</th>
+  </tr>
+  <tr>
+    <td>cert-manager</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/cert-manager/app/helmrelease.yaml">cert-manager</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>flux-system</td>
+    <td><code>GitRepository</code></td>
+    <td><a href="https://github.com/Jonnobrow/coffee-shop">coffee-shop-2</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>metallb-system</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/metallb/app/helmrelease.yaml">metallb</a></td>
+    <td></td>
+  </tr>
+</table>
+<!-- End apps section -->
 
 ## :handshake:&nbsp; Thanks
-Big shout out to the following for the inspiration and manifests used in this
-repo.
+Shout out to the following projects / people for the inspiration, support and manifests used in this repo.
 
-- Flux Managed Clusters:
-    - [cbirkenbeul/k3s-gitops](https://github.com/cbirkenbeul/k3s-gitops)
-    - [carpenike/k8s-gitops](https://github.com/carpenike/k8s-gitops)
-    - [toboshii/home-cluster](https://github.com/toboshii/home-cluster)
-- [k8s@home](https://github.com/k8s-at-home)
+- https://kubesearch.dev/ : A great tool for finding other inspiration
+- [gabe565/home-ops](https://github.com/gabe565/home-ops)
+- [gabe565/charts](https://github.com/gabe565/charts)
+- [bjw-s/home-ops](https://github.com/bjw-s/home-ops)
+- [onedr0p/home-ops](https://github.com/onedr0p/home-ops)

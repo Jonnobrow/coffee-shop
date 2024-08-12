@@ -23,11 +23,35 @@ tasks:
           EOF
       - gpg --list-secret-keys "${KEY_NAME}"
 
-  create-secret:
-    desc: Creates the sops-gpg secret
+  create-gpg-secret-file:
+    desc: Creates the sops-gpg secret under {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/gpg-key.secret.sops.yaml
+    vars:
+      cluster: '{{.cluster | default "coffee-shop-2"}}'
+      secret_name: '{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/gpg-key.secret.sops.yaml'
     cmds:
       - |
         gpg --export-secret-keys --armor "${KEY_NAME}" | \
           kubectl create secret generic sops-gpg \
           --namespace=flux-system \
-          --from-file=sops.asc=/dev/stdin
+          --from-file=sops.asc=/dev/stdin \
+          --dry-run=client \
+          -o yaml | \
+            sops encrypt --filename-override {{.secret_name}} /dev/stdin > {{.secret_name}}
+
+  create-github-secret-file:
+    desc: Creates the github-deploy-key secret under {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/github-deploy-key.secret.sops.yaml
+    vars:
+      cluster: '{{.cluster | default "coffee-shop-2"}}'
+      secret_name: '{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/github-deploy-key.secret.sops.yaml'
+    cmds:
+      - |
+          kubectl create secret generic github-deploy-key \
+          --namespace=flux-system \
+          --from-file=identity={{.ROOT_DIR}}/github-deploy-key.key \
+          --from-file=known_hosts={{.ROOT_DIR}}/.github/known_hosts \
+          --dry-run=client \
+          -o yaml | \
+            sops encrypt --filename-override {{.secret_name}} /dev/stdin > {{.secret_name}}
+    preconditions:
+      - test -f {{.ROOT_DIR}}/.github/known_hosts
+      - test -f {{.ROOT_DIR}}/github-deploy-key.key

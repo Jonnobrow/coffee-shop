@@ -13,3 +13,5 @@ bin
 # Ansible
 xanmanning.k3s*
 node_modules
+# Secrets
+*.key
