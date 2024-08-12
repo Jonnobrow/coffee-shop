@@ -1,34 +1,12 @@
 ---
 version: "3"
 
-env:
-  GITHUB_USER: jonnobrow
-
 tasks:
   sync:
     desc: Sync flux-system with the Git Repository
+    vars:
+      cluster: '{{.cluster| default "coffee-shop-2"}}'
     cmds:
-      - flux reconcile source git flux-system
+      - flux reconcile source git -n flux-system {{.cluster}}
       - flux get kustomizations --watch
-    silent: true
-
-  generatekey:
-    desc: Generates a git secret for flux
-    cmds:
-      - |
-        flux create secret git coffee-shop-auth \
-          --url=ssh://git@github.com/jonnobrow/coffee-shop \
-          --ssh-key-algorithm=ecdsa \
-          --ssh-ecdsa-curve=p521
-
-  bootstrap:
-    desc: Bootstrap cluster with flux
-    cmds:
-      - |
-        flux bootstrap github \
-          --owner=$GITHUB_USER \
-          --repository=coffee-shop \
-          --branch=main \
-          --path=./cluster/base \
-          --personal
     silent: true
