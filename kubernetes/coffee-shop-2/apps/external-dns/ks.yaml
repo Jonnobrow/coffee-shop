@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: external-dns
-  path: ./kubernetes/templates/apps/external-dns/cloudflare
+  path: ./kubernetes/coffee-shop-2/apps/external-dns/cloudflare
   prune: true
   sourceRef:
     kind: GitRepository
