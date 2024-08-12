@@ -51,6 +51,6 @@ spec:
         valueFrom:
           secretKeyRef:
             name: cloudflare-api-key
-            key: apikey
+            key: cloudflare_api_key
       - name: CF_API_EMAIL
         value: "${SECRET_CLOUDFLARE_EMAIL}"
