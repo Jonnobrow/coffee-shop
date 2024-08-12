@@ -21,14 +21,10 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    installCRDs: true
-    global:
-      priorityClassName: system-cluster-critical
+    crds:
+      enabled: true
     extraArgs:
     - --dns01-recursive-nameservers=1.1.1.1:53
     - --dns01-recursive-nameservers-only
-    podDnsPolicy: "None"
-    podDnsConfig:
-      nameservers:
-        - 1.1.1.1
-        - 1.0.0.1
+    dns01RecursiveNameserversOnly: true
+    dns01RecursiveNameservers: "1.1.1.1,1.0.0.1"
