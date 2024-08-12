@@ -28,6 +28,7 @@ spec:
         kind: Kustomization
         metadata:
           name: not-used
+          namespace: not-used
         spec:
           decryption:
             provider: sops

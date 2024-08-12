@@ -1,8 +1,9 @@
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: app
-  namespace: cert-manager
+  namespace: flux-system
 spec:
   interval: 1h
   targetNamespace: cert-manager
@@ -12,12 +13,13 @@ spec:
     kind: GitRepository
     namespace: flux-system
     name: coffee-shop-2
+  wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: issuers
-  namespace: cert-manager
+  namespace: flux-system
 spec:
   interval: 1h
   targetNamespace: cert-manager
@@ -29,3 +31,23 @@ spec:
     name: coffee-shop-2
   dependsOn:
     - name: app
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: certificates
+  namespace: flux-system
+spec:
+  interval: 1h
+  targetNamespace: cert-manager
+  path: ./kubernetes/coffee-shop-2/apps/cert-manager/certificates
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    namespace: flux-system
+    name: coffee-shop-2
+  dependsOn:
+    - name: app
+    - name: issuers
+  wait: true

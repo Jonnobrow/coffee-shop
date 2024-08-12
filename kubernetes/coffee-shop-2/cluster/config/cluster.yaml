@@ -9,7 +9,7 @@ spec:
   interval: 30m
   url: ssh://git@github.com/Jonnobrow/coffee-shop.git
   ref:
-    branch: coffee-shop-2.0/main
+    branch: coffee-shop-2.0/initial-migration
   secretRef:
     name: github-deploy-key
   ignore: |
