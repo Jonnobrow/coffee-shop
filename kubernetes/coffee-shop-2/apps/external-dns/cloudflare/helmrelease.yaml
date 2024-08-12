@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app external-dns-cloudflare
+  namespace: external-dns
+spec:
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  chart:
+    spec:
+      chart: external-dns
+      version: 1.14.5
+      sourceRef:
+        kind: HelmRepository
+        namespace: flux-system
+        name: external-dns
+      interval: 1h
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    crds: CreateReplace
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    #deploymentAnnotations:
+    #  secret.reloader.stakater.com/reload: cloudflare
+    fullnameOverride: *app
+    provider:
+      name: cloudflare
+    interval: 1h
+    triggerLoopOnEvent: true
+    policy: sync
+    txtOwnerId: "${CLUSTER_NAME}"
+    txtPrefix: "k8s."
+    sources: ["crd", "ingress"]
+    domainFilters:
+      - "${SECRET_DOMAIN}"
+    extraArgs:
+      - --cloudflare-dns-records-per-page=1000
+      - --cloudflare-proxied
+      - --events
+      - --ignore-ingress-tls-spec
+      - --ingress-class=external
+    env:
+      - name: CF_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-key
+            key: apikey
+      - name: CF_API_EMAIL
+        value: "${SECRET_CLOUDFLARE_EMAIL}"

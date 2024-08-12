@@ -87,6 +87,12 @@ This Git repository contains the following directories under [Kubernetes](./kube
     <td></td>
   </tr>
   <tr>
+    <td>external-dns</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/external-dns/cloudflare/helmrelease.yaml">external-dns-cloudflare</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td>flux-system</td>
     <td><code>GitRepository</code></td>
     <td><a href="https://github.com/Jonnobrow/coffee-shop">coffee-shop-2</a></td>

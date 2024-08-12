@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: app
+  name: metallb-app
   namespace: metallb-system
 spec:
   interval: 1h
@@ -17,7 +17,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: config
+  name: metallb-config
   namespace: metallb-system
 spec:
   interval: 1h
@@ -29,4 +29,4 @@ spec:
     namespace: flux-system
     name: coffee-shop-2
   dependsOn:
-    - name: app
+    - name: metallb-app
