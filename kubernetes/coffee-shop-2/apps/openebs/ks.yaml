@@ -14,3 +14,11 @@ spec:
     kind: GitRepository
     name: coffee-shop-2
   wait: true
+  patches:
+    - target:
+        kind: StorageClass
+        name: local-path
+      patch: |
+        - op: add
+          path: /volumeBindingMode
+          value: Immediate
