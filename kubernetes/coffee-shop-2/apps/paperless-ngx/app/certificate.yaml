@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ${SECRET_DOMAIN}
-  namespace: paperless-ngx
-  annotations:
-    reflector.v1.k8s.emberstack.com/reflects: cert-manager/${SECRET_DOMAIN}
