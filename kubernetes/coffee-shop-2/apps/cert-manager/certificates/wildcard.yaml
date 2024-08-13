@@ -6,6 +6,9 @@ metadata:
   namespace: cert-manager
 spec:
   secretName: "${SECRET_DOMAIN}"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
