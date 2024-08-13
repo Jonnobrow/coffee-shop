@@ -42,7 +42,7 @@ spec:
     persistence:
       data:
         enabled: true
-        storageClass: local-path
+        storageClass: nfs-csi
         size: 100Mi
       ssh:
         enabled: true
