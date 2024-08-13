@@ -1,0 +1,136 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/app-template-3.3.2/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: paperless-ngx
+  namespace: paperless-ngx
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.3.2
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        namespace: flux-system
+        name: bjw-s
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  values:
+    controllers:
+      paperless-ngx:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.11.4@sha256:f3f2021c2771de4c18fb16938dbc7b2e0bc73a32168c16ef3c6914e4a5875d66
+              pullPolicy: IfNotPresent
+            env:
+              PAPERLESS_OCR_LANGUAGE: eng
+              PAPERLESS_TIME_ZONE: Europe/London
+              PAPERLESS_ALLOWED_HOSTS: "paperless.${SECRET_DOMAIN}"
+              PAPERLESS_CORS_ALLOWED_HOSTS: "https://paperless.${SECRET_DOMAIN},http://localhost:8000"
+              PAPERLESS_SECRET_KEY: "${SECRET_PAPERLESS_SECRET_KEY}"
+              PAPERLESS_ADMIN_USER: "${SECRET_PAPERLESS_ADMIN_USER}"
+              PAPERLESS_ADMIN_MAIL: "${SECRET_PAPERLESS_ADMIN_MAIL}"
+              PAPERLESS_ADMIN_PASSWORD: "${SECRET_PAPERLESS_ADMIN_PASSWORD}"
+              PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created}-{title}"
+              PAPERLESS_URL: "https://paperless.${SECRET_DOMAIN}"
+
+              # Resource consumption params
+              PAPERLESS_OCR_PAGES: 1
+              PAPERLESS_TASK_WORKERS: 1
+              PAPERLESS_THREADS_PER_WORKER: 1
+              PAPERLESS_WEBSERVER_WORKERS: 1
+              PAPERLESS_OCR_MODE: skip
+              PAPERLESS_ENABLE_NLTK: "false"
+              PAPERLESS_CONVERT_MEMORY_LIMIT: 128
+              PAPERLESS_CONSUMER_INOTIFY_DELAY: 5
+
+              # Database
+              PAPERLESS_DBENGINE: postgresql
+              PAPERLESS_DBHOST: postgresql-rw
+              PAPERLESS_DBNAME: paperless-ngx
+              PAPERLESS_DBUSER: paperless-ngx
+              PAPERLESS_DBPASS:
+                secretKeyRef:
+                  name: postgresql-app
+                  key: password
+
+              REDIS_PASSWORD:
+                secretKeyRef:
+                  name: redis
+                  key: redis-password
+              PAPERLESS_REDIS:
+                value: redis://:$(REDIS_PASSWORD)@redis-master
+                dependsOn: REDIS_PASSWORD
+
+            probes:
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            securityContext:
+              readOnlyRootFilesystem: true
+
+    service:
+      paperless-ngx:
+        controller: paperless-ngx
+        ports:
+          http:
+            port: 8000
+
+    persistence:
+      data:
+        enabled: true
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        retain: true
+        globalMounts:
+          - path: /usr/src/paperless/data
+      paperless-nfs:
+        enabled: true
+        type: nfs
+        server: 192.168.4.4
+        path: /scans
+        globalMounts:
+          - path: /usr/src/paperless/consume
+            subPath: consume
+          - path: /usr/src/paperless/media
+            subPath: media
+      tmp:
+        enabled: true
+        type: emptyDir
+      supervisord:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /var/log/supervisord
+            subPath: log
+          - path: /var/run/supervisord
+            subPath: run
+
+    ingress:
+      paperless-ngx:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 64m
+          external-dns.alpha.kubernetes.io/target: "lab.${SECRET_DOMAIN}"
+        hosts:
+          - host: "paperless.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: paperless-ngx
+                  port: http
+        tls:
+          - secretName: ${SECRET_DOMAIN}
+            hosts:
+              - "paperless.${SECRET_DOMAIN}"

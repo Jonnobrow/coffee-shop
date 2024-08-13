@@ -120,7 +120,7 @@ This Git repository contains the following directories under [Kubernetes](./kube
     <td>paperless-ngx</td>
     <td><code>HelmRelease</code></td>
     <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/app/helmrelease.yaml">paperless-ngx</a></td>
-    <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/postgresql.yaml">postgresql</a></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/borgmatic/helmrelease.yaml">borgmatic</a>, <a href="kubernetes/coffee-shop-2/apps/paperless-ngx/postgresql.yaml">postgresql</a>, <a href="kubernetes/coffee-shop-2/apps/paperless-ngx/redis/helmrelease.yaml">redis</a></td>
   </tr>
   <tr>
     <td>reflector</td>

@@ -1,21 +1,21 @@
 ---
 creation_rules:
-- path_regex: ^cluster/.*\.ya?ml
-  encrypted_regex: '^(data|stringData)$'
-  pgp: >-
-    EEC9902152C0690384D8A104D86E27E8B691FAA1,
-    DE99604016EF8893AD54FDE83BC85C121EA96233
-
-- path_regex: ^kubernetes/.+\.secret(\.sops)?\.ya?ml
+- path_regex: kubernetes/.+\.secret(\.sops)?\.ya?ml
   input_type: yaml
   encrypted_regex: '^(data|stringData)$'
   mac_only_encrypted: true
   pgp: >-
     EEC9902152C0690384D8A104D86E27E8B691FAA1
 
-- path_regex: ^kubernetes/.+\.secret(\.sops)?\.ya?ml
+- path_regex: kubernetes/.+\.secret(\.sops)?\.ya?ml
   input_type: env
   encrypted_regex: '^(data|stringData)$'
   mac_only_encrypted: true
   pgp: >-
     EEC9902152C0690384D8A104D86E27E8B691FAA1
+
+- path_regex: ^cluster/.*\.ya?ml
+  encrypted_regex: '^(data|stringData)$'
+  pgp: >-
+    EEC9902152C0690384D8A104D86E27E8B691FAA1,
+    DE99604016EF8893AD54FDE83BC85C121EA96233
