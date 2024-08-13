@@ -116,6 +116,18 @@ This Git repository contains the following directories under [Kubernetes](./kube
     <td><a href="kubernetes/coffee-shop-2/apps/metallb/app/helmrelease.yaml">metallb</a></td>
     <td></td>
   </tr>
+  <tr>
+    <td>paperless-ngx</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/app/helmrelease.yaml">paperless-ngx</a></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/postgresql.yaml">postgresql</a></td>
+  </tr>
+  <tr>
+    <td>reflector</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/reflector/app/helmrelease.yaml">reflector</a></td>
+    <td></td>
+  </tr>
 </table>
 <!-- End apps section -->
 
