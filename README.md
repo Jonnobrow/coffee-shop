@@ -117,6 +117,12 @@ This Git repository contains the following directories under [Kubernetes](./kube
     <td></td>
   </tr>
   <tr>
+    <td>kube-system</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/kube-system/csi-driver-nfs/helmrelease.yaml">csi-driver-nfs</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td>metallb-system</td>
     <td><code>HelmRelease</code></td>
     <td><a href="kubernetes/coffee-shop-2/apps/metallb/app/helmrelease.yaml">metallb</a></td>

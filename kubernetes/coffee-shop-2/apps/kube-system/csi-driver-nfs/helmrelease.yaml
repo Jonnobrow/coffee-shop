@@ -1,0 +1,43 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: csi-driver-nfs
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: csi-driver-nfs
+      version: v4.8.0
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        namespace: kube-system
+        name: csi-driver-nfs
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  values:
+    externalSnapshotter:
+      enabled: true
+    controller:
+      runOnControlPlane: true
+    storageClass:
+      create: true
+      name: nfs-csi
+      parameters:
+        server: 192.168.4.4
+        share: /data
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      mountOptions:
+        - nfsvers=4.1
+        - tcp
+        - intr
+        - hard
+        - noatime
+        - nodiratime
