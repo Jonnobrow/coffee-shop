@@ -81,6 +81,12 @@ This Git repository contains the following directories under [Kubernetes](./kube
     <th>Supporting Services</th>
   </tr>
   <tr>
+    <td></td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/openebs/app/helmrelease.yaml">openebs</a></td>
+    <td></td>
+  </tr>
+  <tr>
     <td>cert-manager</td>
     <td><code>HelmRelease</code></td>
     <td><a href="kubernetes/coffee-shop-2/apps/cert-manager/app/helmrelease.yaml">cert-manager</a></td>
