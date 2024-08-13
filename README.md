@@ -113,7 +113,7 @@ This Git repository contains the following directories under [Kubernetes](./kube
   <tr>
     <td>ingress-nginx</td>
     <td><code>HelmRelease</code></td>
-    <td><a href="kubernetes/coffee-shop-2/apps/ingress-nginx/app/helmrelease.yaml">ingress-nginx</a></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/ingress-nginx/external/helmrelease.yaml">nginx-external</a></td>
     <td></td>
   </tr>
   <tr>

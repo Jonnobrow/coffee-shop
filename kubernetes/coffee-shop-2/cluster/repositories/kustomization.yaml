@@ -7,3 +7,4 @@ resources:
   - ./bjw-s.yaml
   - ./external-dns.yaml
   - ./gabe565.yaml
+  - ./ingress-nginx.yaml
