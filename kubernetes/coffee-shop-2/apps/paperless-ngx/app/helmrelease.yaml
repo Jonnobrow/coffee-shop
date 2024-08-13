@@ -95,11 +95,11 @@ spec:
         retain: true
         globalMounts:
           - path: /usr/src/paperless/data
-      paperless-nfs:
+      scans:
         enabled: true
-        type: nfs
-        server: 192.168.4.4
-        path: /scans
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+        size: 10Gi
         globalMounts:
           - path: /usr/src/paperless/consume
             subPath: consume
