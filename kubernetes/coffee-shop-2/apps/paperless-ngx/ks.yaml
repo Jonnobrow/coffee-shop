@@ -46,3 +46,20 @@ spec:
     substituteFrom:
       - kind: Secret
         name: borg-vars
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: paperless-ngx-postgresql
+  namespace: flux-system
+spec:
+  interval: 1h
+  targetNamespace: paperless-ngx
+  path: ./kubernetes/coffee-shop-2/apps/paperless-ngx/postgresql
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    namespace: flux-system
+    name: coffee-shop-2
+  dependsOn:
+    - name: cnpg-app
