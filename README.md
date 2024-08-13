@@ -73,6 +73,31 @@ This Git repository contains the following directories under [Kubernetes](./kube
 ### Repo Index
 
 <!-- Begin apps section -->
+<h3>Clusters</h3>
+<ul>
+  <li><a href="#archive">archive</a></li>
+  <li><a href="#coffee-shop-2">coffee-shop-2</a></li>
+</ul>
+
+<h3>Apps</h2>
+
+<h4>archive</h2>
+<table>
+  <tr>
+    <th>Namespace</th>
+    <th>Kind</th>
+    <th>Name</th>
+    <th>Supporting Services</th>
+  </tr>
+  <tr>
+    <td>paperless-ngx</td>
+    <td><code>HelmRelease</code></td>
+    <td><a href="kubernetes/archive/apps/paperless-ngx/app/helmrelease.yaml">paperless-ngx</a></td>
+    <td><a href="kubernetes/archive/apps/paperless-ngx/borgmatic/helmrelease.yaml">borgmatic</a>, <a href="kubernetes/archive/apps/paperless-ngx/postgresql.yaml">postgresql</a>, <a href="kubernetes/archive/apps/paperless-ngx/redis/helmrelease.yaml">redis</a></td>
+  </tr>
+</table>
+
+<h4>coffee-shop-2</h2>
 <table>
   <tr>
     <th>Namespace</th>
@@ -115,12 +140,6 @@ This Git repository contains the following directories under [Kubernetes](./kube
     <td><code>HelmRelease</code></td>
     <td><a href="kubernetes/coffee-shop-2/apps/metallb/app/helmrelease.yaml">metallb</a></td>
     <td></td>
-  </tr>
-  <tr>
-    <td>paperless-ngx</td>
-    <td><code>HelmRelease</code></td>
-    <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/app/helmrelease.yaml">paperless-ngx</a></td>
-    <td><a href="kubernetes/coffee-shop-2/apps/paperless-ngx/borgmatic/helmrelease.yaml">borgmatic</a>, <a href="kubernetes/coffee-shop-2/apps/paperless-ngx/postgresql.yaml">postgresql</a>, <a href="kubernetes/coffee-shop-2/apps/paperless-ngx/redis/helmrelease.yaml">redis</a></td>
   </tr>
   <tr>
     <td>reflector</td>
