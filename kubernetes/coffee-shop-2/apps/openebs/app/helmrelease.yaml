@@ -60,10 +60,11 @@ spec:
     - kustomize:
         patches:
           - target:
-              version: storage.k8s.io/v1
+              group: storage.k8s.io
+              version: v1
               kind: StorageClass
               name: local-path
             patch: |
-              - op: add
+              - op: replace
                 path: /volumeBindingMode
                 value: Immediate
