@@ -55,3 +55,15 @@ spec:
       replicated:
         mayastor:
           enabled: false
+
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              version: storage.k8s.io/v1
+              kind: StorageClass
+              name: local-path
+            patch: |
+              - op: add
+                path: /volumeBindingMode
+                value: Immediate
