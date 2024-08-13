@@ -89,7 +89,7 @@ This Git repository contains the following directories under [Kubernetes](./kube
   <tr>
     <td>cnpg-system</td>
     <td><code>HelmRelease</code></td>
-    <td><a href="kubernetes/coffee-shop-2/apps/cpng/app/helmrelease.yaml">cnpg</a></td>
+    <td><a href="kubernetes/coffee-shop-2/apps/cnpg/app/helmrelease.yaml">cnpg</a></td>
     <td></td>
   </tr>
   <tr>
