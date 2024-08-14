@@ -42,7 +42,7 @@ source "proxmox-iso" "debian-12" {
   http_port_min  = 8100
   http_port_max  = 8100
   boot_wait      = "10s"
-  boot_command   = ["<esc><wait>auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  boot_command   = ["<esc><wait>auto url=https://raw.githubusercontent.com/Jonnobrow/coffee-shop/coffee-shop-2.0/initial-migration/server/packer/debian-12/http/preseed.cfg<enter>"]
 
   ssh_username = "root"
   ssh_password = "packer"
