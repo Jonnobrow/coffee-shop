@@ -6,3 +6,4 @@ resources:
 - home
 - nextcloud
 - kube-system
+- cnpg-system

@@ -6,3 +6,4 @@ resources:
 - paperless-scans.yaml
 - paperless-data.yaml
 - paperless-db.yaml
+- postgresql.yaml
