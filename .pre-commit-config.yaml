@@ -21,9 +21,13 @@ repos:
     rev: v0.5.1
     hooks:
       - id: check-charts-pinned
+        files: "kubernetes/.+"
       - id: check-charts-support-renovate
+        files: "kubernetes/.+"
       - id: check-drift-detection-enabled
+        files: "kubernetes/.+"
       - id: check-secrets-encrypted
+        files: "kubernetes/.+"
 
   - repo: https://github.com/gabe565/template-kubernetes-apps-markdown
     rev: v0.5.0

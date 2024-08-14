@@ -1,0 +1,7 @@
+proxmox_host      = "192.168.4.1:8006"
+proxmox_node      = "espresso"
+vmid              = "1999"
+storage_pool      = "local-lvm"
+disk_size         = "16G"
+disk_format       = "raw"
+iso_storage_pool = "local"

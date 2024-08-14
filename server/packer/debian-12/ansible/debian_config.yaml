@@ -1,0 +1,33 @@
+---
+- name: Debian Config - Debian Baseline
+  hosts: default
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Upgrade All Packages To The Latest Version
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: true
+
+    - name: Install Core Dependencies, Clean APT, & Remove Old Programs
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - cloud-init
+          - curl
+          - gnupg-agent
+          - htop
+          - linux-headers-amd64
+          - linux-image-amd64
+          - ncdu
+          - sudo
+          - software-properties-common
+          - tmux
+          - unattended-upgrades
+          - wget
+        state: present
+        install_recommends: true
+        autoremove: true
+        autoclean: true
