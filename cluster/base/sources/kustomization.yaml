@@ -17,3 +17,4 @@ resources:
   - firefly.yaml
   - immich.yaml
   - mealie.yaml
+  - cnpg.yaml
