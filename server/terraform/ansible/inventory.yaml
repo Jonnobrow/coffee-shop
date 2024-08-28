@@ -1,0 +1,39 @@
+---
+all:
+  children:
+    control:
+      hosts:
+        latte:
+          ansible_host: 192.168.4.5
+          ansible_user: debian
+      vars:
+        k3s_release_version: stable
+        k3s_install_hard_links: true
+        k3s_install_dir: /usr/bin
+        k3s_become: true
+        k3s_server:
+          node-ip: "{{ ansible_host }}"
+          tls-san:
+            - "{{ ansible_host }}"
+          docker: false
+          flannel-backend: "host-gw"
+          disable:
+            - traefik
+            - servicelb
+            - metrics-server
+          disable-network-policy: true
+          disable-cloud-controller: true
+          write-kubeconfig-mode: "644"
+          # Network CIDR to use for pod IPs
+          cluster-cidr: "10.244.0.0/16"
+          # Network CIDR to use for service IPs
+          service-cidr: "10.96.0.0/16"
+          # Required to use kube-prometheus-stack
+          kube-controller-manager-arg:
+            - "bind-address=0.0.0.0"
+          kube-proxy-arg:
+            - "metrics-bind-address=0.0.0.0"
+          kube-scheduler-arg:
+            - "bind-address=0.0.0.0"
+          etcd-expose-metrics: true
+        k3s_control_node: true

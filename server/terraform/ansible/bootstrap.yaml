@@ -1,0 +1,7 @@
+---
+- name: Bootstrap Control Plane
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - role: xanmanning.k3s
