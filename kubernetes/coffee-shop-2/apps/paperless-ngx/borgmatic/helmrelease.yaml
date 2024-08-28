@@ -48,7 +48,7 @@ spec:
       ssh:
         enabled: true
         type: secret
-        name: borgbase-ssh
+        name: backup-box-ssh
       paperless-ngx-data:
         enabled: true
         existingClaim: paperless-ngx-data
