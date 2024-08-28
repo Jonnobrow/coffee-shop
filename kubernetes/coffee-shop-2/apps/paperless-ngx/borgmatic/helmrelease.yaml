@@ -44,6 +44,7 @@ spec:
         enabled: true
         storageClass: nfs-csi
         size: 100Mi
+        accessMode: ReadWriteMany
       ssh:
         enabled: true
         type: secret
