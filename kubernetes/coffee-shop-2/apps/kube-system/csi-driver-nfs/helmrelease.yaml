@@ -26,6 +26,7 @@ spec:
       enabled: true
     controller:
       runOnControlPlane: true
+      tolerations: []
     storageClass:
       create: true
       name: nfs-csi
