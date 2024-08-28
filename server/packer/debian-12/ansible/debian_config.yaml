@@ -27,6 +27,8 @@
           - tmux
           - unattended-upgrades
           - wget
+          - rsync
+          - parted
         state: present
         install_recommends: true
         autoremove: true
