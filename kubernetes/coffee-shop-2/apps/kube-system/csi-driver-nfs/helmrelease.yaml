@@ -25,7 +25,6 @@ spec:
     externalSnapshotter:
       enabled: true
     controller:
-      runOnControlPlane: true
       tolerations: []
     storageClass:
       create: true
