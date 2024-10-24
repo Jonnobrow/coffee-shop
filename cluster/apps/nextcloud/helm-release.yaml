@@ -105,7 +105,7 @@ spec:
       enabled: true
       image:
         repository: nginx
-        tag: 1.27.0-alpine
+        tag: 1.27.2-alpine
     internalDatabase:
       enabled: false
     externalDatabase:
@@ -135,7 +135,7 @@ spec:
       # END: Uncomment when upgrading
       image:
         repository: bitnami/postgresql
-        tag: 16.3.0-debian-12-r17
+        tag: 16.4.0-debian-12-r21
       volumePermissions:
         enabled: true
       psp:
