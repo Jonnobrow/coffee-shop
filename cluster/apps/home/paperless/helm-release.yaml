@@ -68,7 +68,7 @@ spec:
         imagePullPolicy: IfNotPresent
       database:
         name: database
-        image: bitnami/postgresql:14.12.0-debian-12-r15
+        image: bitnami/postgresql:17.2.0-debian-12-r3
         volumeMounts:
           - mountPath: /bitnami/postgresql
             name: paperless-db
