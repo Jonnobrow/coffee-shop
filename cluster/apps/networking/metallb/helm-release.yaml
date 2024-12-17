@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: metallb
-      version: 6.3.5
+      version: 6.4.2
       sourceRef:
         name: bitnami
         namespace: flux-system
@@ -21,12 +21,12 @@ spec:
     controller:
       image:
         repository: bitnami/metallb-controller
-        tag: 0.14.5-debian-12-r7
+        tag: 0.14.9-debian-12-r0
       psp:
         create: false
     speaker:
       image:
         repository: bitnami/metallb-speaker
-        tag: 0.14.5-debian-12-r7
+        tag: 0.14.9-debian-12-r0
       psp:
         create: false
