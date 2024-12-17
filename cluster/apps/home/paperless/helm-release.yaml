@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
       pullPolicy: IfNotPresent
-      tag: 2.10.2
+      tag: 2.13.5
     env:
       COMPOSE_PROJECT_NAME: paperless-jb
       PAPERLESS_REDIS: redis://localhost:6379
@@ -64,11 +64,11 @@ spec:
     additionalContainers:
       broker:
         name: broker
-        image: redis:7.2
+        image: redis:7.4
         imagePullPolicy: IfNotPresent
       database:
         name: database
-        image: bitnami/postgresql:14.12.0-debian-12-r15
+        image: bitnami/postgresql:14.15.0-debian-12-r3
         volumeMounts:
           - mountPath: /bitnami/postgresql
             name: paperless-db
