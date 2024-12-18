@@ -31,7 +31,7 @@ spec:
       ALLOW_SIGNUP: 'false'
     image:
       repository: ghcr.io/mealie-recipes/mealie
-      tag: v1.11.0
+      tag: v2.4.1
     hostname: mealie
     ingress:
       main:
