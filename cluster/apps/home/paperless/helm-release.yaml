@@ -64,7 +64,7 @@ spec:
     additionalContainers:
       broker:
         name: broker
-        image: redis:7.2
+        image: redis:8.2
         imagePullPolicy: IfNotPresent
       database:
         name: database
