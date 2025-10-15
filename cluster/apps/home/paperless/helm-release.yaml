@@ -20,7 +20,7 @@ spec:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
       pullPolicy: IfNotPresent
-      tag: 2.10.2
+      tag: 2.18.4
     env:
       COMPOSE_PROJECT_NAME: paperless-jb
       PAPERLESS_REDIS: redis://localhost:6379
@@ -64,7 +64,7 @@ spec:
     additionalContainers:
       broker:
         name: broker
-        image: redis:7.2
+        image: redis:7.4
         imagePullPolicy: IfNotPresent
       database:
         name: database
