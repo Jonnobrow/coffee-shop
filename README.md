@@ -1,5 +1,5 @@
 > [!CAUTION]
-> This is a work-in-progress. For the "stable" code see: https://github.com/Jonnobrow/coffee-shop/tree/main
+> This is archived. For the replacement see: https://github.com/Jonnobrow/cafe
 
 <div align="center">
 
