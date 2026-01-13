@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://jvalskis.github.io/mealie-helm/
       chart: mealie
-      version: 1.0.1
+      version: 2.0.0
       sourceRef:
         name: mealie
         namespace: flux-system
